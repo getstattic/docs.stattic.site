@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <url>
+        <loc>https://docs.stattic.site/</loc>
+        <lastmod>2025-05-20T23:44:25Z</lastmod>
+    </url>
+    
+    <url>
+        <loc>https://docs.stattic.site/blog/front-matter-overview/</loc>
+        <lastmod>2025-05-20T00:00:00Z</lastmod>
+    </url>
+    
+    <url>
+        <loc>https://docs.stattic.site/blog/cli-flags/</loc>
+        <lastmod>2025-05-20T00:00:00Z</lastmod>
+    </url>
+    
+    <url>
+        <loc>https://docs.stattic.site/blog/classes-overview/</loc>
+        <lastmod>2025-05-20T00:00:00Z</lastmod>
+    </url>
+    
+    <url>
+        <loc>https://docs.stattic.site/about/</loc>
+        <lastmod>2025-05-20T23:44:25Z</lastmod>
+    </url>
+    
+</urlset>
