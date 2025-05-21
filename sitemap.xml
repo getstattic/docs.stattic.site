@@ -3,16 +3,11 @@
     
     <url>
         <loc>https://docs.stattic.site/</loc>
-        <lastmod>2025-05-20T23:44:25Z</lastmod>
+        <lastmod>2025-05-21T12:27:16Z</lastmod>
     </url>
     
     <url>
         <loc>https://docs.stattic.site/blog/front-matter-overview/</loc>
-        <lastmod>2025-05-20T00:00:00Z</lastmod>
-    </url>
-    
-    <url>
-        <loc>https://docs.stattic.site/blog/cli-flags/</loc>
         <lastmod>2025-05-20T00:00:00Z</lastmod>
     </url>
     
@@ -22,8 +17,13 @@
     </url>
     
     <url>
+        <loc>https://docs.stattic.site/blog/cli-flags/</loc>
+        <lastmod>2025-05-20T00:00:00Z</lastmod>
+    </url>
+    
+    <url>
         <loc>https://docs.stattic.site/about/</loc>
-        <lastmod>2025-05-20T23:44:25Z</lastmod>
+        <lastmod>2025-05-21T12:27:16Z</lastmod>
     </url>
     
 </urlset>
