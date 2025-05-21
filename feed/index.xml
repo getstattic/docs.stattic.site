@@ -5,7 +5,7 @@
 <link>https://docs.stattic.site/</link>
 <description>Latest posts from docs.stattic.site</description>
 <atom:link href="https://docs.stattic.site/feed/index.xml" rel="self" type="application/rss+xml" />
-<lastBuildDate>Wed, 21 May 2025 16:27:16 GMT</lastBuildDate>
+<lastBuildDate>Wed, 21 May 2025 16:28:47 GMT</lastBuildDate>
 <language>en-us</language>
 
 <item>
@@ -14,7 +14,7 @@
 <description>Each Markdown file (.md) used in Stattic can contain a YAML front matter block at the top of the file. This metadata controls how the page or post is rendered,...
 </description>
 <guid isPermaLink="false">645072696a9047a64d1637ef2af350b9</guid>
-<pubDate>Wed, 21 May 2025 12:27:16 +0000</pubDate>
+<pubDate>Wed, 21 May 2025 12:28:47 +0000</pubDate>
 </item>
 
 <item>
@@ -23,7 +23,7 @@
 <description>🧠 Class: FileProcessor Purpose:** Handles parsing, image processing, markdown conversion, metadata extraction, and building of individual pages/posts. * * * ### __init__(...) **Signature: ```python def init(self, templates_dir, output_dir, images_dir,...
 </description>
 <guid isPermaLink="false">3da85139fb4b895f3dfee11f61b62e57</guid>
-<pubDate>Wed, 21 May 2025 12:27:16 +0000</pubDate>
+<pubDate>Wed, 21 May 2025 12:28:47 +0000</pubDate>
 </item>
 
 <item>
@@ -32,7 +32,7 @@
 <description>Each CLI flag lets you customize how Stattic builds your site. These flags can be passed when running stattic.py from the terminal. * * * ### --output Description: Specifies the...
 </description>
 <guid isPermaLink="false">986e151de5e3c2c5a0a62fb0918d18a8</guid>
-<pubDate>Wed, 21 May 2025 12:27:16 +0000</pubDate>
+<pubDate>Wed, 21 May 2025 12:28:47 +0000</pubDate>
 </item>
 
 </channel>
