@@ -3,20 +3,20 @@
 This site contains structured content formatted for LLM-friendly consumption.
 
 ## Posts
-- [Untitled](https://docs.stattic.site/blog/11-faq/): ID 9365345630
-- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 3720397946
-- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 8952249808
-- [Template system](https://docs.stattic.site/blog/template-system/): ID 9223007485
-- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 1954990366
-- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 9557346734
-- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 6767059560
-- [Configuration](https://docs.stattic.site/blog/configuration/): ID 7483954053
-- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 2277406769
-- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 9340389726
-- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 6240288325
+- [Untitled](https://docs.stattic.site/blog/11-faq/): ID 1288979127
+- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 4557506283
+- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 1510623505
+- [Template system](https://docs.stattic.site/blog/template-system/): ID 4343977184
+- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 1525925034
+- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 2823355311
+- [Configuration](https://docs.stattic.site/blog/configuration/): ID 1495397035
+- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 4645470884
+- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 6730987199
+- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 865846540
+- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 5729634146
 
 ## Pages
-- [About Stattic](https://docs.stattic.site/about/): ID 1556942578
+- [About Stattic](https://docs.stattic.site/about/): ID 6100684709
 
 ## Sitemap
 https://docs.stattic.site/sitemap.xml

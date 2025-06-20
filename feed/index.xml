@@ -4,7 +4,7 @@
 <title>Stattic Docs</title>
 <link>https://docs.stattic.site</link>
 <description>Latest posts from Stattic Docs</description>
-<lastBuildDate>Fri, 20 Jun 2025 18:19:26 -0000</lastBuildDate>
+<lastBuildDate>Fri, 20 Jun 2025 18:21:52 -0000</lastBuildDate>
 
 <item>
 <title>Untitled</title>
@@ -14,18 +14,18 @@
 <guid>https://docs.stattic.site/blog/11-faq/</guid>
 </item>
 <item>
-<title>Installation and setup guide</title>
-<link>https://docs.stattic.site/blog/installation-and-setup/</link>
-<description>This comprehensive guide covers everything you need to know about installing and setting up Stattic on different operating systems and environments. Table of Contents System Requirements Installation Methods Platform-Specific Setup...</description>
-<pubDate>Fri, 20 Jun 2025 04:00:00 -0000</pubDate>
-<guid>https://docs.stattic.site/blog/installation-and-setup/</guid>
-</item>
-<item>
 <title>Quick start guide</title>
 <link>https://docs.stattic.site/blog/quick-start/</link>
 <description>Get up and running with Stattic in just a few minutes! This guide will take you from installation to your first deployed static site. What is Stattic? Stattic is a...</description>
 <pubDate>Fri, 20 Jun 2025 04:00:00 -0000</pubDate>
 <guid>https://docs.stattic.site/blog/quick-start/</guid>
+</item>
+<item>
+<title>Installation and setup guide</title>
+<link>https://docs.stattic.site/blog/installation-and-setup/</link>
+<description>This comprehensive guide covers everything you need to know about installing and setting up Stattic on different operating systems and environments. Table of Contents System Requirements Installation Methods Platform-Specific Setup...</description>
+<pubDate>Fri, 20 Jun 2025 04:00:00 -0000</pubDate>
+<guid>https://docs.stattic.site/blog/installation-and-setup/</guid>
 </item>
 <item>
 <title>Template system</title>
@@ -35,13 +35,6 @@
 <guid>https://docs.stattic.site/blog/template-system/</guid>
 </item>
 <item>
-<title>Project structure</title>
-<link>https://docs.stattic.site/blog/project-structure/</link>
-<description>Understanding Stattic's project structure is crucial for organizing your content, customizing your site, and maintaining a clean, scalable website. This guide explains every file and directory in a Stattic project...</description>
-<pubDate>Thu, 19 Jun 2025 04:00:00 -0000</pubDate>
-<guid>https://docs.stattic.site/blog/project-structure/</guid>
-</item>
-<item>
 <title>Your first static site with Stattic</title>
 <link>https://docs.stattic.site/blog/your-first-static-site/</link>
 <description>🏗️ Your First Static Site with Stattic This step-by-step tutorial will guide you through creating your very first static site with Stattic. By the end, you'll have a fully functional...</description>
@@ -49,11 +42,11 @@
 <guid>https://docs.stattic.site/blog/your-first-static-site/</guid>
 </item>
 <item>
-<title>Content creation</title>
-<link>https://docs.stattic.site/blog/content-creation/</link>
-<description>Master the art of creating compelling content for your Stattic site. This guide covers everything from basic Markdown syntax to advanced content organization, helping you create engaging blogs, documentation, and...</description>
+<title>Project structure</title>
+<link>https://docs.stattic.site/blog/project-structure/</link>
+<description>Understanding Stattic's project structure is crucial for organizing your content, customizing your site, and maintaining a clean, scalable website. This guide explains every file and directory in a Stattic project...</description>
 <pubDate>Thu, 19 Jun 2025 04:00:00 -0000</pubDate>
-<guid>https://docs.stattic.site/blog/content-creation/</guid>
+<guid>https://docs.stattic.site/blog/project-structure/</guid>
 </item>
 <item>
 <title>Configuration</title>
@@ -61,6 +54,13 @@
 <description>Master Stattic's configuration system to customize your static site generator for your specific needs. This guide covers all configuration options, command-line flags, and best practices for different use cases. Table...</description>
 <pubDate>Thu, 19 Jun 2025 04:00:00 -0000</pubDate>
 <guid>https://docs.stattic.site/blog/configuration/</guid>
+</item>
+<item>
+<title>Content creation</title>
+<link>https://docs.stattic.site/blog/content-creation/</link>
+<description>Master the art of creating compelling content for your Stattic site. This guide covers everything from basic Markdown syntax to advanced content organization, helping you create engaging blogs, documentation, and...</description>
+<pubDate>Thu, 19 Jun 2025 04:00:00 -0000</pubDate>
+<guid>https://docs.stattic.site/blog/content-creation/</guid>
 </item>
 <item>
 <title>Deployment options</title>
