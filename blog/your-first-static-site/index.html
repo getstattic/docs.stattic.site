@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your first static site with Stattic | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Your first static site with Stattic">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your first static site with Stattic">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Your first static site with Stattic</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <h1>🏗️ Your First Static Site with Stattic</h1>
+<p>This step-by-step tutorial will guide you through creating your very first static site with Stattic. By the end, you'll have a fully functional website with multiple pages, blog posts, and a clear understanding of how Stattic works.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#project-setup">Project Setup</a></li>
+<li><a href="#understanding-the-structure">Understanding the Structure</a></li>
+<li><a href="#creating-your-homepage">Creating Your Homepage</a></li>
+<li><a href="#writing-your-first-blog-post">Writing Your First Blog Post</a></li>
+<li><a href="#adding-static-pages">Adding Static Pages</a></li>
+<li><a href="#configuring-your-site">Configuring Your Site</a></li>
+<li><a href="#customizing-the-design">Customizing the Design</a></li>
+<li><a href="#building-and-testing">Building and Testing</a></li>
+<li><a href="#common-beginner-mistakes">Common Beginner Mistakes</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+<hr />
+<h2>Prerequisites</h2>
+<p>Before starting, make sure you have:</p>
+<ul>
+<li>✅ Stattic installed (<a href="installation-and-setup">Installation Guide</a>)</li>
+<li>✅ Basic understanding of Markdown syntax</li>
+<li>✅ A text editor (VS Code, Sublime Text, etc.)</li>
+<li>✅ A terminal/command prompt</li>
+</ul>
+<p><strong>New to Markdown?</strong> Don't worry! We'll cover the basics as we go.</p>
+<hr />
+<h2>Project Setup</h2>
+<h3>Step 1: Create Your Project Directory</h3>
+<pre style="white-space: pre-wrap;"><code># Create a new directory for your website
+mkdir my-first-website
+cd my-first-website
+
+# Initialize a new Stattic project
+stattic --init yml
+</code></pre><h3>Step 2: Explore What Was Created</h3>
+<p>After running <code>stattic --init yml</code>, you should see:</p>
+<pre style="white-space: pre-wrap;"><code>my-first-website/
+├── content/
+│   ├── posts/
+│   │   └── sample-post.md
+│   ├── pages/
+│   │   └── sample-page.md
+│   ├── authors.yml
+│   ├── categories.yml
+│   └── tags.yml
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── post.html
+│   ├── page.html
+│   ├── category.html
+│   ├── tag.html
+│   └── 404.html
+├── assets/
+│   ├── css/
+│   │   ├── stattic.css
+│   │   └── tailwind.min.css
+│   ├── js/
+│   │   └── alpine.min.js
+│   └── images/
+└── stattic.yml
+</code></pre><p><strong>🎉 Congratulations!</strong> You now have a complete Stattic project structure.</p>
+<hr />
+<h2>Understanding the Structure</h2>
+<p>Let's understand what each directory does:</p>
+<h3>📁 <strong>content/</strong> - Your Website Content</h3>
+<ul>
+<li><strong>posts/</strong>: Blog posts written in Markdown</li>
+<li><strong>pages/</strong>: Static pages (About, Contact, etc.)</li>
+<li><strong>authors.yml</strong>: Information about blog post authors</li>
+<li><strong>categories.yml</strong>: Blog post categories</li>
+<li><strong>tags.yml</strong>: Blog post tags</li>
+</ul>
+<h3>📁 <strong>templates/</strong> - How Your Site Looks</h3>
+<ul>
+<li><strong>base.html</strong>: The main layout template</li>
+<li><strong>index.html</strong>: Homepage template</li>
+<li><strong>post.html</strong>: Individual blog post template</li>
+<li><strong>page.html</strong>: Static page template</li>
+</ul>
+<h3>📁 <strong>assets/</strong> - Static Files</h3>
+<ul>
+<li><strong>css/</strong>: Stylesheets</li>
+<li><strong>js/</strong>: JavaScript files</li>
+<li><strong>images/</strong>: Pictures and graphics</li>
+</ul>
+<h3>📄 <strong>stattic.yml</strong> - Site Configuration</h3>
+<p>Contains all your site settings and preferences.</p>
+<hr />
+<h2>Creating Your Homepage</h2>
+<h3>Step 1: Configure Site Information</h3>
+<p>Open <code>stattic.yml</code> and update it with your information:</p>
+<pre style="white-space: pre-wrap;"><code># Site information
+site_url: https://my-first-website.com
+site_title: My First Website
+site_tagline: Learning web development one post at a time
+
+# Build settings
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: blog
+
+# Content settings
+posts_per_page: 5
+sort_by: date  # date, title, author, order
+
+# Styling
+fonts:
+  - Inter
+  - Poppins
+
+# SEO settings
+robots: public  # public or private
+
+# Development settings
+minify: false
+watch: false
+</code></pre><h3>Step 2: Create a Welcome Page</h3>
+<p>Create <code>content/pages/home.md</code>:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Welcome to My Website&quot;
+description: &quot;Welcome to my personal website where I share my thoughts and projects&quot;
+---
+
+# Welcome to My Website! 👋
+
+I'm excited to share my journey in web development, programming, and life in general.
+
+## What You'll Find Here
+
+### 📝 Blog Posts
+Regular updates about my learning experiences, tutorials, and thoughts on technology.
+
+### 💼 Projects
+Showcases of the projects I'm working on and what I've learned from them.
+
+### 📚 Resources
+Useful links, tools, and resources that have helped me along the way.
+
+## Latest Posts
+
+Check out my recent blog posts below, or visit the [blog](/blog/) page to see all posts.
+
+---
+
+*Thanks for visiting! Feel free to [get in touch](/contact/) if you have any questions.*
+</code></pre><hr />
+<h2>Writing Your First Blog Post</h2>
+<h3>Step 1: Set Up Authors</h3>
+<p>First, let's add yourself as an author. Edit <code>content/authors.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Your Name&quot;
+  bio: &quot;Web developer and lifelong learner&quot;
+  email: &quot;your.email@example.com&quot;
+  website: &quot;https://yourwebsite.com&quot;
+  twitter: &quot;@yourusername&quot;
+  github: &quot;yourusername&quot;
+</code></pre><h3>Step 2: Create Categories</h3>
+<p>Edit <code>content/categories.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Web Development&quot;
+  description: &quot;Posts about web development, programming, and coding&quot;
+  slug: &quot;web-development&quot;
+
+2:
+  name: &quot;Learning&quot;
+  description: &quot;My learning journey and experiences&quot;
+  slug: &quot;learning&quot;
+
+3:
+  name: &quot;Tutorial&quot;
+  description: &quot;Step-by-step tutorials and guides&quot;
+  slug: &quot;tutorial&quot;
+</code></pre><h3>Step 3: Create Tags</h3>
+<p>Edit <code>content/tags.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;beginner&quot;
+  slug: &quot;beginner&quot;
+
+2:
+  name: &quot;stattic&quot;
+  slug: &quot;stattic&quot;
+
+3:
+  name: &quot;static-site&quot;
+  slug: &quot;static-site&quot;
+
+4:
+  name: &quot;tutorial&quot;
+  slug: &quot;tutorial&quot;
+</code></pre><h3>Step 4: Write Your First Blog Post</h3>
+<p>Create <code>content/posts/my-first-post.md</code>:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;My First Blog Post with Stattic&quot;
+date: &quot;2025-06-19&quot;
+author: 1
+categories: [1, 2]
+tags: [1, 2, 3]
+description: &quot;My experience setting up my first static site with Stattic&quot;
+featured_image: &quot;images/first-post.jpg&quot;
+---
+
+# My First Blog Post with Stattic
+
+Welcome to my very first blog post! Today marks an exciting milestone - I've successfully created my first static website using **Stattic**, and I couldn't be more thrilled.
+
+## Why I Chose Stattic
+
+After researching various static site generators, I chose Stattic because:
+
+- 🚀 **Simple to use**: No complex configuration needed
+- 📱 **Mobile-responsive**: Works great on all devices
+- ⚡ **Fast performance**: Lightning-fast loading times
+- 🔍 **SEO-friendly**: Built-in optimization features
+
+## What I Learned
+
+### Markdown is Amazing
+Writing content in Markdown is so much easier than dealing with HTML. Here's a quick example:
+
+```markdown
+# This is a heading
+**This is bold text**
+*This is italic text*
+[This is a link](https://example.com)
+</code></pre><h3>Front Matter is Powerful</h3>
+<p>The YAML front matter at the top of each post lets you control:</p>
+<ul>
+<li>Post metadata (title, date, author)</li>
+<li>SEO settings (description, keywords)</li>
+<li>Organization (categories, tags)</li>
+<li>Display options (featured image, excerpt)</li>
+</ul>
+<h2>My Development Setup</h2>
+<p>Here's how I set up my development environment:</p>
+<ol>
+<li><strong>Text Editor</strong>: I'm using VS Code with the Markdown extension</li>
+<li><strong>Terminal</strong>: Built-in terminal for running Stattic commands</li>
+<li><strong>Browser</strong>: Chrome for testing and debugging</li>
+<li><strong>Version Control</strong>: Git for tracking changes</li>
+</ol>
+<h2>What's Next?</h2>
+<p>I'm excited to continue building this site and sharing my learning journey. Here's what I plan to write about:</p>
+<ul>
+<li><strong>Web Development Tips</strong>: Sharing what I learn as I grow</li>
+<li><strong>Project Showcases</strong>: Documenting my coding projects</li>
+<li><strong>Tutorial Series</strong>: Step-by-step guides for beginners</li>
+<li><strong>Book Reviews</strong>: Technical books that help me improve</li>
+</ul>
+<h2>Getting Started with Stattic</h2>
+<p>If you're thinking about starting your own static site, here are my beginner tips:</p>
+<h3>1. Start Simple</h3>
+<p>Don't try to customize everything at once. Get comfortable with the basics first.</p>
+<h3>2. Write Regularly</h3>
+<p>Even short posts help you practice and improve your writing.</p>
+<h3>3. Learn Markdown</h3>
+<p>It's much easier than HTML and very powerful once you get the hang of it.</p>
+<h3>4. Use Version Control</h3>
+<p>Git helps you track changes and never lose your work.</p>
+<h2>Conclusion</h2>
+<p>Creating this website has been an incredibly rewarding experience. Stattic made it easy to focus on content rather than technical complexities.</p>
+<p>I'm looking forward to documenting my journey and hopefully helping other beginners along the way.</p>
+<hr />
+<p><em>What's your experience with static site generators? I'd love to hear about it! Feel free to <a href="/contact/">contact me</a> and share your story.</em></p>
+<pre style="white-space: pre-wrap;"><code>
+---
+
+## Adding Static Pages
+
+### Step 1: Create an About Page
+
+Create `content/pages/about.md`:
+
+```markdown
+---
+title: &quot;About Me&quot;
+custom_url: &quot;about&quot;
+description: &quot;Learn more about me, my background, and what drives my passion for web development&quot;
+---
+
+# About Me
+
+Hi there! 👋 I'm passionate about web development and always eager to learn new technologies.
+
+## My Background
+
+I started my journey in web development because I love the combination of creativity and logic that programming provides. There's something magical about turning ideas into interactive experiences that people can use and enjoy.
+
+### What I Do
+
+- 💻 **Web Development**: Building responsive, user-friendly websites
+- 📚 **Continuous Learning**: Always exploring new technologies and best practices
+- ✍️ **Writing**: Sharing my experiences and tutorials through this blog
+- 🤝 **Community**: Contributing to open-source projects when possible
+
+## My Skills
+
+### Languages &amp; Technologies
+- **Frontend**: HTML, CSS, JavaScript
+- **Frameworks**: Learning React and Vue.js
+- **Tools**: Git, VS Code, Chrome DevTools
+- **Static Sites**: Stattic, Markdown, YAML
+
+### Currently Learning
+- Python programming
+- Modern CSS techniques
+- JAMstack architecture
+- Web accessibility best practices
+
+## My Goals
+
+### Short Term (2025)
+- Master the fundamentals of web development
+- Build 5 complete projects for my portfolio
+- Contribute to 3 open-source projects
+- Write 50 blog posts
+
+### Long Term
+- Become a full-stack developer
+- Help other beginners learn web development
+- Build applications that solve real problems
+- Never stop learning and growing
+
+## Personal Interests
+
+When I'm not coding, you can find me:
+
+- 📖 **Reading**: Both technical books and sci-fi novels
+- 🎮 **Gaming**: Enjoying puzzle games and strategy games
+- 🥾 **Hiking**: Exploring nature and getting fresh air
+- 🍳 **Cooking**: Experimenting with new recipes
+
+## Let's Connect!
+
+I love connecting with fellow developers and learners. Feel free to reach out:
+
+- 📧 **Email**: [your.email@example.com](mailto:your.email@example.com)
+- 🐙 **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- 🐦 **Twitter**: [@yourusername](https://twitter.com/yourusername)
+- 💼 **LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+
+---
+
+*Thanks for taking the time to learn about me! I hope we can connect and share our development journeys together.*
+</code></pre><h3>Step 2: Create a Contact Page</h3>
+<p>Create <code>content/pages/contact.md</code>:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Contact Me&quot;
+custom_url: &quot;contact&quot;
+description: &quot;Get in touch with me - I'd love to hear from you!&quot;
+---
+
+# Contact Me
+
+I'd love to hear from you! Whether you have a question, want to collaborate, or just want to say hello, don't hesitate to reach out.
+
+## How to Reach Me
+
+### 📧 Email
+**[your.email@example.com](mailto:your.email@example.com)**
+
+This is the best way to reach me for:
+- Project collaborations
+- Technical questions
+- General inquiries
+- Job opportunities
+
+*I typically respond within 24-48 hours.*
+
+### 🌐 Social Media
+
+**GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- Check out my projects and contributions
+- Open issues or discussions on my repositories
+
+**Twitter**: [@yourusername](https://twitter.com/yourusername)
+- Follow my daily thoughts and quick updates
+- Great for quick questions and conversations
+
+**LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- Professional networking and opportunities
+- Industry discussions and connections
+
+## What I'm Interested In
+
+### 🤝 Collaboration Opportunities
+- Open source projects
+- Learning partnerships
+- Code reviews and feedback
+- Pair programming sessions
+
+### 💡 Discussion Topics
+- Web development best practices
+- New technologies and frameworks
+- Learning resources and recommendations
+- Career advice and mentorship
+
+### 🚫 Please Don't Contact Me For
+- Spam or unsolicited marketing
+- Requests for free work without clear benefit
+- Unrelated business propositions
+
+## Response Time
+
+I do my best to respond to all genuine inquiries, but please allow:
+- **Email**: 24-48 hours
+- **Social Media**: 1-3 days
+- **GitHub Issues**: 1-7 days depending on complexity
+
+## Time Zone
+
+I'm based in **[Your Time Zone]** and typically check messages during business hours (9 AM - 6 PM).
+
+---
+
+## Frequently Asked Questions
+
+### Can you help me learn web development?
+Absolutely! I love helping fellow learners. Feel free to reach out with specific questions, and I'll do my best to point you in the right direction.
+
+### Do you offer freelance services?
+I'm currently focused on learning and personal projects, but I'm open to discussing small projects that align with my goals and availability.
+
+### Can you review my code/website?
+I'm happy to provide feedback when time allows. Please include:
+- What specific feedback you're looking for
+- Any particular areas of concern
+- Your experience level
+
+### Are you available for mentoring?
+I'm still early in my own journey, but I enjoy helping beginners with basic concepts and study strategies. Reach out and let's see if we're a good fit!
+
+---
+
+*Looking forward to connecting with you! 🚀*
+</code></pre><hr />
+<h2>Configuring Your Site</h2>
+<h3>Step 1: Update Site Configuration</h3>
+<p>Make sure your <code>stattic.yml</code> file reflects your preferences:</p>
+<pre style="white-space: pre-wrap;"><code># Site information
+site_url: https://my-first-website.com
+site_title: My First Website
+site_tagline: Learning web development one post at a time
+
+# Build settings
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: blog
+
+# Content settings
+posts_per_page: 5
+sort_by: date  # date, title, author, order
+
+# Styling
+fonts:
+  - Inter      # Body font
+  - Poppins    # Heading font
+
+# SEO settings
+robots: public  # public or private
+
+# Development settings
+minify: false   # Set to true for production
+watch: false    # Not implemented yet
+</code></pre><h3>Step 2: Understand Configuration Options</h3>
+<table>
+<thead>
+<tr>
+  <th>Setting</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>site_url</code></td>
+  <td>Your website's URL</td>
+  <td><code>https://example.com</code></td>
+</tr>
+<tr>
+  <td><code>site_title</code></td>
+  <td>Site name in browser title</td>
+  <td><code>My Blog</code></td>
+</tr>
+<tr>
+  <td><code>site_tagline</code></td>
+  <td>Brief description</td>
+  <td><code>Thoughts and tutorials</code></td>
+</tr>
+<tr>
+  <td><code>posts_per_page</code></td>
+  <td>Posts on homepage</td>
+  <td><code>5</code></td>
+</tr>
+<tr>
+  <td><code>sort_by</code></td>
+  <td>Post sorting method</td>
+  <td><code>date</code>, <code>title</code>, <code>order</code></td>
+</tr>
+<tr>
+  <td><code>fonts</code></td>
+  <td>Google Fonts to load</td>
+  <td><code>[Inter, Poppins]</code></td>
+</tr>
+<tr>
+  <td><code>minify</code></td>
+  <td>Compress CSS/JS</td>
+  <td><code>true</code> for production</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Customizing the Design</h2>
+<h3>Step 1: Basic Color Customization</h3>
+<p>Edit <code>assets/css/stattic.css</code> to customize colors:</p>
+<pre style="white-space: pre-wrap;"><code>/* Custom color overrides */
+:root {
+  --primary-color: #3b82f6;      /* Blue */
+  --secondary-color: #64748b;    /* Gray */
+  --accent-color: #f59e0b;       /* Amber */
+  --background-color: #f8fafc;   /* Light gray */
+  --text-color: #1e293b;         /* Dark gray */
+}
+
+/* Custom styles for your site */
+.custom-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  padding: 2rem 0;
+}
+
+.blog-post-card {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-bottom: 2rem;
+}
+
+.blog-post-card h2 {
+  color: var(--primary-color);
+}
+</code></pre><h3>Step 2: Add Your Logo</h3>
+<ol>
+<li>Save your logo as <code>assets/images/logo.png</code></li>
+<li>Update the header in templates if needed</li>
+<li>Ensure the logo is optimized (under 100KB)</li>
+</ol>
+<h3>Step 3: Customize Fonts</h3>
+<p>In <code>stattic.yml</code>, you can specify Google Fonts:</p>
+<pre style="white-space: pre-wrap;"><code>fonts:
+  - &quot;Inter&quot;
+  - &quot;Poppins&quot;
+</code></pre><hr />
+<h2>Building and Testing</h2>
+<h3>Step 1: Build Your Site</h3>
+<pre style="white-space: pre-wrap;"><code># Build the static site
+stattic
+</code></pre><p>You should see output like:</p>
+<pre style="white-space: pre-wrap;"><code>✓ Loaded configuration from: stattic.yml
+Processing posts...
+Processing pages...
+Generating category pages...
+Generating tag pages...
+Copying assets...
+Building complete: 3 pages, 1 posts
+✓ Build completed successfully
+</code></pre><h3>Step 2: Preview Your Site</h3>
+<pre style="white-space: pre-wrap;"><code># Navigate to output directory
+cd output
+
+# Start a local server (Python 3)
+python -m http.server 8000
+
+# Or with Python 2
+python -m SimpleHTTPServer 8000
+
+# Visit http://localhost:8000 in your browser
+</code></pre><h3>Step 3: Check Your Site</h3>
+<p>Verify that everything works:</p>
+<ul>
+<li>✅ Homepage loads correctly</li>
+<li>✅ Navigation links work</li>
+<li>✅ Blog post displays properly</li>
+<li>✅ About and Contact pages load</li>
+<li>✅ Mobile responsiveness</li>
+<li>✅ Images load (if any)</li>
+</ul>
+<hr />
+<h2>Common Beginner Mistakes</h2>
+<h3>1. Incorrect Front Matter Formatting</h3>
+<p><strong>❌ Wrong:</strong></p>
+<pre style="white-space: pre-wrap;"><code>title: My Post Title (missing quotes for titles with special characters)
+date: June 19, 2025 (incorrect date format)
+</code></pre><p><strong>✅ Correct:</strong></p>
+<pre style="white-space: pre-wrap;"><code>title: &quot;My Post Title&quot;
+date: &quot;2025-06-19&quot;
+</code></pre><h3>2. File Path Issues</h3>
+<p><strong>❌ Wrong:</strong></p>
+<pre style="white-space: pre-wrap;"><code>![Image](images/photo.jpg)  # Won't work from content/posts/
+</code></pre><p><strong>✅ Correct:</strong></p>
+<pre style="white-space: pre-wrap;"><code>![Image](images/photo.jpg)  # Relative to assets/images/
+</code></pre><h3>3. Markdown Formatting</h3>
+<p><strong>❌ Wrong:</strong></p>
+<pre style="white-space: pre-wrap;"><code>#Heading without space
+**Bold text**with no spaces
+</code></pre><p><strong>✅ Correct:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Heading with space
+**Bold text** with proper spaces
+</code></pre><h3>4. Configuration Syntax</h3>
+<p><strong>❌ Wrong:</strong></p>
+<pre style="white-space: pre-wrap;"><code>fonts:
+  Inter  # Missing dash
+  Poppins
+</code></pre><p><strong>✅ Correct:</strong></p>
+<pre style="white-space: pre-wrap;"><code>fonts:
+  - Inter
+  - Poppins
+</code></pre><h3>5. Missing Required Fields</h3>
+<p>Always include these in post front matter:</p>
+<pre style="white-space: pre-wrap;"><code>title: &quot;Required&quot;
+date: &quot;2025-06-19&quot;  # Required (YYYY-MM-DD format)
+author: 1           # Required if using authors
+</code></pre><hr />
+<h2>Next Steps</h2>
+<h3>🎉 Congratulations!</h3>
+<p>You've successfully created your first static site with Stattic! Here's what you should do next:</p>
+<h3>1. Write More Content</h3>
+<ul>
+<li>Add 2-3 more blog posts</li>
+<li>Create additional pages (Portfolio, Projects, etc.)</li>
+<li>Experiment with different content types</li>
+</ul>
+<h3>2. Customize Further</h3>
+<ul>
+<li>Modify templates to match your style</li>
+<li>Add custom CSS for unique design elements</li>
+<li>Integrate analytics or other tools</li>
+</ul>
+<h3>3. Learn Advanced Features</h3>
+<ul>
+<li>Explore more front matter options</li>
+<li>Learn about image optimization</li>
+<li>Set up automated deployments</li>
+</ul>
+<h3>4. Get Your Site Online</h3>
+<ul>
+<li>Choose a hosting platform (GitHub Pages, Netlify, Vercel)</li>
+<li>Set up a custom domain</li>
+<li>Configure SSL and performance optimization</li>
+</ul>
+<h3>5. Join the Community</h3>
+<ul>
+<li>Share your site and get feedback</li>
+<li>Help other beginners getting started</li>
+<li>Contribute to Stattic's development</li>
+</ul>
+<hr />
+<h2>Helpful Resources</h2>
+<h3>📚 Further Reading</h3>
+<ul>
+<li><a href="front-matter-reference">Front Matter Reference</a></li>
+<li><a href="template-system">Template Customization Guide</a></li>
+<li><a href="deployment-options">Deployment Options</a></li>
+<li><a href="faq">SEO Best Practices</a></li>
+</ul>
+<h3>🛠️ Tools</h3>
+<ul>
+<li><strong>Markdown Editor</strong>: Typora, Mark Text, or VS Code</li>
+<li><strong>Image Optimization</strong>: TinyPNG, ImageOptim</li>
+<li><strong>Icon Libraries</strong>: Heroicons, Tabler Icons, Feather Icons</li>
+<li><strong>Color Palettes</strong>: Coolors, Adobe Color</li>
+</ul>
+<h3>💡 Inspiration</h3>
+<ul>
+<li>Browse other static sites for design ideas</li>
+<li>Check out the Stattic community showcase</li>
+<li>Look at popular blogs in your niche</li>
+</ul>
+<hr />
+<p><strong>🚀 You're now ready to build amazing static sites with Stattic!</strong></p>
+<p><em>Happy building, and don't forget to enjoy the journey!</em> ✨</p>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

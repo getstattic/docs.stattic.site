@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Configuration">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Configuration">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Configuration</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Master Stattic's configuration system to customize your static site generator for your specific needs. This guide covers all configuration options, command-line flags, and best practices for different use cases.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#configuration-methods">Configuration Methods</a></li>
+<li><a href="#configuration-file-reference">Configuration File Reference</a></li>
+<li><a href="#command-line-options">Command Line Options</a></li>
+<li><a href="#site-information-settings">Site Information Settings</a></li>
+<li><a href="#build-configuration">Build Configuration</a></li>
+<li><a href="#content-settings">Content Settings</a></li>
+<li><a href="#seo-and-crawlers">SEO and Crawlers</a></li>
+<li><a href="#development-settings">Development Settings</a></li>
+<li><a href="#configuration-examples">Configuration Examples</a></li>
+<li><a href="#environment-specific-configs">Environment-Specific Configs</a></li>
+<li><a href="#advanced-configuration">Advanced Configuration</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>Stattic can be configured in two ways:</p>
+<ol>
+<li><strong>Configuration File</strong> (<code>stattic.yml</code>) - Recommended for project settings</li>
+<li><strong>Command Line Options</strong> - Great for overrides and automation</li>
+</ol>
+<p>Configuration files provide persistent settings, while command-line options allow for temporary overrides and automation scripts.</p>
+<hr />
+<h2>Configuration Methods</h2>
+<h3>Method 1: Configuration File (Recommended)</h3>
+<p>Create a <code>stattic.yml</code> file in your project root:</p>
+<pre style="white-space: pre-wrap;"><code>stattic --init yml
+</code></pre><p>This creates a <code>stattic.yml</code> file with all available settings and sets up your complete project structure.</p>
+<p><strong>Supported file formats:</strong></p>
+<ul>
+<li><code>stattic.yml</code> (YAML - recommended)</li>
+<li><code>stattic.yaml</code> (YAML alternative)</li>
+<li><code>stattic.json</code> (JSON format)</li>
+</ul>
+<p><strong>Generated <code>stattic.yml</code> example:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Stattic Configuration File
+# Configure your static site generator settings here
+
+# Site information
+site_url: https://example.com
+site_title: My Static Site
+site_tagline: Built with Stattic
+
+# Build settings
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: blog
+
+# Content settings
+posts_per_page: 5
+sort_by: date  # date, title, author, order
+
+# Styling
+fonts:
+  - Quicksand
+  - Open Sans
+
+# SEO settings
+robots: public  # public or private
+
+# Development settings
+minify: false
+watch: false
+</code></pre><p><strong>Note:</strong> The generated config file doesn't include all available settings. You can manually add <code>llms: public</code> or any other settings from the complete reference below.</p>
+<h3>Method 2: Command Line Options</h3>
+<p>Override any setting via command line:</p>
+<pre style="white-space: pre-wrap;"><code># Build with custom settings
+stattic --site-title &quot;My Blog&quot; --posts-per-page 10 --minify
+
+# Use different directories
+stattic --content src --output dist --assets static
+
+# Override site URL for production
+stattic --site-url https://example.com
+</code></pre><h3>Method 3: Combined Approach</h3>
+<p>Use config file for base settings, command line for overrides:</p>
+<pre style="white-space: pre-wrap;"><code># Config file has minify: false, but enable for production
+stattic --minify
+
+# Override site URL for staging
+stattic --site-url https://staging.example.com
+</code></pre><p><strong>Priority Order</strong> (highest to lowest):</p>
+<ol>
+<li>Command line arguments</li>
+<li>Configuration file settings</li>
+<li>Default values</li>
+</ol>
+<hr />
+<h2>Configuration File Reference</h2>
+<h3>Complete Configuration Template</h3>
+<p>Here's a complete <code>stattic.yml</code> with all available options:</p>
+<pre style="white-space: pre-wrap;"><code># Stattic Configuration File
+# Configure your static site generator settings here
+
+# Site information
+site_url: https://example.com          # Your site's production URL
+site_title: My Static Site             # Site title for templates
+site_tagline: Built with Stattic       # Site tagline/description
+
+# Build settings
+output: output                          # Output directory for generated site
+content: content                        # Content directory (posts and pages)
+templates: templates                    # Templates directory
+assets: assets                          # Assets directory (CSS, JS, images)
+blog_slug: blog                         # URL slug for blog posts
+
+# Content settings
+posts_per_page: 5                       # Number of posts per index page
+sort_by: date                           # Sort posts: date, title, author, order
+
+# Styling
+fonts:                                  # Google Fonts to download
+  - Quicksand
+  - Open Sans
+
+# SEO settings
+robots: public                          # Robots.txt: public or private
+llms: public                            # LLMs.txt: public or private
+
+# Development settings
+minify: false                           # Minify CSS and JS assets
+watch: false                            # Watch mode (not implemented)
+</code></pre><h3>Setting Descriptions</h3>
+<table>
+<thead>
+<tr>
+  <th>Setting</th>
+  <th>Type</th>
+  <th>Default</th>
+  <th>In Generated Config</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>site_url</code></td>
+  <td>String</td>
+  <td>None</td>
+  <td>✅</td>
+  <td>Your site's production URL (enables RSS/sitemaps)</td>
+</tr>
+<tr>
+  <td><code>site_title</code></td>
+  <td>String</td>
+  <td>None</td>
+  <td>✅</td>
+  <td>Site title used in templates and metadata</td>
+</tr>
+<tr>
+  <td><code>site_tagline</code></td>
+  <td>String</td>
+  <td>None</td>
+  <td>✅</td>
+  <td>Site tagline/description for templates</td>
+</tr>
+<tr>
+  <td><code>output</code></td>
+  <td>String</td>
+  <td><code>output</code></td>
+  <td>✅</td>
+  <td>Directory where generated site is saved</td>
+</tr>
+<tr>
+  <td><code>content</code></td>
+  <td>String</td>
+  <td><code>content</code></td>
+  <td>✅</td>
+  <td>Directory containing posts and pages</td>
+</tr>
+<tr>
+  <td><code>templates</code></td>
+  <td>String</td>
+  <td><code>templates</code></td>
+  <td>✅</td>
+  <td>Directory with Jinja2 templates</td>
+</tr>
+<tr>
+  <td><code>assets</code></td>
+  <td>String</td>
+  <td>None</td>
+  <td>✅</td>
+  <td>Directory with CSS, JS, images to copy (falls back to 'assets' if exists)</td>
+</tr>
+<tr>
+  <td><code>blog_slug</code></td>
+  <td>String</td>
+  <td><code>blog</code></td>
+  <td>✅</td>
+  <td>URL slug for blog posts (e.g., &quot;articles&quot;)</td>
+</tr>
+<tr>
+  <td><code>posts_per_page</code></td>
+  <td>Integer</td>
+  <td>5</td>
+  <td>✅</td>
+  <td>Posts shown per index page</td>
+</tr>
+<tr>
+  <td><code>sort_by</code></td>
+  <td>String</td>
+  <td><code>date</code></td>
+  <td>✅</td>
+  <td>Sort posts by: date, title, author, order</td>
+</tr>
+<tr>
+  <td><code>fonts</code></td>
+  <td>List</td>
+  <td>None</td>
+  <td>✅</td>
+  <td>Google Fonts to download and include</td>
+</tr>
+<tr>
+  <td><code>robots</code></td>
+  <td>String</td>
+  <td><code>public</code></td>
+  <td>✅</td>
+  <td>Robots.txt setting: public or private</td>
+</tr>
+<tr>
+  <td><code>llms</code></td>
+  <td>String</td>
+  <td><code>public</code></td>
+  <td>❌</td>
+  <td>LLMs.txt setting for AI crawlers (add manually)</td>
+</tr>
+<tr>
+  <td><code>minify</code></td>
+  <td>Boolean</td>
+  <td>false</td>
+  <td>✅</td>
+  <td>Minify CSS and JS assets</td>
+</tr>
+<tr>
+  <td><code>watch</code></td>
+  <td>Boolean</td>
+  <td>false</td>
+  <td>✅</td>
+  <td>Watch for changes (not implemented)</td>
+</tr>
+</tbody>
+</table>
+<pre style="white-space: pre-wrap;"><code># ===== SITE INFORMATION =====
+site_url: https://example.com
+site_title: My Website
+site_tagline: Welcome to my site
+
+# ===== DIRECTORY SETTINGS =====
+output: output          # Where to generate the site
+content: content        # Where your markdown files are
+templates: templates    # Custom template directory (optional)
+assets: assets         # Assets to copy (CSS, JS, images)
+
+# ===== CONTENT SETTINGS =====
+posts_per_page: 10                    # Posts on homepage/archives
+sort_by: date                         # date, title, author, order
+blog_slug: blog                       # URL slug for posts (/blog/ vs /posts/)
+
+# ===== STYLING =====
+fonts:                                # Google Fonts to include
+  - Inter
+  - Roboto
+  - Source Code Pro
+
+# ===== SEO &amp; CRAWLERS =====
+robots: public                        # public or private
+llms: public                         # public or private (for AI crawlers)
+
+# ===== DEVELOPMENT =====
+minify: true                         # Minify CSS and JS
+watch: false                         # Auto-rebuild on changes (not implemented)
+</code></pre><h3>Minimal Configuration</h3>
+<p>The simplest <code>stattic.yml</code> you can use:</p>
+<pre style="white-space: pre-wrap;"><code>site_title: My Site
+site_url: https://example.com
+</code></pre><p>All other settings will use defaults:</p>
+<ul>
+<li><code>output: output</code></li>
+<li><code>content: content</code></li>
+<li><code>posts_per_page: 5</code></li>
+<li><code>sort_by: date</code></li>
+<li><code>robots: public</code></li>
+<li><code>llms: public</code></li>
+<li><code>minify: false</code></li>
+</ul>
+<hr />
+<h2>Command Line Options</h2>
+<h3>All Available Options</h3>
+<pre style="white-space: pre-wrap;"><code>stattic [OPTIONS]
+
+OPTIONS:
+  --output DIR              Output directory for generated site
+  --content DIR             Content directory containing markdown files  
+  --templates DIR           Templates directory
+  --assets DIR              Assets directory to copy to output
+  --posts-per-page NUM      Number of posts per page for pagination
+  --sort-by FIELD           Sort posts by: date, title, author, order
+  --fonts FONTS             Comma-separated list of Google Fonts
+  --site-title TITLE        Site title for metadata
+  --site-tagline TAGLINE    Site tagline for metadata
+  --site-url URL            Site URL for RSS feeds and sitemaps
+  --robots MODE             Robots.txt configuration: public or private
+  --llms MODE               LLMs.txt configuration: public or private
+  --minify                  Minify CSS and JS assets
+  --blog-slug SLUG          Custom slug for posts instead of 'blog'
+  --init FORMAT             Create sample config file: yml, yaml, or json
+  --version                 Show version number
+  --help                    Show help message
+</code></pre><h3>Basic Usage</h3>
+<pre style="white-space: pre-wrap;"><code># Build site with default settings
+stattic
+
+# Build with custom output directory
+stattic --output dist
+
+# Build with different content directory
+stattic --content src/posts
+</code></pre><h3>Complete Command Reference</h3>
+<table>
+<thead>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>--output OUTPUT</code></td>
+  <td>Output directory</td>
+  <td><code>--output dist</code></td>
+</tr>
+<tr>
+  <td><code>--content CONTENT</code></td>
+  <td>Content directory</td>
+  <td><code>--content src</code></td>
+</tr>
+<tr>
+  <td><code>--templates TEMPLATES</code></td>
+  <td>Templates directory</td>
+  <td><code>--templates themes/custom</code></td>
+</tr>
+<tr>
+  <td><code>--assets ASSETS</code></td>
+  <td>Assets directory</td>
+  <td><code>--assets static</code></td>
+</tr>
+<tr>
+  <td><code>--posts-per-page NUMBER</code></td>
+  <td>Posts per page</td>
+  <td><code>--posts-per-page 10</code></td>
+</tr>
+<tr>
+  <td><code>--sort-by FIELD</code></td>
+  <td>Sort posts by</td>
+  <td><code>--sort-by title</code></td>
+</tr>
+<tr>
+  <td><code>--fonts FONTS</code></td>
+  <td>Google Fonts (comma-separated)</td>
+  <td><code>--fonts &quot;Inter,Roboto&quot;</code></td>
+</tr>
+<tr>
+  <td><code>--site-title TITLE</code></td>
+  <td>Site title</td>
+  <td><code>--site-title &quot;My Blog&quot;</code></td>
+</tr>
+<tr>
+  <td><code>--site-tagline TAGLINE</code></td>
+  <td>Site tagline</td>
+  <td><code>--site-tagline &quot;Web Dev Blog&quot;</code></td>
+</tr>
+<tr>
+  <td><code>--site-url URL</code></td>
+  <td>Site URL</td>
+  <td><code>--site-url https://example.com</code></td>
+</tr>
+<tr>
+  <td><code>--robots SETTING</code></td>
+  <td>Robots.txt setting</td>
+  <td><code>--robots private</code></td>
+</tr>
+<tr>
+  <td><code>--llms SETTING</code></td>
+  <td>LLMs.txt setting</td>
+  <td><code>--llms private</code></td>
+</tr>
+<tr>
+  <td><code>--minify</code></td>
+  <td>Enable minification</td>
+  <td><code>--minify</code></td>
+</tr>
+<tr>
+  <td><code>--blog-slug SLUG</code></td>
+  <td>Custom blog slug</td>
+  <td><code>--blog-slug posts</code></td>
+</tr>
+<tr>
+  <td><code>--init FORMAT</code></td>
+  <td>Create config file</td>
+  <td><code>--init yml</code></td>
+</tr>
+<tr>
+  <td><code>--version</code></td>
+  <td>Show version</td>
+  <td><code>--version</code></td>
+</tr>
+<tr>
+  <td><code>--help</code></td>
+  <td>Show help</td>
+  <td><code>--help</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Initialization Command</h3>
+<p>Create a sample configuration file and complete project structure:</p>
+<pre style="white-space: pre-wrap;"><code># Create YAML config (recommended)
+stattic --init yml
+
+# Create YAML config (alternative)
+stattic --init yaml
+
+# Create JSON config
+stattic --init json
+</code></pre><p>The <code>--init</code> command creates:</p>
+<ul>
+<li>Configuration file (<code>stattic.yml</code>, <code>stattic.yaml</code>, or <code>stattic.json</code>)</li>
+<li>Complete directory structure (<code>templates/</code>, <code>content/</code>, <code>assets/</code>)</li>
+<li>All default templates (<code>base.html</code>, <code>post.html</code>, <code>index.html</code>, etc.)</li>
+<li>Sample content files (<code>sample-post.md</code>, <code>sample-page.md</code>)</li>
+<li>Configuration files (<code>authors.yml</code>, <code>categories.yml</code>, <code>tags.yml</code>)</li>
+</ul>
+<p><strong>Note:</strong> The generated <code>stattic.yml</code> file includes most configuration options but may not include all available settings (such as <code>llms</code>). You can add any missing settings manually using the reference below.</p>
+<hr />
+<h2>Site Information Settings</h2>
+<h3>Essential Site Settings</h3>
+<pre style="white-space: pre-wrap;"><code>site_url: https://example.com         # Full URL (required for RSS/sitemap)
+site_title: My Website               # Appears in &lt;title&gt; tags and templates
+site_tagline: Welcome to my site     # Subtitle/description for templates
+</code></pre><h3>Usage Examples</h3>
+<p><strong>Personal Blog:</strong></p>
+<pre style="white-space: pre-wrap;"><code>site_url: https://johnsmith.dev
+site_title: John Smith
+site_tagline: Full-stack developer and writer
+</code></pre><p><strong>Company Website:</strong></p>
+<pre style="white-space: pre-wrap;"><code>site_url: https://acme-corp.com
+site_title: ACME Corporation
+site_tagline: Innovation in technology solutions
+</code></pre><p><strong>Documentation Site:</strong></p>
+<pre style="white-space: pre-wrap;"><code>site_url: https://docs.projectname.org
+site_title: ProjectName Documentation
+site_tagline: Complete guide and API reference
+</code></pre><hr />
+<h2>Build Configuration</h2>
+<h3>Directory Structure</h3>
+<pre style="white-space: pre-wrap;"><code># Default structure
+output: output           # Generated site goes here
+content: content         # Your .md files
+templates: templates     # Custom templates (falls back to built-in if missing)
+assets: assets          # CSS, JS, images to copy (falls back to 'assets' if exists)
+
+# Custom structure
+output: dist            # Different output directory
+content: src/posts      # Posts in src/posts/
+assets: static          # Assets in static/
+</code></pre><p><strong>Assets Directory Behavior:</strong></p>
+<ul>
+<li>If <code>assets</code> is not specified (None), Stattic looks for an 'assets' directory</li>
+<li>If the specified assets directory doesn't exist, no error occurs</li>
+<li>Templates directory falls back to built-in templates if custom directory is missing</li>
+</ul>
+<h3>Directory Examples</h3>
+<p><strong>Standard Blog:</strong></p>
+<pre style="white-space: pre-wrap;"><code>output: _site
+content: _posts
+assets: assets
+</code></pre><p><strong>Documentation Site:</strong></p>
+<pre style="white-space: pre-wrap;"><code>output: public
+content: docs
+assets: static
+templates: layouts
+</code></pre><p><strong>Multi-language Site:</strong></p>
+<pre style="white-space: pre-wrap;"><code>output: build
+content: content
+assets: static
+# Use separate configs for each language
+</code></pre><hr />
+<h2>Content Settings</h2>
+<h3>Posts Per Page</h3>
+<p>Controls pagination on homepage and archive pages:</p>
+<pre style="white-space: pre-wrap;"><code>posts_per_page: 5       # Default: 5 posts per page
+posts_per_page: 10      # More posts per page
+posts_per_page: 1       # One post per page
+</code></pre><p><strong>Recommended values:</strong></p>
+<ul>
+<li><strong>Blogs</strong>: 5-10 posts per page</li>
+<li><strong>News sites</strong>: 15-20 posts per page</li>
+<li><strong>Photo blogs</strong>: 5-8 posts per page</li>
+</ul>
+<h3>Post Sorting</h3>
+<p>Control how posts are ordered:</p>
+<pre style="white-space: pre-wrap;"><code>sort_by: date           # Latest first (default)
+sort_by: title          # Alphabetical by title
+sort_by: author         # Grouped by author
+sort_by: order          # Manual order (use 'order' in front matter)
+</code></pre><p><strong>Using Manual Order:</strong></p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Important Post&quot;
+order: 1                # Will appear first
+---
+</code></pre><pre style="white-space: pre-wrap;"><code>---
+title: &quot;Regular Post&quot;
+order: 10               # Will appear later
+---
+</code></pre><h3>Blog URL Structure</h3>
+<p>Customize the URL structure for your posts:</p>
+<pre style="white-space: pre-wrap;"><code>blog_slug: blog         # Posts at /blog/post-name/ (default)
+blog_slug: posts        # Posts at /posts/post-name/
+blog_slug: articles     # Posts at /articles/post-name/
+blog_slug: news         # Posts at /news/post-name/
+</code></pre><hr />
+<h2>SEO and Crawlers</h2>
+<h3>Robots.txt Configuration</h3>
+<p>Control search engine crawling:</p>
+<pre style="white-space: pre-wrap;"><code>robots: public          # Allow all crawlers (default)
+robots: private         # Block all crawlers
+</code></pre><p><strong>Generated robots.txt (public):</strong></p>
+<pre style="white-space: pre-wrap;"><code>User-agent: *
+Allow: /
+Sitemap: https://example.com/sitemap.xml
+</code></pre><p><strong>Generated robots.txt (private):</strong></p>
+<pre style="white-space: pre-wrap;"><code>User-agent: *
+Disallow: /
+</code></pre><h3>LLMs.txt for AI Crawlers</h3>
+<p>Control AI/LLM crawler access:</p>
+<pre style="white-space: pre-wrap;"><code>llms: public           # Allow AI crawlers (default)
+llms: private          # Block AI crawlers
+</code></pre><p><strong>Note:</strong> This setting is not included in the generated config file from <code>stattic --init yml</code>, but you can add it manually. The default value is <code>public</code> if not specified.</p>
+<p>This generates an <code>llms.txt</code> file that provides structured information about your site for AI crawlers.</p>
+<hr />
+<h2>Development Settings</h2>
+<h3>Minification</h3>
+<p>Control asset optimization:</p>
+<pre style="white-space: pre-wrap;"><code>minify: true           # Minify CSS and JS (production)
+minify: false          # Keep assets readable (development, default)
+</code></pre><p><strong>What gets minified:</strong></p>
+<ul>
+<li><code>assets/css/*.css</code> → <code>assets/css/*.min.css</code></li>
+<li><code>assets/js/*.js</code> → <code>assets/js/*.min.js</code></li>
+</ul>
+<p><strong>Command line override:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Force minification regardless of config
+stattic --minify
+</code></pre><h3>Watch Mode</h3>
+<pre style="white-space: pre-wrap;"><code>watch: false           # Default (not implemented yet)
+</code></pre><p><strong>Note:</strong> Watch mode is defined in the configuration but not yet implemented in the current version. Currently, <code>stattic</code> runs a single build process.</p>
+<hr />
+<h2>Configuration Examples</h2>
+<h3>Personal Blog</h3>
+<pre style="white-space: pre-wrap;"><code># Personal blog configuration
+site_url: https://jane-doe.com
+site_title: Jane Doe
+site_tagline: Software engineer and technical writer
+
+# Content settings
+posts_per_page: 8
+sort_by: date
+blog_slug: blog
+
+# Styling
+fonts:
+  - Inter
+  - JetBrains Mono
+
+# Production settings
+minify: true
+robots: public
+llms: public
+</code></pre><h3>Company Website</h3>
+<pre style="white-space: pre-wrap;"><code># Company website configuration
+site_url: https://techstartup.io
+site_title: TechStartup
+site_tagline: Innovative solutions for modern problems
+
+# Directory structure
+output: public
+content: content
+assets: static
+
+# Content settings
+posts_per_page: 6
+sort_by: order
+blog_slug: news
+
+# Styling
+fonts:
+  - Poppins
+  - Roboto
+
+# SEO
+robots: public
+llms: public
+minify: true
+</code></pre><h3>Documentation Site</h3>
+<pre style="white-space: pre-wrap;"><code># Documentation site configuration
+site_url: https://docs.myproject.org
+site_title: MyProject Documentation
+site_tagline: Complete API reference and guides
+
+# Structure
+output: build
+content: docs
+assets: assets
+templates: layouts
+
+# Content
+posts_per_page: 50      # More items per page for docs
+sort_by: order          # Manual ordering
+blog_slug: guides
+
+# Fonts for code-heavy content
+fonts:
+  - Inter
+  - Source Code Pro
+
+# Settings
+minify: true
+robots: public
+llms: public
+</code></pre><h3>Portfolio Site</h3>
+<pre style="white-space: pre-wrap;"><code># Portfolio configuration
+site_url: https://portfolio.designer.com
+site_title: Alex Designer
+site_tagline: UI/UX Designer and Frontend Developer
+
+# Structure
+output: dist
+content: projects
+assets: static
+
+# Content
+posts_per_page: 12      # Grid layout with more items
+sort_by: order          # Curated order
+blog_slug: work
+
+# Styling
+fonts:
+  - Playfair Display
+  - Inter
+
+# Settings
+minify: true
+robots: public
+llms: private           # Keep portfolio private from AI
+</code></pre><hr />
+<h2>Environment-Specific Configs</h2>
+<h3>Development vs Production</h3>
+<p>Since Stattic only looks for <code>stattic.yml</code>, <code>stattic.yaml</code>, or <code>stattic.json</code>, you can manage environments through:</p>
+<ol>
+<li><strong>Multiple config files with manual switching</strong></li>
+<li><strong>Command line overrides</strong></li>
+<li><strong>Environment variables</strong> (if supported by your deployment)</li>
+</ol>
+<h3>Development Workflow</h3>
+<p><strong><code>stattic.dev.yml</code> (manual switching):</strong></p>
+<pre style="white-space: pre-wrap;"><code># Development settings
+site_url: http://localhost:8000
+site_title: My Site (DEV)
+site_tagline: Local development version
+
+# Development optimizations
+minify: false           # Easier debugging
+robots: private         # Don't index development
+
+# Local directories
+output: output
+content: content
+assets: assets
+</code></pre><p><strong>Copy for development:</strong></p>
+<pre style="white-space: pre-wrap;"><code>cp stattic.dev.yml stattic.yml
+stattic
+</code></pre><h3>Production Build</h3>
+<p><strong>Command line overrides for production:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Override for production without changing config file
+stattic --site-url https://example.com --minify --robots public
+</code></pre><h3>CI/CD Integration</h3>
+<p><strong>GitHub Actions example:</strong></p>
+<pre style="white-space: pre-wrap;"><code># .github/workflows/build.yml
+- name: Build for staging
+  run: stattic --site-url https://staging.example.com --robots private
+
+- name: Build for production  
+  run: stattic --site-url https://example.com --minify --robots public
+</code></pre><hr />
+<h2>Advanced Configuration</h2>
+<h3>Google Fonts Configuration</h3>
+<p>Stattic automatically downloads and optimizes Google Fonts:</p>
+<pre style="white-space: pre-wrap;"><code>fonts:
+  - Inter               # Single font family
+  - Roboto
+  - Source Code Pro
+
+# Or empty for no Google Fonts
+fonts: []
+</code></pre><p><strong>What Stattic does with fonts:</strong></p>
+<ol>
+<li>Downloads font files from Google Fonts</li>
+<li>Creates local <code>fonts.css</code> file</li>
+<li>Updates templates to reference local fonts</li>
+<li>Improves performance by eliminating external requests</li>
+</ol>
+<p><strong>Font Selection Tips:</strong></p>
+<ul>
+<li><strong>Body text</strong>: Inter, Roboto, Open Sans, Lato</li>
+<li><strong>Headings</strong>: Poppins, Montserrat, Playfair Display</li>
+<li><strong>Code</strong>: Source Code Pro, JetBrains Mono, Fira Code</li>
+<li><strong>Limit to 2-3 fonts</strong> for performance</li>
+</ul>
+<h3>Custom Directory Structures</h3>
+<p><strong>Monorepo Setup:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Site in subdirectory of larger project
+content: website/content
+templates: website/templates
+assets: website/static
+output: website/build
+</code></pre><p><strong>Separate Content Repository:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Content in different location
+content: ../content-repo/posts
+assets: ../content-repo/assets
+output: ../deploy/public
+</code></pre><h3>Build Script Integration</h3>
+<p><strong>package.json scripts:</strong></p>
+<pre style="white-space: pre-wrap;"><code>### Configuration Examples for Different Needs
+
+**Development script (`package.json`):**
+```json
+{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;stattic&quot;,
+    &quot;build:prod&quot;: &quot;stattic --minify&quot;,
+    &quot;build:dev&quot;: &quot;stattic --site-url http://localhost:8000 --robots private&quot;
+  }
+}
+</code></pre><p><strong>Shell script for different environments:</strong></p>
+<pre style="white-space: pre-wrap;"><code>#!/bin/bash
+# build.sh
+
+case &quot;$1&quot; in
+  dev)
+    stattic --robots private --minify false
+    ;;
+  staging)
+    stattic --site-url https://staging.example.com --robots private --minify
+    ;;
+  prod)
+    stattic --site-url https://example.com --robots public --minify
+    ;;
+  *)
+    echo &quot;Usage: $0 {dev|staging|prod}&quot;
+    exit 1
+esac
+</code></pre><hr />
+<h2>Troubleshooting</h2>
+<h3>Common Configuration Issues</h3>
+<h4>1. Site URL Problems</h4>
+<p><strong>Problem:</strong> RSS feeds or sitemaps not generating</p>
+<pre style="white-space: pre-wrap;"><code># ❌ Missing or invalid site_url
+site_url: &quot;&quot;
+# or
+site_url: localhost:8000
+</code></pre><p><strong>Solution:</strong> Provide complete URL with protocol</p>
+<pre style="white-space: pre-wrap;"><code># ✅ Complete URL with protocol
+site_url: https://example.com
+</code></pre><h4>2. Directory Path Issues</h4>
+<p><strong>Problem:</strong> Build fails with &quot;directory not found&quot;</p>
+<pre style="white-space: pre-wrap;"><code># ❌ Directory doesn't exist
+content: posts
+assets: static
+</code></pre><p><strong>Solution:</strong> Verify directories exist or use <code>--init</code> to create structure</p>
+<pre style="white-space: pre-wrap;"><code># Create complete project structure
+stattic --init yml
+</code></pre><h4>3. Configuration File Not Found</h4>
+<p><strong>Problem:</strong> Stattic doesn't load your config</p>
+<ul>
+<li>Check filename: must be <code>stattic.yml</code>, <code>stattic.yaml</code>, or <code>stattic.json</code></li>
+<li>Check location: must be in current working directory</li>
+<li>Check syntax: run YAML validation</li>
+</ul>
+<p><strong>Solution:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Verify file exists
+ls -la stattic.yml
+
+# Check YAML syntax
+python3 -c &quot;import yaml; yaml.safe_load(open('stattic.yml'))&quot;
+</code></pre><h4>4. Font Loading Issues</h4>
+<p><strong>Problem:</strong> Fonts not downloading or loading</p>
+<pre style="white-space: pre-wrap;"><code># ❌ Invalid font names
+fonts:
+  - &quot;Inter Font&quot;
+  - &quot;Source-Code-Pro&quot;
+</code></pre><p><strong>Solution:</strong> Use exact Google Fonts family names</p>
+<pre style="white-space: pre-wrap;"><code># ✅ Correct font names
+fonts:
+  - Inter
+  - Source Code Pro
+  - JetBrains Mono
+</code></pre><h4>5. Minification Problems</h4>
+<p><strong>Problem:</strong> Site breaks with minification enabled</p>
+<p><strong>Solution:</strong> Check for syntax errors in CSS/JS</p>
+<pre style="white-space: pre-wrap;"><code># Build without minification to debug (remove --minify flag)
+stattic
+
+# Check specific asset files for syntax errors
+</code></pre><h3>Validation Commands</h3>
+<p><strong>Check configuration file:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Test YAML syntax
+python3 -c &quot;import yaml; print('✅ Valid YAML')&quot; &amp;&amp; \
+python3 -c &quot;import yaml; yaml.safe_load(open('stattic.yml'))&quot; 2&gt;/dev/null &amp;&amp; \
+echo &quot;✅ Configuration file is valid&quot; || echo &quot;❌ Configuration file has errors&quot;
+
+# Test build with current config
+stattic --help  # Verify stattic is working
+stattic         # Test actual build
+</code></pre><p><strong>Debug build process:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Check what settings are being used
+stattic --help
+stattic --version
+</code></pre><h3>Common Error Messages</h3>
+<table>
+<thead>
+<tr>
+  <th>Error</th>
+  <th>Cause</th>
+  <th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>&quot;Content directory not found&quot;</td>
+  <td>Missing content folder</td>
+  <td>Create <code>content/</code> directory</td>
+</tr>
+<tr>
+  <td>&quot;No posts found&quot;</td>
+  <td>Empty content directory</td>
+  <td>Add <code>.md</code> files to content</td>
+</tr>
+<tr>
+  <td>&quot;Invalid YAML syntax&quot;</td>
+  <td>Malformed config file</td>
+  <td>Check YAML syntax</td>
+</tr>
+<tr>
+  <td>&quot;Font download failed&quot;</td>
+  <td>Network/font name issue</td>
+  <td>Check font names and connection</td>
+</tr>
+<tr>
+  <td>&quot;Minification failed&quot;</td>
+  <td>CSS/JS syntax error</td>
+  <td>Fix syntax or disable minification</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Configuration Best Practices</h2>
+<h3>1. Start Simple</h3>
+<p>Begin with minimal configuration:</p>
+<pre style="white-space: pre-wrap;"><code>site_title: My Site
+site_url: https://example.com
+</code></pre><p>Add settings as needed.</p>
+<h3>2. Use Environment-Specific Configs</h3>
+<p>Don't mix development and production settings:</p>
+<ul>
+<li><code>stattic.dev.yml</code> for development</li>
+<li><code>stattic.prod.yml</code> for production</li>
+<li><code>stattic.yml</code> as default</li>
+</ul>
+<h3>3. Document Your Settings</h3>
+<p>Add comments to explain custom settings:</p>
+<pre style="white-space: pre-wrap;"><code># Custom blog slug for better SEO
+blog_slug: articles
+
+# Higher posts per page for fast loading
+posts_per_page: 6
+
+# Fonts chosen for readability
+fonts:
+  - Inter      # Body text
+  - Fira Code  # Code blocks
+</code></pre><h3>4. Version Control</h3>
+<p>Include configuration in version control:</p>
+<pre style="white-space: pre-wrap;"><code># Include configs
+stattic.yml
+stattic.*.yml
+
+# Exclude build output
+output/
+dist/
+public/
+</code></pre><h3>5. Test Configurations</h3>
+<p>Always test configuration changes:</p>
+<pre style="white-space: pre-wrap;"><code># Test build before deployment
+stattic --output test-build
+
+# Check generated files
+ls test-build/
+</code></pre><hr />
+<h2>Summary</h2>
+<p>Stattic's configuration system provides:</p>
+<ul>
+<li><strong>Flexible configuration</strong> via YAML files or command line</li>
+<li><strong>Environment-specific settings</strong> for different deployment stages</li>
+<li><strong>Simple defaults</strong> that work out of the box</li>
+<li><strong>Powerful customization</strong> for advanced use cases</li>
+</ul>
+<h3>Key Configuration Files</h3>
+<ul>
+<li><strong><code>stattic.yml</code></strong> - Main configuration file</li>
+<li><strong><code>stattic.dev.yml</code></strong> - Development overrides</li>
+<li><strong><code>stattic.prod.yml</code></strong> - Production settings</li>
+</ul>
+<h3>Essential Settings</h3>
+<ul>
+<li><strong><code>site_url</code></strong> - Required for RSS feeds and sitemaps</li>
+<li><strong><code>site_title</code></strong> - Appears in page titles</li>
+<li><strong><code>posts_per_page</code></strong> - Controls pagination</li>
+<li><strong><code>minify</code></strong> - Optimizes assets for production</li>
+</ul>
+<h3>Command Line Usage</h3>
+<pre style="white-space: pre-wrap;"><code># Basic build
+stattic
+
+# Production build
+stattic --minify --robots public
+
+# Development build (no minification)
+stattic --robots private
+
+# Custom directories
+stattic --content src --output dist
+</code></pre><p>Start with the defaults, then customize as your site grows in complexity. The configuration system is designed to be simple for beginners while powerful enough for advanced use cases.</p>
+<hr />
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><a href="template-system">Template Customization Guide</a></li>
+<li><a href="content-creation">Content Creation Guide</a></li>
+<li><a href="deployment-options">Deployment Options</a></li>
+</ul>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

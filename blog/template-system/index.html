@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template system | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Template system">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Template system">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Template system</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <h1>🎨 Stattic Template System Guide</h1>
+<p>Master Stattic's powerful Jinja2 template system to create beautiful, custom designs for your static site. This guide covers everything from basic template structure to advanced customization techniques.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#template-architecture">Template Architecture</a></li>
+<li><a href="#default-templates">Default Templates</a></li>
+<li><a href="#template-variables">Template Variables</a></li>
+<li><a href="#creating-custom-templates">Creating Custom Templates</a></li>
+<li><a href="#template-inheritance">Template Inheritance</a></li>
+<li><a href="#basic-loops-and-conditionals">Basic Loops and Conditionals</a></li>
+<li><a href="#basic-filters">Basic Filters</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>Stattic uses <strong>Jinja2</strong>, a powerful Python templating engine, to generate HTML from your content and templates. This system provides:</p>
+<ul>
+<li><strong>Template inheritance</strong> for consistent layouts</li>
+<li><strong>Dynamic content</strong> rendering</li>
+<li><strong>Conditional logic</strong> and loops</li>
+<li><strong>Powerful filters</strong> for data transformation</li>
+<li><strong>Modular design</strong> with includes and macros</li>
+</ul>
+<h3>How Templates Work</h3>
+<pre style="white-space: pre-wrap;"><code>Content (Markdown) + Template (Jinja2) = Generated HTML
+</code></pre><ol>
+<li><strong>Content files</strong> (<code>.md</code>) provide data and text</li>
+<li><strong>Templates</strong> (<code>.html</code>) define structure and layout</li>
+<li><strong>Stattic</strong> combines them to generate static HTML files</li>
+</ol>
+<hr />
+<h2>Template Architecture</h2>
+<h3>Template Hierarchy</h3>
+<p>Stattic uses a simple template system with the following templates:</p>
+<pre style="white-space: pre-wrap;"><code>templates/
+├── base.html           # Foundation template
+├── index.html          # Homepage template
+├── post.html           # Individual post template
+├── page.html           # Static page template
+├── tag.html            # Tag listing template (basic)
+├── category.html       # Category listing template (basic)
+└── 404.html           # Error page template
+</code></pre><p><strong>Note:</strong> Stattic currently does not support complex archive systems, author pages, or partials/includes. Template organization is intentionally simple and focused.</p>
+<h3>Template Inheritance Flow</h3>
+<pre style="white-space: pre-wrap;"><code>base.html (foundation)
+├── index.html (homepage with pagination)
+├── post.html (individual blog posts)
+├── page.html (static pages)
+├── tag.html (basic tag listings)
+├── category.html (basic category listings)
+└── 404.html (error page)
+</code></pre><h3>Template Selection Logic</h3>
+<p>Stattic automatically selects templates based on content type:</p>
+<table>
+<thead>
+<tr>
+  <th>Content Type</th>
+  <th>Template Used</th>
+  <th>Fallback</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Homepage</td>
+  <td><code>index.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+<tr>
+  <td>Blog post</td>
+  <td><code>post.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+<tr>
+  <td>Static page</td>
+  <td><code>page.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+<tr>
+  <td>Tag listing</td>
+  <td><code>tag.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+<tr>
+  <td>Category listing</td>
+  <td><code>category.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+<tr>
+  <td>404 page</td>
+  <td><code>404.html</code></td>
+  <td><code>base.html</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> Unlike complex CMSs, Stattic focuses on core functionality without advanced archive features.</p>
+<hr />
+<h2>Default Templates</h2>
+<h3>Base Template Structure</h3>
+<p>The <code>base.html</code> template provides the foundation. Here's the actual structure used by Stattic:</p>
+<pre style="white-space: pre-wrap;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;{{ ((seo_title or title) ~ ' | ' ~ (site_title or 'Stattic')) if (seo_title or title) else (site_title or 'Stattic') }}&lt;/title&gt;
+    &lt;meta name=&quot;description&quot; content=&quot;{% if seo_description %}{{ seo_description }}{% else %}Stattic is a fast, lightweight static site generator.{% endif %}&quot;&gt;
+    &lt;meta name=&quot;keywords&quot; content=&quot;{% if seo_keywords %}{{ seo_keywords }}{% else %}SSG, Static Site Generator{% endif %}&quot;&gt;
+    &lt;meta name=&quot;author&quot; content=&quot;{% if author %}{{ author }}{% else %}Robert DeVore{% endif %}&quot;&gt;
+
+    {# CSS Assets #}
+    &lt;link href=&quot;{{ relative_path }}assets/css/tailwind.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    {% if minify %}
+    &lt;link href=&quot;{{ relative_path }}assets/css/stattic.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+    {% else %}
+    &lt;link href=&quot;{{ relative_path }}assets/css/stattic.css&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;{{ relative_path }}assets/css/fonts.css&quot; rel=&quot;stylesheet&quot;&gt;
+    {% endif %}
+
+    {# Open Graph Tags #}
+    &lt;meta property=&quot;og:title&quot; content=&quot;{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %}&quot;&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;{% if seo_description %}{{ seo_description }}{% else %}Stattic is a fast, lightweight static site generator.{% endif %}&quot;&gt;
+    &lt;meta property=&quot;og:url&quot; content=&quot;{% if canonical %}{{ canonical }}{% elif page and page.permalink %}{{ site_url }}/{{ page.permalink | trim('/') }}{% elif site_url %}{{ site_url }}{% endif %}&quot;&gt;
+    {% if featured_image %}
+    &lt;meta property=&quot;og:image&quot; content=&quot;{{ relative_path }}{{ featured_image }}&quot;&gt;
+    {% endif %}
+
+    {# JavaScript #}
+    &lt;script src=&quot;{{ relative_path }}assets/js/alpine.min.js&quot; defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class=&quot;bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary font-body-light&quot;&gt;
+    {# Skip Links for Accessibility #}
+    &lt;a href=&quot;#main-content&quot; class=&quot;skip-link&quot;&gt;Skip to main content&lt;/a&gt;
+    &lt;a href=&quot;#navigation&quot; class=&quot;skip-link&quot;&gt;Skip to navigation&lt;/a&gt;
+
+    {# Header with Mobile Menu #}
+    &lt;header id=&quot;navigation&quot; x-data=&quot;{ mobileMenuOpen: false }&quot;&gt;
+        &lt;div class=&quot;container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center&quot;&gt;
+            &lt;h2 class=&quot;text-3xl font-bold font-heading-bold&quot;&gt;
+                &lt;a href=&quot;{{ relative_path }}&quot; class=&quot;text-links&quot;&gt;{{ site_title or 'Stattic' }}&lt;/a&gt;
+            &lt;/h2&gt;
+
+            {# Desktop Navigation #}
+            &lt;nav class=&quot;hidden md:flex space-x-6&quot;&gt;
+                &lt;a href=&quot;{{ relative_path }}&quot; class=&quot;text-links hover:underline&quot;&gt;Home&lt;/a&gt;
+                &lt;a href=&quot;{{ relative_path }}blog/&quot; class=&quot;text-links hover:underline&quot;&gt;Blog&lt;/a&gt;
+            &lt;/nav&gt;
+
+            {# Mobile Menu Button #}
+            &lt;button @click=&quot;mobileMenuOpen = !mobileMenuOpen&quot; class=&quot;md:hidden text-links&quot;&gt;
+                &lt;svg class=&quot;w-6 h-6&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;&gt;
+                    &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;2&quot; d=&quot;M4 6h16M4 12h16M4 18h16&quot;&gt;&lt;/path&gt;
+                &lt;/svg&gt;
+            &lt;/button&gt;
+        &lt;/div&gt;
+
+        {# Mobile Menu #}
+        &lt;div x-show=&quot;mobileMenuOpen&quot; x-transition class=&quot;md:hidden bg-slate-800 border-t border-slate-700&quot;&gt;
+            &lt;nav class=&quot;container max-w-screen-xl m-auto px-4 py-4 space-y-2&quot;&gt;
+                &lt;a href=&quot;{{ relative_path }}&quot; class=&quot;block text-links hover:underline&quot;&gt;Home&lt;/a&gt;
+                &lt;a href=&quot;{{ relative_path }}blog/&quot; class=&quot;block text-links hover:underline&quot;&gt;Blog&lt;/a&gt;
+            &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    {# Main content area #}
+    {% block content %}
+    &lt;!-- Child templates override this block --&gt;
+    {% endblock %}
+
+    {# Footer #}
+    &lt;footer class=&quot;bg-slate-900 text-center py-8 border-t border-slate-700&quot;&gt;
+        &lt;div class=&quot;container max-w-screen-xl m-auto px-4&quot;&gt;
+            &lt;p class=&quot;text-slate-400&quot;&gt;&amp;copy; {{ &quot;now&quot; | strftime(&quot;%Y&quot;) }} {{ site_title or 'Stattic' }}. All rights reserved.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3>Post Template</h3>
+<p>The actual <code>post.html</code> template used by Stattic:</p>
+<pre style="white-space: pre-wrap;"><code>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-2xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    &lt;article class=&quot;prose dark:prose-dark max-w-none stattic-content&quot;&gt;
+        {% if page.featured_image %}
+            &lt;img src=&quot;/{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; class=&quot;featured-image&quot; /&gt;
+        {% endif %}
+        &lt;h1 class=&quot;text-6xl font-bold mb-4 text-links font-heading-bold post-title&quot;&gt;{{ title }}&lt;/h1&gt;
+        &lt;p class=&quot;text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary&quot;&gt;
+            &lt;span class=&quot;date&quot;&gt;{{ date }}&lt;/span&gt; &amp;middot; 
+            &lt;span class=&quot;author&quot;&gt;{{ get_author_name(author) }}&lt;/span&gt;
+        &lt;/p&gt;
+        {{ content | safe }}
+    &lt;/article&gt;
+&lt;/main&gt;
+{% endblock %}
+</code></pre><h3>Page Template</h3>
+<p>The actual <code>page.html</code> template used by Stattic:</p>
+<pre style="white-space: pre-wrap;"><code>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-2xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    &lt;article class=&quot;prose dark:prose-dark max-w-none stattic-content&quot;&gt;
+        {% if page.featured_image %}
+        &lt;img src=&quot;{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; class=&quot;featured-image&quot; /&gt;
+        {% endif %}
+        &lt;h1 class=&quot;text-6xl font-bold mb-8 pb-8 text-links font-heading-bold border-b border-primary page-title&quot;&gt;{{ title }}&lt;/h1&gt;
+        {{ content | safe }}
+    &lt;/article&gt;
+&lt;/main&gt;
+{% endblock %}
+</code></pre><h3>Index Template</h3>
+<p>The actual <code>index.html</code> template with pagination support:</p>
+<pre style="white-space: pre-wrap;"><code>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-2xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    &lt;ul class=&quot;space-y-6 stattic-content&quot;&gt;
+        {% for post in posts %}
+        &lt;li&gt;
+            &lt;h2 class=&quot;text-4xl mb-2 font-bold font-heading-bold&quot;&gt;
+                &lt;a href=&quot;{{ relative_path }}{{ post.permalink }}&quot; class=&quot;text-links hover:underline&quot;&gt;{{ post.title }}&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class=&quot;dark:text-slate-50 mb-2&quot;&gt;{{ post.excerpt | safe }}&lt;/div&gt;
+        &lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+
+    {# Pagination - only shown if multiple pages #}
+    {% if total_pages &gt; 1 %}
+    &lt;nav class=&quot;mt-8&quot;&gt;
+      &lt;ul class=&quot;flex gap-2 justify-center&quot;&gt;
+        {% if current_page &gt; 1 %}
+          &lt;li&gt;
+            &lt;a href=&quot;{% if current_page == 2 %}{{ relative_path }}{% else %}{{ relative_path }}page/{{ current_page - 1 }}/{% endif %}&quot; 
+               class=&quot;px-4 py-2 border rounded-md border-primary bg-transparent text-white hover:bg-slate-800 hover:text-white&quot;&gt;
+              Prev
+            &lt;/a&gt;
+          &lt;/li&gt;
+        {% endif %}
+
+        {% for link in page_numbers %}
+          {% if link == '...' %}
+            &lt;li&gt;&lt;span class=&quot;px-4 py-2 text-gray-400&quot;&gt;…&lt;/span&gt;&lt;/li&gt;
+          {% elif link == current_page %}
+            &lt;li&gt;
+              &lt;span class=&quot;px-4 py-2 border border-primary rounded-md bg-slate-800 text-white&quot;&gt;
+                {{ link }}
+              &lt;/span&gt;
+            &lt;/li&gt;
+          {% else %}
+            &lt;li&gt;
+              &lt;a href=&quot;{% if link == 1 %}{{ relative_path }}{% else %}{{ relative_path }}page/{{ link }}/{% endif %}&quot; 
+                 class=&quot;px-4 py-2 border rounded-md border-primary bg-transparent text-white hover:bg-slate-800 hover:text-white&quot;&gt;
+                {{ link }}
+              &lt;/a&gt;
+            &lt;/li&gt;
+          {% endif %}
+        {% endfor %}
+
+        {% if current_page &lt; total_pages %}
+          &lt;li&gt;
+            &lt;a href=&quot;{{ relative_path }}page/{{ current_page + 1 }}/&quot; 
+               class=&quot;px-4 py-2 border rounded-md border-primary bg-transparent text-white hover:bg-slate-800 hover:text-white&quot;&gt;
+              Next
+            &lt;/a&gt;
+          &lt;/li&gt;
+        {% endif %}
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    {% endif %}
+&lt;/main&gt;
+{% endblock %}
+</code></pre><hr />
+<h2>Template Variables</h2>
+<h3>Global Variables (Available in All Templates)</h3>
+<p>Based on the actual Stattic implementation:</p>
+<pre style="white-space: pre-wrap;"><code>{# Site information #}
+{{ site_title }}           &lt;!-- Site title from config (or 'Stattic' default) --&gt;
+{{ site_tagline }}         &lt;!-- Site tagline from config --&gt;
+{{ site_url }}             &lt;!-- Site URL from config --&gt;
+
+{# Template context #}
+{{ relative_path }}        &lt;!-- Relative path to root for assets --&gt;
+{{ minify }}               &lt;!-- Minification flag --&gt;
+
+{# Page/Post data #}
+{{ title }}                &lt;!-- Content title --&gt;
+{{ content }}              &lt;!-- HTML content (use with | safe) --&gt;
+{{ author }}               &lt;!-- Author name or ID --&gt;
+{{ date }}                 &lt;!-- Formatted date string --&gt;
+
+{# Collections (available in index/listing templates) #}
+{{ posts }}                &lt;!-- List of post objects for index page --&gt;
+{{ pages }}                &lt;!-- List of page objects --&gt;
+{{ categories }}           &lt;!-- Dictionary of category objects --&gt;
+{{ tags }}                 &lt;!-- Dictionary of tag objects --&gt;
+{{ authors }}              &lt;!-- Dictionary of author objects --&gt;
+
+{# Pagination (index page only) #}
+{{ current_page }}         &lt;!-- Current page number --&gt;
+{{ total_pages }}          &lt;!-- Total number of pages --&gt;
+{{ page_numbers }}         &lt;!-- Array of page numbers for navigation --&gt;
+</code></pre><h3>Post/Page Variables</h3>
+<p>Available in individual post and page templates:</p>
+<pre style="white-space: pre-wrap;"><code>{# Content basics #}
+{{ title }}                &lt;!-- Post/page title --&gt;
+{{ content }}              &lt;!-- HTML content (always use | safe) --&gt;
+{{ date }}                 &lt;!-- Formatted date for display --&gt;
+{{ author }}               &lt;!-- Author name or get_author_name(author) --&gt;
+
+{# Metadata (from front matter) #}
+{{ metadata }}             &lt;!-- Full metadata object --&gt;
+{{ page }}                 &lt;!-- Alias for metadata --&gt;
+{{ page.featured_image }}  &lt;!-- Featured image path --&gt;
+{{ featured_image }}       &lt;!-- Direct featured image access --&gt;
+
+{# SEO fields #}
+{{ seo_title }}            &lt;!-- SEO title override --&gt;
+{{ seo_description }}      &lt;!-- SEO description --&gt;
+{{ seo_keywords }}         &lt;!-- SEO keywords --&gt;
+
+{# Organization #}
+{{ categories }}           &lt;!-- List of category names --&gt;
+{{ tags }}                 &lt;!-- List of tag names --&gt;
+
+{# Template utilities #}
+{{ relative_path }}        &lt;!-- Path to root directory --&gt;
+{{ get_author_name }}      &lt;!-- Function to resolve author names --&gt;
+</code></pre><h3>Index Template Variables</h3>
+<p>Available in the homepage template:</p>
+<pre style="white-space: pre-wrap;"><code>{# Post listings #}
+{{ posts }}                &lt;!-- Current page's posts --&gt;
+
+{# Pagination #}
+{{ current_page }}         &lt;!-- Current page number (1, 2, 3...) --&gt;
+{{ total_pages }}          &lt;!-- Total number of pages --&gt;
+{{ page_numbers }}         &lt;!-- Array of page links --&gt;
+
+{# Navigation #}
+{{ relative_path }}        &lt;!-- Relative path for links --&gt;
+
+{# Site data #}
+{{ site_title }}           &lt;!-- Site title --&gt;
+{{ site_tagline }}         &lt;!-- Site tagline --&gt;
+</code></pre><p><strong>Important Notes:</strong></p>
+<ul>
+<li>Stattic does not have complex post objects with <code>.author.name</code> style access</li>
+<li>Author information is accessed via <code>get_author_name(author)</code> function</li>
+<li>Tags and categories are simple arrays of names, not objects with <code>.slug</code> or <code>.id</code></li>
+<li>No built-in reading time, related posts, or advanced metadata features</li>
+</ul>
+<hr />
+<h2>Creating Custom Templates</h2>
+<h3>Custom Templates via Front Matter</h3>
+<p>Stattic supports specifying custom templates directly in your content's front matter. This allows you to create specialized layouts for specific posts or pages.</p>
+<h4>How It Works</h4>
+<p>Add a <code>template</code> field to your front matter:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;My Special Post&quot;
+template: &quot;featured&quot;
+---
+
+Content goes here...
+</code></pre><p>Stattic will automatically look for:</p>
+<ul>
+<li><strong>Posts</strong>: <code>post-{template}.html</code> (e.g., <code>post-featured.html</code>)</li>
+<li><strong>Pages</strong>: <code>page-{template}.html</code> (e.g., <code>page-featured.html</code>)</li>
+</ul>
+<p>If the custom template doesn't exist, it falls back to the default <code>post.html</code> or <code>page.html</code>.</p>
+<h4>Example Custom Post Template</h4>
+<p>Create <code>templates/post-featured.html</code>:</p>
+<pre style="white-space: pre-wrap;"><code>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-4xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    &lt;article class=&quot;prose dark:prose-dark max-w-none stattic-content&quot;&gt;
+        {# Featured badge #}
+        &lt;div class=&quot;bg-yellow-500 text-black px-3 py-1 rounded-full text-sm font-bold mb-4 inline-block&quot;&gt;
+            ⭐ FEATURED
+        &lt;/div&gt;
+
+        {% if page.featured_image %}
+        &lt;img src=&quot;/{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; class=&quot;featured-image&quot; /&gt;
+        {% endif %}
+
+        &lt;h1 class=&quot;text-6xl font-bold mb-4 text-links font-heading-bold post-title&quot;&gt;{{ title }}&lt;/h1&gt;
+        &lt;p class=&quot;text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary&quot;&gt;
+            &lt;span class=&quot;date&quot;&gt;{{ date }}&lt;/span&gt; &amp;middot; 
+            &lt;span class=&quot;author&quot;&gt;{{ get_author_name(author) }}&lt;/span&gt;
+        &lt;/p&gt;
+
+        {{ content | safe }}
+
+        {# Call-to-action for featured posts #}
+        &lt;div class=&quot;bg-slate-800 p-8 rounded-lg text-center mt-12&quot;&gt;
+            &lt;h3 class=&quot;text-2xl font-bold mb-4&quot;&gt;Enjoyed this featured post?&lt;/h3&gt;
+            &lt;p class=&quot;text-slate-300 mb-6&quot;&gt;Check out more of our featured content.&lt;/p&gt;
+            &lt;a href=&quot;{{ relative_path }}blog/&quot; class=&quot;bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700&quot;&gt;
+                Browse All Posts
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/article&gt;
+&lt;/main&gt;
+{% endblock %}
+</code></pre><h4>Example Custom Page Template</h4>
+<p>Create <code>templates/page-landing.html</code>:</p>
+<pre style="white-space: pre-wrap;"><code>{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-6xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    {# Hero section #}
+    &lt;section class=&quot;text-center py-16 mb-12&quot;&gt;
+        &lt;h1 class=&quot;text-6xl font-bold mb-4 text-links font-heading-bold&quot;&gt;{{ title }}&lt;/h1&gt;
+        {% if page.description %}
+        &lt;p class=&quot;text-2xl text-slate-300 mb-8&quot;&gt;{{ page.description }}&lt;/p&gt;
+        {% endif %}
+        &lt;a href=&quot;#content&quot; class=&quot;bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700&quot;&gt;
+            Get Started
+        &lt;/a&gt;
+    &lt;/section&gt;
+
+    {# Content section #}
+    &lt;section id=&quot;content&quot; class=&quot;prose dark:prose-dark max-w-none stattic-content&quot;&gt;
+        {{ content | safe }}
+    &lt;/section&gt;
+&lt;/main&gt;
+{% endblock %}
+</code></pre><h4>Template Naming Convention</h4>
+<table>
+<thead>
+<tr>
+  <th>Content Type</th>
+  <th>Front Matter</th>
+  <th>Template File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Blog Post</td>
+  <td><code>template: &quot;featured&quot;</code></td>
+  <td><code>post-featured.html</code></td>
+</tr>
+<tr>
+  <td>Blog Post</td>
+  <td><code>template: &quot;tutorial&quot;</code></td>
+  <td><code>post-tutorial.html</code></td>
+</tr>
+<tr>
+  <td>Static Page</td>
+  <td><code>template: &quot;landing&quot;</code></td>
+  <td><code>page-landing.html</code></td>
+</tr>
+<tr>
+  <td>Static Page</td>
+  <td><code>template: &quot;about&quot;</code></td>
+  <td><code>page-about.html</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Template Inheritance</h2>
+<h3>Basic Inheritance</h3>
+<p>Stattic templates use Jinja2's inheritance system. All templates extend from <code>base.html</code>:</p>
+<pre style="white-space: pre-wrap;"><code>{# Child template extends parent #}
+{% extends &quot;base.html&quot; %}
+
+{# Override the content block #}
+{% block content %}
+&lt;h1&gt;Custom Content&lt;/h1&gt;
+{% endblock %}
+</code></pre><h3>Available Blocks</h3>
+<p>The <code>base.html</code> template provides one main block:</p>
+<pre style="white-space: pre-wrap;"><code>{% block content %}
+&lt;!-- Child templates override this block --&gt;
+{% endblock %}
+</code></pre><h3>Simple Template Inheritance</h3>
+<pre style="white-space: pre-wrap;"><code>{# templates/post.html #}
+{% extends &quot;base.html&quot; %}
+
+{% block content %}
+&lt;main class=&quot;container max-w-2xl m-auto py-10 px-4&quot; id=&quot;main-content&quot;&gt;
+    &lt;article class=&quot;prose dark:prose-dark max-w-none stattic-content&quot;&gt;
+        &lt;h1&gt;{{ title }}&lt;/h1&gt;
+        {{ content | safe }}
+    &lt;/article&gt;
+&lt;/main&gt;
+{% endblock %}
+</code></pre><p><strong>Note:</strong> Stattic uses a simple inheritance model focused on the main content area. Advanced block overrides and complex inheritance patterns are not commonly used.</p>
+<hr />
+<h2>Basic Loops and Conditionals</h2>
+<h3>Looping Through Posts</h3>
+<pre style="white-space: pre-wrap;"><code>{# Loop through posts on index page #}
+{% for post in posts %}
+&lt;article&gt;
+    &lt;h2&gt;&lt;a href=&quot;{{ relative_path }}{{ post.permalink }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/h2&gt;
+    &lt;div&gt;{{ post.excerpt | safe }}&lt;/div&gt;
+&lt;/article&gt;
+{% endfor %}
+
+{# Handle empty post lists #}
+{% if posts %}
+    {% for post in posts %}
+    &lt;article&gt;{{ post.title }}&lt;/article&gt;
+    {% endfor %}
+{% else %}
+    &lt;p&gt;No posts found.&lt;/p&gt;
+{% endif %}
+</code></pre><h3>Conditional Logic</h3>
+<pre style="white-space: pre-wrap;"><code>{# Check for featured image #}
+{% if page.featured_image %}
+&lt;img src=&quot;/{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; /&gt;
+{% endif %}
+
+{# Check for metadata fields #}
+{% if seo_description %}
+&lt;meta name=&quot;description&quot; content=&quot;{{ seo_description }}&quot;&gt;
+{% else %}
+&lt;meta name=&quot;description&quot; content=&quot;Default description&quot;&gt;
+{% endif %}
+
+{# Show pagination only if multiple pages #}
+{% if total_pages &gt; 1 %}
+&lt;nav class=&quot;pagination&quot;&gt;
+    &lt;!-- pagination links --&gt;
+&lt;/nav&gt;
+{% endif %}
+</code></pre><h3>Pagination Logic</h3>
+<pre style="white-space: pre-wrap;"><code>{# Pagination controls #}
+{% if current_page &gt; 1 %}
+&lt;a href=&quot;{% if current_page == 2 %}{{ relative_path }}{% else %}{{ relative_path }}page/{{ current_page - 1 }}/{% endif %}&quot;&gt;
+    Previous
+&lt;/a&gt;
+{% endif %}
+
+{% if current_page &lt; total_pages %}
+&lt;a href=&quot;{{ relative_path }}page/{{ current_page + 1 }}/&quot;&gt;Next&lt;/a&gt;
+{% endif %}
+</code></pre><hr />
+<h2>Basic Filters</h2>
+<h3>Common Jinja2 Filters</h3>
+<p>Stattic supports standard Jinja2 filters:</p>
+<pre style="white-space: pre-wrap;"><code>{# Content filters #}
+{{ content | safe }}              &lt;!-- Don't escape HTML --&gt;
+{{ title | upper }}               &lt;!-- UPPERCASE --&gt;
+{{ title | lower }}               &lt;!-- lowercase --&gt;
+{{ title | title }}               &lt;!-- Title Case --&gt;
+
+{# Default values #}
+{{ author | default('Anonymous') }}
+{{ site_title | default('My Site') }}
+
+{# String manipulation #}
+{{ content | length }}            &lt;!-- Character count --&gt;
+{{ title | truncate(50) }}        &lt;!-- Truncate to 50 chars --&gt;
+
+{# List operations #}
+{{ categories | length }}         &lt;!-- Number of categories --&gt;
+{{ tags | join(', ') }}          &lt;!-- Comma-separated list --&gt;
+</code></pre><h3>Custom Stattic Functions</h3>
+<pre style="white-space: pre-wrap;"><code>{# Author name resolution #}
+{{ get_author_name(author) }}     &lt;!-- Resolve author ID to name --&gt;
+
+{# Date formatting (built-in to Stattic) #}
+{{ date }}                        &lt;!-- Pre-formatted date string --&gt;
+</code></pre><p><strong>Note:</strong> Stattic does not include complex custom filters or advanced template functions. Keep templating simple and rely on standard Jinja2 functionality.</p>
+<hr />
+<h2>Best Practices</h2>
+<h3>Template Organization</h3>
+<h4>1. Keep Templates Simple</h4>
+<pre style="white-space: pre-wrap;"><code>templates/
+├── base.html              # Foundation template
+├── index.html             # Homepage
+├── post.html              # Blog posts
+├── page.html              # Static pages
+├── post-featured.html     # Custom post template
+├── page-landing.html      # Custom page template
+├── tag.html               # Tag listings
+├── category.html          # Category listings
+└── 404.html              # Error page
+</code></pre><h4>2. Use Descriptive Names</h4>
+<ul>
+<li><code>post-featured.html</code> instead of <code>special.html</code></li>
+<li><code>page-landing.html</code> instead of <code>custom.html</code></li>
+<li>Clear template names make maintenance easier</li>
+</ul>
+<h3>Code Quality</h3>
+<h4>1. Use Semantic HTML</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Good semantic structure #}
+&lt;article class=&quot;post&quot;&gt;
+    &lt;header class=&quot;post-header&quot;&gt;
+        &lt;h1 class=&quot;post-title&quot;&gt;{{ title }}&lt;/h1&gt;
+        &lt;time class=&quot;post-date&quot; datetime=&quot;{{ date }}&quot;&gt;{{ date }}&lt;/time&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;post-content&quot;&gt;
+        {{ content | safe }}
+    &lt;/div&gt;
+&lt;/article&gt;
+
+{# ❌ Avoid generic divs #}
+&lt;div class=&quot;post&quot;&gt;
+    &lt;div class=&quot;title&quot;&gt;{{ title }}&lt;/div&gt;
+    &lt;div class=&quot;date&quot;&gt;{{ date }}&lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;{{ content | safe }}&lt;/div&gt;
+&lt;/div&gt;
+</code></pre><h4>2. Handle Missing Data</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Always check for data existence #}
+{% if page.featured_image %}
+&lt;img src=&quot;/{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; /&gt;
+{% endif %}
+
+{# ✅ Provide fallbacks #}
+&lt;meta name=&quot;author&quot; content=&quot;{% if author %}{{ author }}{% else %}{{ site_title }}{% endif %}&quot;&gt;
+</code></pre><h4>3. Optimize Performance</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Use relative paths correctly #}
+&lt;link href=&quot;{{ relative_path }}assets/css/tailwind.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+{# ✅ Efficient conditionals #}
+{% if posts %}
+    {% for post in posts %}
+    &lt;article&gt;{{ post.title }}&lt;/article&gt;
+    {% endfor %}
+{% else %}
+    &lt;p&gt;No posts found.&lt;/p&gt;
+{% endif %}
+</code></pre><h3>Accessibility</h3>
+<h4>1. Proper Headings</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Logical heading hierarchy #}
+&lt;h1&gt;{{ title }}&lt;/h1&gt;              &lt;!-- Page/post title --&gt;
+&lt;h2&gt;Section Title&lt;/h2&gt;             &lt;!-- Major sections --&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;                &lt;!-- Subsections --&gt;
+
+{# ❌ Avoid skipping levels #}
+&lt;h1&gt;Page Title&lt;/h1&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;  &lt;!-- Missing h2 --&gt;
+</code></pre><h4>2. Alt Text and ARIA</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Descriptive alt text #}
+&lt;img src=&quot;/{{ page.featured_image }}&quot; alt=&quot;Featured Image for {{ page.title }}&quot; /&gt;
+
+{# ✅ Skip links for navigation #}
+&lt;a href=&quot;#main-content&quot; class=&quot;skip-link&quot;&gt;Skip to main content&lt;/a&gt;
+
+{# ✅ Proper navigation labels #}
+&lt;nav aria-label=&quot;Main navigation&quot;&gt;
+    &lt;a href=&quot;{{ relative_path }}&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;{{ relative_path }}blog/&quot;&gt;Blog&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre><h4>3. Focus Management</h4>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Proper focus indicators in CSS #}
+&lt;style&gt;
+a:focus, button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+&lt;/style&gt;
+</code></pre><hr />
+<h2>Troubleshooting</h2>
+<h3>Common Template Issues</h3>
+<h4>1. Template Not Found</h4>
+<pre style="white-space: pre-wrap;"><code>Error: Template 'custom.html' not found
+</code></pre><p><strong>Solutions:</strong></p>
+<ul>
+<li>Check file exists in <code>templates/</code> directory</li>
+<li>Verify file name spelling and case</li>
+<li>Ensure you're using correct template naming (<code>post-custom.html</code> for posts)</li>
+</ul>
+<h4>2. Variable Not Defined</h4>
+<pre style="white-space: pre-wrap;"><code>Error: 'post' is undefined
+</code></pre><p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Check variable exists #}
+{% if title %}
+{{ title }}
+{% endif %}
+
+{# ✅ Use default values #}
+{{ title | default('Untitled') }}
+
+{# ✅ Remember Stattic's variable names #}
+{{ title }}           &lt;!-- Not {{ post.title }} --&gt;
+{{ content | safe }}  &lt;!-- Not {{ post.content }} --&gt;
+</code></pre><h4>3. Content Not Displaying</h4>
+<pre style="white-space: pre-wrap;"><code>{# ❌ Missing | safe filter #}
+{{ content }}
+
+{# ✅ Always use | safe for HTML content #}
+{{ content | safe }}
+</code></pre><h4>4. Relative Path Issues</h4>
+<pre style="white-space: pre-wrap;"><code>{# ❌ Hard-coded paths #}
+&lt;link href=&quot;/assets/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+{# ✅ Use relative_path variable #}
+&lt;link href=&quot;{{ relative_path }}assets/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre><h3>Debugging Templates</h3>
+<h4>1. Check Available Variables</h4>
+<pre style="white-space: pre-wrap;"><code>{# Debug: Show variable contents #}
+&lt;!-- Debug: title = {{ title }} --&gt;
+&lt;!-- Debug: author = {{ author }} --&gt;
+&lt;!-- Debug: relative_path = {{ relative_path }} --&gt;
+</code></pre><h4>2. Verify Template Logic</h4>
+<pre style="white-space: pre-wrap;"><code>{# Debug pagination #}
+&lt;!-- Current page: {{ current_page }} --&gt;
+&lt;!-- Total pages: {{ total_pages }} --&gt;
+&lt;!-- Posts count: {{ posts | length }} --&gt;
+</code></pre><h4>3. Template Comments</h4>
+<pre style="white-space: pre-wrap;"><code>{# This comment won't appear in HTML output #}
+&lt;!-- This HTML comment will appear in output --&gt;
+
+{# TODO: Add related posts section #}
+{# FIXME: Image sizing on mobile #}
+</code></pre><h3>Performance Tips</h3>
+<pre style="white-space: pre-wrap;"><code>{# ✅ Efficient conditionals #}
+{% if posts %}
+    &lt;!-- Only process if posts exist --&gt;
+{% endif %}
+
+{# ✅ Limit loop iterations #}
+{% for post in posts[:10] %}  &lt;!-- Limit to 10 posts --&gt;
+    &lt;!-- Process post --&gt;
+{% endfor %}
+
+{# ✅ Simple template structure #}
+&lt;!-- Avoid deep nesting and complex logic --&gt;
+</code></pre><hr />
+<h2>Summary</h2>
+<p>Stattic's template system provides essential tools for creating clean, functional websites:</p>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Jinja2 templating</strong> with inheritance support</li>
+<li><strong>Simple variable context</strong> with core site data</li>
+<li><strong>Custom templates</strong> via front matter</li>
+<li><strong>Built-in pagination</strong> for index pages</li>
+<li><strong>Clean asset paths</strong> with relative_path support</li>
+</ul>
+<h3>Template Types</h3>
+<ul>
+<li><strong>Base template</strong> (<code>base.html</code>) for site-wide layout</li>
+<li><strong>Content templates</strong> (<code>post.html</code>, <code>page.html</code>) for individual content</li>
+<li><strong>Index template</strong> (<code>index.html</code>) for homepage with pagination</li>
+<li><strong>Custom templates</strong> (<code>post-custom.html</code>, <code>page-custom.html</code>) for specialized layouts</li>
+<li><strong>Error template</strong> (<code>404.html</code>) for error pages</li>
+</ul>
+<h3>Best Practices</h3>
+<ol>
+<li><strong>Keep templates simple</strong> and focused</li>
+<li><strong>Use semantic HTML</strong> for accessibility</li>
+<li><strong>Handle missing data</strong> gracefully</li>
+<li><strong>Use relative paths</strong> correctly</li>
+<li><strong>Debug systematically</strong> with comments</li>
+</ol>
+<h3>Variable Access</h3>
+<ul>
+<li>Access content via <code>{{ title }}</code>, <code>{{ content | safe }}</code>, <code>{{ author }}</code></li>
+<li>Use <code>{{ relative_path }}</code> for asset links</li>
+<li>Access metadata via <code>{{ page.field_name }}</code></li>
+<li>Resolve authors with <code>{{ get_author_name(author) }}</code></li>
+</ul>
+<p>The template system scales from simple blogs to custom page layouts while maintaining clean, maintainable code that focuses on core functionality rather than complex features.</p>
+<hr />
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><a href="front-matter-reference">Front Matter Reference</a> - Complete metadata guide</li>
+<li><a href="configuration-guide">Configuration Guide</a> - Site settings and options</li>
+<li><a href="deployment-options">Deployment Options</a> - Publishing your site</li>
+</ul>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

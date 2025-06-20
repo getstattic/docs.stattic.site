@@ -1,12 +1,12 @@
 :root {
-    --primary-color: #fe9a00;
-    --secondary-color: #e17100;
-    --accent-color: #62748e;
+    --primary-color: #22C55E;
+    --secondary-color: #15803D;
+    --accent-color: #F59E0B;
     --border-color: #1E293B;
-    --background-color: #020618;
-    --text-color: #f8fafc;
-    --text-secondary: #45556c;
-    --text-accent: #62748e;
+    --background-color: #020617;
+    --text-color: #E2E8F0;
+    --text-secondary: #475569;
+    --text-accent: #F59E0B;
 }
 
 body {
@@ -19,8 +19,8 @@ body {
     position: absolute;
     top: -60px;
     left: 0;
-    background: var(--background-color);
-    color: var(--text-color);
+    background: #000;
+    color: #fff;
     padding: 16px 24px;
     text-decoration: none;
     z-index: 100;

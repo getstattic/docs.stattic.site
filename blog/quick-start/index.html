@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick start guide | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Quick start guide">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Quick start guide">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Quick start guide</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 20, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Get up and running with Stattic in just a few minutes! This guide will take you from installation to your first deployed static site.</p>
+<h2>What is Stattic?</h2>
+<p>Stattic is a fast, lightweight static site generator written in Python. It transforms your Markdown content into beautiful, optimized static websites with features like:</p>
+<ul>
+<li>🚀 <strong>Lightning fast</strong> builds and page loads</li>
+<li>📱 <strong>Mobile-responsive</strong> themes with Tailwind CSS and Alpine.js</li>
+<li>🖼️ <strong>Automatic image optimization</strong> (WebP conversion)</li>
+<li>🎨 <strong>Google Fonts</strong> integration</li>
+<li>📊 <strong>SEO-friendly</strong> with automatic sitemaps, robots.txt, and llms.txt</li>
+<li>� <strong>RSS feeds</strong> for blog content</li>
+<li>⚡ <strong>Asset minification</strong> for CSS and JavaScript</li>
+</ul>
+<hr />
+<h2>Step 1: Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Python 3.8 or higher</li>
+<li>pip (Python package installer)</li>
+</ul>
+<h3>Install Stattic</h3>
+<pre style="white-space: pre-wrap;"><code>pip install stattic
+</code></pre><h3>Verify Installation</h3>
+<pre style="white-space: pre-wrap;"><code>stattic --version
+</code></pre><hr />
+<h2>Step 2: Create Your First Project</h2>
+<h3>Initialize a New Project</h3>
+<pre style="white-space: pre-wrap;"><code># Create a new directory for your site
+mkdir my-awesome-site
+cd my-awesome-site
+
+# Initialize Stattic project with YAML config
+stattic --init yml
+
+# Or initialize with JSON config
+stattic --init json
+</code></pre><p>This creates the following structure:</p>
+<pre style="white-space: pre-wrap;"><code>my-awesome-site/
+├── content/
+│   ├── posts/               # Blog posts go here
+│   │   └── sample-post.md   # Sample blog post
+│   ├── pages/               # Static pages go here
+│   │   └── sample-page.md   # Sample about page
+│   ├── authors.yml          # Author information
+│   ├── categories.yml       # Post categories
+│   └── tags.yml             # Post tags
+├── templates/               # Jinja2 templates
+│   ├── base.html            # Base template
+│   ├── index.html           # Homepage
+│   ├── post.html            # Blog post template
+│   ├── page.html            # Static page template
+│   ├── category.html        # Category listing
+│   ├── tag.html             # Tag listing
+│   └── 404.html             # Error page
+├── assets/                  # CSS, JS, images
+│   ├── css/
+│   │   ├── tailwind.min.css # Tailwind CSS framework
+│   │   └── stattic.css      # Custom styles
+│   ├── js/
+│   │   └── alpine.min.js    # Alpine.js framework
+│   └── images/              # Image directory
+└── stattic.yml              # Configuration file
+</code></pre><hr />
+<h2>Step 3: Create Your First Content</h2>
+<h3>Write Your First Blog Post</h3>
+<p>Create <code>content/posts/hello-world.md</code>:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Hello, World!&quot;
+custom_url: hello-world
+author: 1
+date: 2025-06-20
+categories:
+  - 1
+tags:
+  - 1
+description: &quot;My first post with Stattic!&quot;
+keywords: &quot;hello world, first post, stattic&quot;
+---
+
+# Welcome to My New Site!
+
+This is my first post using **Stattic**. I'm excited to start blogging!
+
+## What I Love About Stattic
+
+- Easy to use Markdown
+- Beautiful themes with Tailwind CSS
+- Fast performance
+- Great SEO features
+- Automatic image optimization
+
+Check out more features in future posts!
+</code></pre><h3>Create an About Page</h3>
+<p>Create <code>content/pages/about.md</code>:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;About Me&quot;
+custom_url: about
+author: 1
+date: 2025-06-20
+order: 1
+description: &quot;Learn more about me and this website&quot;
+keywords: &quot;about, personal, blog&quot;
+---
+
+# About Me
+
+Welcome to my personal website! I'm passionate about web development and sharing knowledge through blogging.
+
+## What You'll Find Here
+
+- Technical tutorials
+- Personal thoughts
+- Project showcases
+- And much more!
+
+Feel free to contact me if you have any questions.
+</code></pre><hr />
+<h2>Step 4: Configure Your Site</h2>
+<p>Edit <code>stattic.yml</code> to customize your site:</p>
+<pre style="white-space: pre-wrap;"><code># Site information
+site_url: https://your-domain.com
+site_title: My Awesome Site
+site_tagline: Sharing knowledge, one post at a time
+
+# Build settings
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: blog
+
+# Content settings
+posts_per_page: 5
+sort_by: date  # date, title, author, order
+
+# Styling
+fonts:
+  - Quicksand      # Available Google Fonts
+  - Open Sans
+
+# SEO settings
+robots: public  # public or private
+
+# Development settings
+minify: false
+watch: false
+</code></pre><hr />
+<h2>Step 5: Build Your Site</h2>
+<h3>Build the Site</h3>
+<pre style="white-space: pre-wrap;"><code>stattic
+</code></pre><p>This will:</p>
+<ul>
+<li>Load configuration from <code>stattic.yml</code></li>
+<li>Process all Markdown files in <code>content/</code></li>
+<li>Apply Jinja2 templates</li>
+<li>Optimize images (convert to WebP)</li>
+<li>Generate sitemap.xml</li>
+<li>Create robots.txt and llms.txt</li>
+<li>Generate RSS feed</li>
+<li>Copy assets to output directory</li>
+<li>Minify CSS/JS (if enabled)</li>
+</ul>
+<p>You'll see output like:</p>
+<pre style="white-space: pre-wrap;"><code>Loaded configuration from: stattic.yml
+Building index page
+Building 404 page
+Generating RSS feed
+Generating XML sitemap
+Generating robots.txt
+Generating llms.txt
+Site build completed in 1.30 seconds.
+Total posts generated: 1
+Total pages generated: 1
+Total images converted to WebP: 0
+</code></pre><h3>View Your Site</h3>
+<p>Your built site will be in the <code>output/</code> directory:</p>
+<pre style="white-space: pre-wrap;"><code>output/
+├── index.html              # Homepage
+├── 404.html               # Error page
+├── sitemap.xml            # XML sitemap
+├── robots.txt             # Robots configuration
+├── llms.txt               # AI crawler configuration
+├── blog/                  # Blog posts
+│   └── hello-world/
+│       └── index.html
+├── about/                 # Static pages
+│   └── index.html
+├── feed/                  # RSS feed
+│   └── index.xml
+├── assets/                # Copied assets
+└── images/                # Optimized images
+</code></pre><p>To view your site locally:</p>
+<pre style="white-space: pre-wrap;"><code># Using Python's built-in server
+cd output
+python -m http.server 8000
+
+# Visit http://localhost:8000
+</code></pre><hr />
+<h2>Step 6: Customize Your Theme</h2>
+<h3>Update Site Styling</h3>
+<p>The default theme uses Tailwind CSS and Alpine.js. You can customize it by editing:</p>
+<ul>
+<li><code>assets/css/stattic.css</code> - Custom styles</li>
+<li><code>templates/base.html</code> - Layout and structure</li>
+<li>Individual templates for specific page types</li>
+</ul>
+<h3>Add Your Logo</h3>
+<p>Place your logo in <code>assets/images/logo.png</code> and update the header in <code>templates/base.html</code>.</p>
+<h3>Customize Navigation</h3>
+<p>Edit the pages front matter to control navigation:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Contact&quot;
+order: 2         # Navigation order (pages only)
+---
+</code></pre><hr />
+<h2>Step 7: Deploy Your Site</h2>
+<h3>Option 1: GitHub Pages</h3>
+<ol>
+<li>Push your code to GitHub</li>
+<li>In repository settings, enable GitHub Pages</li>
+<li>Set source to &quot;GitHub Actions&quot;</li>
+<li>Create <code>.github/workflows/build.yml</code>:</li>
+</ol>
+<pre style="white-space: pre-wrap;"><code>name: Build and Deploy
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: pip install stattic
+    - name: Build site
+      run: stattic
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./output
+</code></pre><h3>Option 2: Netlify</h3>
+<ol>
+<li>Connect your GitHub repository to Netlify</li>
+<li>Set build command: <code>pip install stattic &amp;&amp; stattic</code></li>
+<li>Set publish directory: <code>output</code></li>
+<li>Deploy!</li>
+</ol>
+<h3>Option 3: Traditional Hosting</h3>
+<p>Upload the entire <code>output/</code> folder to your web server via FTP/SFTP.</p>
+<hr />
+<h2>Next Steps</h2>
+<h3>🎨 <strong>Customize Your Theme</strong></h3>
+<ul>
+<li>Learn about <a href="template-system">Template System</a></li>
+<li>Explore <a href="front-matter-reference">Front Matter options</a></li>
+<li>Add custom CSS and JavaScript</li>
+</ul>
+<h3>📝 <strong>Create More Content</strong></h3>
+<ul>
+<li>Write blog posts in <code>content/posts/</code></li>
+<li>Add static pages in <code>content/pages/</code></li>
+<li>Organize with categories and tags</li>
+</ul>
+<h3>🚀 <strong>Optimize Performance</strong></h3>
+<ul>
+<li>Enable minification: <code>stattic --minify</code></li>
+<li>Optimize images automatically (built-in WebP conversion)</li>
+<li>Use Google Fonts efficiently</li>
+<li>Serve from a CDN</li>
+</ul>
+<h3>📊 <strong>Improve SEO</strong></h3>
+<ul>
+<li>Add proper meta descriptions in front matter</li>
+<li>Use structured front matter with keywords</li>
+<li>Automatic sitemap and robots.txt generation</li>
+<li>RSS feed for blog content</li>
+</ul>
+<hr />
+<h2>Common Commands</h2>
+<pre style="white-space: pre-wrap;"><code># Initialize new project with YAML config
+stattic --init yml
+
+# Initialize new project with JSON config  
+stattic --init json
+
+# Build site with default settings
+stattic
+
+# Build with custom output directory
+stattic --output ./public
+
+# Build with custom content directory
+stattic --content ./my-content
+
+# Build with minification enabled
+stattic --minify
+
+# Build with custom site settings
+stattic --site-title &quot;My Site&quot; --site-tagline &quot;My tagline&quot;
+
+# Build with custom fonts
+stattic --fonts &quot;Inter,Roboto&quot;
+
+# Build with custom posts per page
+stattic --posts-per-page 10 --sort-by title
+
+# Get help
+stattic --help
+
+# Check version
+stattic --version
+</code></pre><hr />
+<h2>Troubleshooting</h2>
+<h3>Build Errors</h3>
+<ul>
+<li><strong>&quot;No module named 'stattic'&quot;</strong>: Install with <code>pip install stattic</code></li>
+<li><strong>&quot;No such file or directory&quot;</strong>: Ensure you're in the project directory with <code>stattic.yml</code></li>
+<li><strong>&quot;Template not found&quot;</strong>: Ensure templates exist in <code>templates/</code> directory or re-run <code>stattic --init yml</code></li>
+</ul>
+<h3>Content Issues</h3>
+<ul>
+<li><strong>Posts not showing</strong>: Check front matter format and ensure files are in <code>content/posts/</code></li>
+<li><strong>Pages not generating</strong>: Verify front matter and file location in <code>content/pages/</code></li>
+<li><strong>Images not optimizing</strong>: Check file formats (JPG/PNG supported for WebP conversion)</li>
+</ul>
+<h3>Performance Issues</h3>
+<ul>
+<li>Large sites: Enable minification with <code>--minify</code> flag</li>
+<li>Slow builds: Check for very large images or reduce image sizes</li>
+</ul>
+<h3>Getting Help</h3>
+<ul>
+<li>📖 <a href="/">Full Documentation</a></li>
+<li>🐛 <a href="https://github.com/getstattic/stattic/issues">Report Issues</a></li>
+<li>💬 <a href="https://github.com/getstattic/stattic/discussions">Community Support</a></li>
+</ul>
+<hr />
+<h2>What's Next?</h2>
+<p>Congratulations! 🎉 You now have a working static site with Stattic. Here are some next steps:</p>
+<ol>
+<li><strong>Explore the documentation</strong> for advanced features</li>
+<li><strong>Customize your theme</strong> to match your brand</li>
+<li><strong>Write great content</strong> and grow your audience</li>
+<li><strong>Share your site</strong> with the world!</li>
+</ol>
+<p>Happy building with Stattic! 🚀</p>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

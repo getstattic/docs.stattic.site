@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content creation | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Content creation">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Content creation">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Content creation</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Master the art of creating compelling content for your Stattic site. This guide covers everything from basic Markdown syntax to advanced content organization, helping you create engaging blogs, documentation, and websites.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#markdown-fundamentals">Markdown Fundamentals</a></li>
+<li><a href="#front-matter-essentials">Front Matter Essentials</a></li>
+<li><a href="#content-organization">Content Organization</a></li>
+<li><a href="#writing-blog-posts">Writing Blog Posts</a></li>
+<li><a href="#creating-static-pages">Creating Static Pages</a></li>
+<li><a href="#working-with-images">Working with Images</a></li>
+<li><a href="#advanced-content-features">Advanced Content Features</a></li>
+<li><a href="#content-metadata">Content Metadata</a></li>
+<li><a href="#seo-best-practices">SEO Best Practices</a></li>
+<li><a href="#content-workflow">Content Workflow</a></li>
+<li><a href="#performance-optimization">Performance Optimization</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>Stattic uses <strong>Markdown files** with **YAML front matter</strong> for all content. This combination provides:</p>
+<ul>
+<li><strong>Easy writing experience</strong> with Markdown syntax</li>
+<li><strong>Rich metadata</strong> through YAML front matter</li>
+<li><strong>Flexible organization</strong> with directory structure</li>
+<li><strong>SEO optimization</strong> through structured data</li>
+</ul>
+<h3>Content File Structure</h3>
+<p>Every content file follows this pattern:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Your Title Here&quot;
+date: &quot;2024-01-15&quot;
+# ... other metadata
+---
+
+# Your Content Here
+
+Your content written in Markdown...
+</code></pre><hr />
+<h2>Markdown Fundamentals</h2>
+<h3>Essential Markdown Syntax</h3>
+<h4>Headings</h4>
+<pre style="white-space: pre-wrap;"><code># H1 - Main Title
+## H2 - Section Title
+### H3 - Subsection
+#### H4 - Sub-subsection
+##### H5 - Minor heading
+###### H6 - Smallest heading
+</code></pre><h4>Text Formatting</h4>
+<pre style="white-space: pre-wrap;"><code>**Bold text**
+*Italic text*
+***Bold and italic***
+~~Strikethrough~~
+`Inline code`
+</code></pre><h4>Lists</h4>
+<pre style="white-space: pre-wrap;"><code># Unordered list
+- Item 1
+- Item 2
+  - Nested item
+  - Another nested item
+- Item 3
+
+# Ordered list
+1. First item
+2. Second item
+   1. Nested numbered item
+   2. Another nested item
+3. Third item
+</code></pre><h4>Links and References</h4>
+<pre style="white-space: pre-wrap;"><code># Basic link
+[Link text](https://example.com)
+
+# Link with title
+[Link text](https://example.com &quot;Link title&quot;)
+
+# Reference link
+[Link text][reference]
+
+[reference]: https://example.com &quot;Reference title&quot;
+
+# Internal links
+[About page](/about/)
+[Other post](../other-post/)
+</code></pre><h4>Images</h4>
+<pre style="white-space: pre-wrap;"><code># Basic image
+![Alt text](image.jpg)
+
+# Image with title
+![Alt text](image.jpg &quot;Image title&quot;)
+
+# Reference image
+![Alt text][image-ref]
+
+[image-ref]: /images/example.jpg &quot;Reference image&quot;
+</code></pre><h4>Code Blocks</h4>
+<pre style="white-space: pre-wrap;"><code># Inline code
+Use `variable` in your code.
+
+# Code block
+</code></pre><p>Basic code block</p>
+<pre style="white-space: pre-wrap;"><code>
+# Syntax highlighted code
+```python
+def hello_world():
+    print(&quot;Hello, World!&quot;)
+</code></pre><h1>Code with filename</h1>
+<pre style="white-space: pre-wrap;"><code>// main.js
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+</code></pre><pre style="white-space: pre-wrap;"><code>
+#### Blockquotes
+```markdown
+&gt; This is a blockquote.
+&gt; It can span multiple lines.
+
+&gt; **Note:** This is an important note.
+&gt; 
+&gt; It can contain other Markdown elements.
+
+# Nested blockquotes
+&gt; This is a quote.
+&gt; 
+&gt; &gt; This is a nested quote.
+</code></pre><h4>Tables</h4>
+<pre style="white-space: pre-wrap;"><code>| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1    | Data     | More data|
+| Row 2    | Data     | More data|
+
+# Aligned tables
+| Left | Center | Right |
+|:-----|:------:|------:|
+| Left | Center | Right |
+| Text | Text   | Text  |
+</code></pre><h4>Horizontal Rules</h4>
+<pre style="white-space: pre-wrap;"><code>---
+***
+___
+</code></pre><h3>Advanced Markdown Features</h3>
+<h4>Task Lists</h4>
+<pre style="white-space: pre-wrap;"><code>- [x] Completed task
+- [ ] Incomplete task
+- [ ] Another task
+  - [x] Nested completed task
+  - [ ] Nested incomplete task
+</code></pre><h4>Definition Lists</h4>
+<pre style="white-space: pre-wrap;"><code>Term 1
+: Definition for term 1
+
+Term 2
+: Definition for term 2
+: Another definition for term 2
+</code></pre><h4>Footnotes</h4>
+<pre style="white-space: pre-wrap;"><code>Here's a sentence with a footnote[^1].
+
+Here's another with a named footnote[^note].
+
+[^1]: This is the first footnote.
+[^note]: This is the named footnote.
+</code></pre><hr />
+<h2>Front Matter Essentials</h2>
+<p>Front matter is YAML metadata at the top of each file, enclosed by triple dashes (<code>---</code>).</p>
+<h3>Required Front Matter</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Your Post Title&quot;        # Required: Page/post title  
+date: &quot;2025-06-20&quot;             # Required for posts: Publication date (YYYY-MM-DD)
+---
+</code></pre><h3>Common Front Matter Fields</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# Essential fields
+title: &quot;Complete Guide to Static Sites&quot;
+date: &quot;2025-06-20&quot;
+description: &quot;Learn how to build amazing static sites&quot;
+
+# Organization (use numeric IDs from YAML files)
+categories: [1, 2]             # List of category IDs from categories.yml
+tags: [1, 3, 5]               # List of tag IDs from tags.yml
+author: 1                      # Author ID from authors.yml
+
+# SEO and metadata
+keywords: &quot;static sites, web development, tutorial&quot;
+featured_image: &quot;images/static-sites-hero.jpg&quot;
+
+# URL customization
+custom_url: &quot;guides/static-sites&quot;
+
+# Template selection
+template: &quot;tutorial&quot;           # Uses post-tutorial.html template
+
+# Language
+lang: &quot;en&quot;                     # Language code (default: en)
+---
+</code></pre><h3>Front Matter Reference</h3>
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>title</code></td>
+  <td>String</td>
+  <td>Page/post title</td>
+  <td><code>&quot;My Blog Post&quot;</code></td>
+</tr>
+<tr>
+  <td><code>date</code></td>
+  <td>String</td>
+  <td>Publication date (YYYY-MM-DD)</td>
+  <td><code>&quot;2025-06-20&quot;</code></td>
+</tr>
+<tr>
+  <td><code>description</code></td>
+  <td>String</td>
+  <td>Meta description for SEO</td>
+  <td><code>&quot;Learn about...&quot;</code></td>
+</tr>
+<tr>
+  <td><code>categories</code></td>
+  <td>List</td>
+  <td>Category IDs from categories.yml</td>
+  <td><code>[1, 2]</code></td>
+</tr>
+<tr>
+  <td><code>tags</code></td>
+  <td>List</td>
+  <td>Tag IDs from tags.yml</td>
+  <td><code>[1, 3, 5]</code></td>
+</tr>
+<tr>
+  <td><code>author</code></td>
+  <td>Number</td>
+  <td>Author ID from authors.yml</td>
+  <td><code>1</code></td>
+</tr>
+<tr>
+  <td><code>featured_image</code></td>
+  <td>String</td>
+  <td>Featured image path</td>
+  <td><code>&quot;images/hero.jpg&quot;</code></td>
+</tr>
+<tr>
+  <td><code>custom_url</code></td>
+  <td>String</td>
+  <td>Custom permalink</td>
+  <td><code>&quot;custom-path&quot;</code></td>
+</tr>
+<tr>
+  <td><code>keywords</code></td>
+  <td>String</td>
+  <td>SEO keywords</td>
+  <td><code>&quot;seo, web&quot;</code></td>
+</tr>
+<tr>
+  <td><code>template</code></td>
+  <td>String</td>
+  <td>Custom template name</td>
+  <td><code>&quot;tutorial&quot;</code></td>
+</tr>
+<tr>
+  <td><code>lang</code></td>
+  <td>String</td>
+  <td>Language code</td>
+  <td><code>&quot;en&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Content Organization</h2>
+<h3>Directory Structure</h3>
+<p>Organize content logically in your <code>content/</code> directory:</p>
+<pre style="white-space: pre-wrap;"><code>content/
+├── posts/                  # Blog posts
+│   ├── 2025-01-15-my-first-post.md
+│   ├── 2025-01-20-learning-python.md
+│   └── 2025-02-01-advanced-css.md
+├── pages/                 # Static pages
+│   ├── about.md
+│   ├── contact.md
+│   └── privacy.md
+├── authors.yml            # Author information
+├── categories.yml         # Category definitions
+└── tags.yml              # Tag definitions
+</code></pre><h3>Asset Organization</h3>
+<pre style="white-space: pre-wrap;"><code>assets/
+├── css/                   # Stylesheets
+│   ├── stattic.css       # Main stylesheet
+│   └── tailwind.min.css  # Tailwind CSS
+├── js/                    # JavaScript files
+│   └── alpine.min.js     # Alpine.js
+└── images/                # Images for your site
+    ├── logo.png
+    ├── hero-image.jpg
+    └── post-images/
+        ├── tutorial-1.jpg
+        └── guide-screenshot.png
+</code></pre><h3>File Naming Conventions</h3>
+<h4>Blog Posts</h4>
+<pre style="white-space: pre-wrap;"><code># Date-based naming (recommended)
+2025-01-15-my-first-post.md
+2025-01-20-learning-python.md
+2025-02-01-advanced-css-techniques.md
+
+# Descriptive naming
+beginner-guide-to-html.md
+advanced-javascript-patterns.md
+react-vs-vue-comparison.md
+</code></pre><h4>Static Pages</h4>
+<pre style="white-space: pre-wrap;"><code># Simple, descriptive names
+about.md
+contact.md
+privacy-policy.md
+terms-of-service.md
+portfolio.md
+</code></pre><h3>Content Categories</h3>
+<p>Define categories in <code>content/categories.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Tutorials&quot;
+  description: &quot;Step-by-step guides and how-to articles&quot;
+  slug: &quot;tutorials&quot;
+
+2:
+  name: &quot;Reviews&quot;
+  description: &quot;Product and service reviews&quot;
+  slug: &quot;reviews&quot;
+
+3:
+  name: &quot;Personal&quot;
+  description: &quot;Personal thoughts and experiences&quot;
+  slug: &quot;personal&quot;
+
+4:
+  name: &quot;Projects&quot;
+  description: &quot;Project showcases and case studies&quot;
+  slug: &quot;projects&quot;
+</code></pre><h3>Tag Management</h3>
+<p>Set up tags in <code>content/tags.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Getting Started&quot;
+  description: &quot;Posts about getting started with new topics&quot;
+  slug: &quot;getting-started&quot;
+
+2:
+  name: &quot;Web Development&quot;
+  description: &quot;Web development tutorials and tips&quot;
+  slug: &quot;web-development&quot;
+
+3:
+  name: &quot;Python&quot;
+  description: &quot;Python programming content&quot;
+  slug: &quot;python&quot;
+
+4:
+  name: &quot;CSS&quot;
+  description: &quot;CSS styling and design&quot;
+  slug: &quot;css&quot;
+</code></pre><h3>Author Management</h3>
+<p>Set up authors in <code>content/authors.yml</code>:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;John Doe&quot;
+  bio: &quot;Full-stack developer with 5 years of experience&quot;
+  email: &quot;john@example.com&quot;
+  website: &quot;https://johndoe.dev&quot;
+  twitter: &quot;@johndoe&quot;
+
+2:
+  name: &quot;Jane Smith&quot;
+  bio: &quot;UI/UX designer and frontend specialist&quot;
+  email: &quot;jane@example.com&quot;
+  website: &quot;https://janesmith.design&quot;
+</code></pre><hr />
+<h2>Writing Blog Posts</h2>
+<h3>Blog Post Template</h3>
+<p>Create engaging blog posts with this structure:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;How to Build Your First Static Site&quot;
+date: &quot;2025-06-20&quot;
+description: &quot;Complete beginner's guide to creating static websites&quot;
+categories: [1]
+tags: [1, 2]
+author: 1
+featured_image: &quot;images/posts/first-static-site.jpg&quot;
+custom_url: &quot;how-to-build-first-static-site&quot;
+---
+
+# How to Build Your First Static Site
+
+Static sites are making a comeback, and for good reason. They're fast, secure, and easy to maintain. In this guide, you'll learn everything you need to know to build your first static site.
+
+## What You'll Learn
+
+By the end of this tutorial, you'll be able to:
+
+- Set up a static site generator
+- Write content in Markdown
+- Deploy your site to the web
+- Optimize for performance and SEO
+
+## Prerequisites
+
+Before we start, make sure you have:
+
+- Basic HTML/CSS knowledge
+- A text editor
+- Command line familiarity
+
+## Getting Started
+
+Let's dive into building your first static site...
+
+### Step 1: Choose Your Tools
+
+The first decision is choosing a static site generator...
+
+### Step 2: Set Up Your Project
+
+Create a new directory for your project...
+
+## Conclusion
+
+Congratulations! You've built your first static site. Here's what you learned:
+
+- How to set up a static site generator
+- Writing content with Markdown
+- Deploying to production
+
+## What's Next?
+
+Ready to level up? Check out these advanced topics:
+
+- [Advanced Static Site Techniques](../advanced-static-sites/)
+- [SEO for Static Sites](../static-site-seo/)
+- [Performance Optimization](../static-site-performance/)
+
+---
+
+*Have questions? [Get in touch](/contact/) and I'll help you out!*
+</code></pre><h3>Blog Post Best Practices</h3>
+<h4>1. Compelling Headlines</h4>
+<pre style="white-space: pre-wrap;"><code># ✅ Good headlines
+&quot;5 CSS Tricks That Will Blow Your Mind&quot;
+&quot;How I Built a Blog That Gets 10K Monthly Visitors&quot;
+&quot;The Complete Guide to JavaScript Promises&quot;
+
+# ❌ Weak headlines
+&quot;Some CSS Tips&quot;
+&quot;My Blog&quot;
+&quot;JavaScript Stuff&quot;
+</code></pre><h4>2. Strong Introductions</h4>
+<pre style="white-space: pre-wrap;"><code># Hook the reader immediately
+Static sites are experiencing a renaissance. While everyone was focused on complex frameworks and server-side rendering, a quiet revolution was happening in the world of web development.
+
+# State the problem clearly
+If you've ever waited 5 seconds for a blog post to load, you know the pain of bloated websites. Today, I'll show you how to build sites that load in under 1 second.
+
+# Promise specific value
+By the end of this 10-minute read, you'll have a complete static site running on the web—for free.
+</code></pre><h4>3. Scannable Structure</h4>
+<pre style="white-space: pre-wrap;"><code>## Use Clear Headings
+
+Break up your content with descriptive headings that tell readers exactly what they'll learn.
+
+### Descriptive Subheadings
+
+Make it easy to scan and find specific information.
+
+## Use Lists for Easy Reading
+
+- Point 1: Clear and concise
+- Point 2: Actionable advice
+- Point 3: Specific examples
+
+## Include Code Examples
+
+```javascript
+// Always include working code examples
+function example() {
+    return &quot;This helps readers understand&quot;;
+}
+</code></pre><h2>Add Visual Breaks</h2>
+<p>Use horizontal rules, blockquotes, and images to break up long text sections.</p>
+<pre style="white-space: pre-wrap;"><code>
+#### 4. Strong Conclusions
+```markdown
+## Conclusion
+
+In this guide, you learned:
+
+1. **The fundamentals** of static site generators
+2. **How to set up** your first project
+3. **Best practices** for content creation
+4. **Deployment strategies** for going live
+
+The most important takeaway? Start simple and iterate. Your first static site doesn't need to be perfect—it just needs to exist.
+
+## What's Next?
+
+Ready to take your skills further? Here are three actionable next steps:
+
+1. **Practice**: Build a simple portfolio site this weekend
+2. **Learn**: Read about advanced SEO techniques
+3. **Connect**: Join the static site community on Discord
+
+*What will you build first? [Let me know on Twitter](https://twitter.com/yourusername)!*
+</code></pre><hr />
+<h2>Creating Static Pages</h2>
+<h3>About Page Template</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;About Me&quot;
+description: &quot;Learn more about [Your Name] and my journey in web development&quot;
+custom_url: &quot;/about/&quot;
+---
+
+# About Me
+
+Hi there! 👋 I'm [Your Name], a [your profession] passionate about [your interests].
+
+## My Story
+
+I started my journey in [field] back in [year] when [origin story]. Since then, I've [achievements and experience].
+
+### What I Do
+
+- 💻 **[Primary skill]**: [Brief description]
+- 🎨 **[Secondary skill]**: [Brief description]  
+- 📚 **[Other skill]**: [Brief description]
+
+### Currently
+
+I'm currently focused on:
+- [Current project or goal]
+- [Learning objective]
+- [Professional objective]
+
+## My Values
+
+**Quality over Quantity**: I believe in creating fewer, better things rather than rushing to produce more.
+
+**Continuous Learning**: Technology evolves rapidly, and I'm committed to staying current with the latest developments.
+
+**Community**: I love sharing knowledge and helping others grow in their careers.
+
+## Fun Facts
+
+- ☕ I drink [number] cups of coffee daily
+- 🎮 I'm currently playing [game]
+- 📖 Last book I read: [book title]
+- 🎵 Currently listening to: [music/podcast]
+
+## Let's Connect
+
+I'm always interested in meeting new people and discussing [topics of interest].
+
+- **Email**: [your.email@example.com](mailto:your.email@example.com)
+- **Twitter**: [@yourusername](https://twitter.com/yourusername)
+- **LinkedIn**: [Your Name](https://linkedin.com/in/yourprofile)
+- **GitHub**: [yourusername](https://github.com/yourusername)
+
+---
+
+*Thanks for reading! Feel free to [get in touch](/contact/) if you'd like to chat.*
+</code></pre><h3>Contact Page Template</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Contact Me&quot;
+description: &quot;Get in touch for collaborations, questions, or just to say hello&quot;
+custom_url: &quot;/contact/&quot;
+---
+
+# Get In Touch
+
+I'd love to hear from you! Whether you have a question, want to collaborate, or just want to say hello.
+
+## How to Reach Me
+
+### Email
+**[your.email@example.com](mailto:your.email@example.com)**  
+*Best for: Detailed questions, collaboration inquiries, private matters*  
+*Response time: Usually within 24-48 hours*
+
+### Social Media
+- **Twitter**: [@yourusername](https://twitter.com/yourusername) - *Quick questions and public conversations*
+- **LinkedIn**: [Your Name](https://linkedin.com/in/yourprofile) - *Professional networking*
+- **GitHub**: [yourusername](https://github.com/yourusername) - *Code-related discussions*
+
+## What I'm Open To
+
+- 🤝 **Collaboration** on interesting projects
+- 💼 **Freelance work** (depending on availability)
+- 🎓 **Mentoring** new developers
+- 💬 **Speaking** at events or podcasts
+- 📝 **Guest posting** on relevant blogs
+
+## What I'm Not Available For
+
+- Generic pitches or spam
+- Unpaid work (unless it's for a cause I believe in)
+- Projects outside my expertise area
+- Urgent requests without prior arrangement
+
+## Before You Email
+
+To help me provide the best response:
+
+1. **Be specific** about what you're looking for
+2. **Include relevant details** about your project or question
+3. **Check my blog** first - your question might already be answered
+4. **Be patient** - I try to respond to everyone, but it may take a few days
+
+## Alternative Ways to Connect
+
+- **Comment** on blog posts for public discussions
+- **Subscribe** to my newsletter for regular updates
+- **Follow** me on social media for daily thoughts and tips
+
+---
+
+*Looking forward to connecting with you!*
+</code></pre><hr />
+<h2>Working with Images</h2>
+<h3>Image Organization</h3>
+<pre style="white-space: pre-wrap;"><code>assets/images/
+├── logo.png               # Site logo
+├── hero-images/           # Hero/banner images
+│   ├── homepage-hero.jpg
+│   └── about-hero.jpg
+├── posts/                 # Post-specific images
+│   ├── tutorial-screenshot.jpg
+│   ├── code-example.png
+│   └── comparison-chart.svg
+└── general/               # Reusable images
+    ├── icons/
+    └── backgrounds/
+</code></pre><h3>Image Syntax in Content</h3>
+<pre style="white-space: pre-wrap;"><code># Basic image (relative to assets/images/)
+![Alt text describing the image](images/posts/diagram.jpg)
+
+# Image with title (appears on hover)
+![Code example screenshot](images/posts/tutorial/code.png &quot;VS Code showing the example&quot;)
+
+# Linked image
+[![Click to enlarge](images/thumbnail.jpg)](images/full-size.jpg)
+</code></pre><h3>Image Best Practices</h3>
+<h4>1. Optimization</h4>
+<pre style="white-space: pre-wrap;"><code># ✅ Optimized images
+- Use compressed images (JPEG for photos, PNG for graphics)
+- Keep file sizes reasonable (under 500KB for most images)
+- Use descriptive filenames
+- Include meaningful alt text
+
+# ❌ Avoid
+- Huge uncompressed images
+- Missing alt text
+- Generic filenames like &quot;IMG_1234.jpg&quot;
+</code></pre><h4>2. Alt Text Guidelines</h4>
+<pre style="white-space: pre-wrap;"><code># ✅ Good alt text
+![Screenshot of VS Code showing the main.js file with syntax highlighting](images/vscode-screenshot.jpg)
+
+![Bar chart showing 40% increase in site speed after optimization](images/performance-chart.png)
+
+# ❌ Poor alt text
+![Image](images/photo.jpg)
+![Screenshot](images/screen.png)
+</code></pre><h4>3. File Naming</h4>
+<pre style="white-space: pre-wrap;"><code># ✅ Descriptive names
+hero-image-static-sites.jpg
+vscode-screenshot-main-js.png
+performance-comparison-chart.svg
+
+# ❌ Generic names
+image1.jpg
+screen.png
+photo.jpeg
+</code></pre><hr />
+<h2>Advanced Content Features</h2>
+<h3>Custom Front Matter Fields</h3>
+<p>You can extend metadata with additional fields (accessed via <code>metadata</code> or <code>page</code> in templates):</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Advanced Tutorial&quot;
+date: &quot;2025-06-20&quot;
+
+# Core Stattic fields
+description: &quot;Advanced tutorial description&quot;
+categories: [1, 2]
+tags: [1, 3, 5]
+author: 1
+featured_image: &quot;images/tutorial-hero.jpg&quot;
+keywords: &quot;tutorial, advanced, guide&quot;
+template: &quot;tutorial&quot;
+custom_url: &quot;advanced-tutorial&quot;
+lang: &quot;en&quot;
+
+# Custom fields (accessed via metadata.reading_time, etc.)
+reading_time: 15
+difficulty: &quot;advanced&quot;
+prerequisites: [&quot;HTML&quot;, &quot;CSS&quot;, &quot;JavaScript&quot;]
+updated: &quot;2025-06-20&quot;
+---
+</code></pre><p>Note: Custom fields like <code>reading_time</code>, <code>difficulty</code>, etc. are stored in the metadata but require custom template code to display.</p>
+<h3>Series and Collections</h3>
+<p>Organize related content using categories and custom fields:</p>
+<pre style="white-space: pre-wrap;"><code>---
+# Group posts using categories and custom metadata
+title: &quot;Part 1: Introduction to Static Sites&quot;
+categories: [1]  # &quot;Static Site Mastery&quot; category
+tags: [1, 2]     # &quot;Getting Started&quot;, &quot;Tutorial&quot; tags
+series_part: 1
+series_title: &quot;Static Site Mastery&quot;
+---
+</code></pre><p>Create category pages automatically by ensuring your categories.yml includes all series:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Static Site Mastery&quot;
+  description: &quot;Complete guide to building static sites&quot;
+  slug: &quot;static-site-mastery&quot;
+</code></pre><h3>Content Templates</h3>
+<p>Create reusable content templates:</p>
+<h4>Tutorial Template</h4>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;[Tutorial Title]&quot;
+date: &quot;2025-06-20&quot;
+description: &quot;[Brief description of what readers will learn]&quot;
+categories: [1]  # Tutorial category ID
+tags: [1, 2, 3]  # Relevant tag IDs
+author: 1
+template: &quot;tutorial&quot;  # Uses post-tutorial.html if it exists
+custom_url: &quot;tutorial-slug&quot;
+---
+
+# [Tutorial Title]
+
+[Hook paragraph - why is this important?]
+
+## What You'll Learn
+
+By the end of this tutorial, you'll be able to:
+
+- [Learning objective 1]
+- [Learning objective 2]
+- [Learning objective 3]
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- [Prerequisite 1]
+- [Prerequisite 2]
+
+## Step 1: [First Step]
+
+[Clear instructions with code examples]
+
+```language
+// Code example
+</code></pre><h2>Step 2: [Second Step]</h2>
+<p>[Continue with clear steps]</p>
+<h2>Troubleshooting</h2>
+<p><strong>Problem<strong>: [Common issue]  
+</strong>Solution</strong>: [How to fix it]</p>
+<h2>Conclusion</h2>
+<p>In this tutorial, you learned:</p>
+<ul>
+<li>✅ [What they accomplished]</li>
+<li>✅ [Key takeaway]</li>
+<li>✅ [Practical skill gained]</li>
+</ul>
+<h2>What's Next?</h2>
+<ul>
+<li>[Related tutorial 1]</li>
+<li>[Related tutorial 2]</li>
+<li>[Advanced topic]</li>
+</ul>
+<pre style="white-space: pre-wrap;"><code>
+#### Review Template
+```markdown
+---
+title: &quot;[Product/Service] Review: [Summary Opinion]&quot;
+date: &quot;2025-06-20&quot;
+description: &quot;Honest review of [product] - pros, cons, and who it's for&quot;
+categories: [2]  # Review category ID
+tags: [4, 5]     # Review-related tags
+author: 1
+featured_image: &quot;images/reviews/product-hero.jpg&quot;
+---
+
+# [Product] Review: [Summary Opinion]
+
+*⭐ Rating: [X]/5 stars*
+
+[Product] promises [main value proposition]. After [time period] of use, here's my honest assessment.
+
+## Quick Summary
+
+**The Good**: [Top 2-3 positives]  
+**The Bad**: [Top 1-2 negatives]  
+**Best For**: [Target audience]  
+**Price**: [Cost information]
+
+## What Is [Product]?
+
+[Brief explanation of what the product does]
+
+## My Experience
+
+[Personal story of using the product]
+
+## Pros and Cons
+
+### What I Loved ✅
+
+1. **[Feature]**: [Why it's great]
+2. **[Feature]**: [Specific benefit]
+3. **[Feature]**: [Personal experience]
+
+### What Could Be Better ❌
+
+1. **[Issue]**: [Specific problem]
+2. **[Limitation]**: [How it affected me]
+
+## Who Should Use [Product]?
+
+**Perfect for**:
+- [Ideal user type 1]
+- [Ideal user type 2]
+
+**Not ideal for**:
+- [User type who should avoid]
+- [Specific use case it doesn't serve]
+
+## Alternatives
+
+If [Product] isn't right for you, consider:
+
+- **[Alternative 1]**: [When to choose this instead]
+- **[Alternative 2]**: [Key differentiator]
+
+## Final Verdict
+
+[Overall assessment and recommendation]
+
+**Rating**: ⭐⭐⭐⭐☆ (4/5)
+
+*Note: This is an honest review based on my personal experience.*
+</code></pre><hr />
+<h2>Content Metadata</h2>
+<h3>SEO Metadata</h3>
+<p>Optimize content for search engines using the core Stattic fields:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Complete Guide to Static Sites&quot;
+description: &quot;Learn how to build fast, secure static websites. Step-by-step tutorial with code examples and deployment guides.&quot;
+keywords: &quot;static sites, web development, JAMstack, performance&quot;
+
+# Featured image for social sharing
+featured_image: &quot;images/static-sites-guide-social.jpg&quot;
+
+# Custom URL for better SEO
+custom_url: &quot;complete-guide-static-sites&quot;
+
+# Language specification
+lang: &quot;en&quot;
+---
+</code></pre><h3>Template-Accessible Metadata</h3>
+<p>Stattic passes all front matter to templates via the <code>metadata</code> and <code>page</code> variables:</p>
+<pre style="white-space: pre-wrap;"><code>---
+# All these fields are available in templates
+title: &quot;My Post&quot;
+description: &quot;Post description&quot;
+categories: [1]
+tags: [1, 2]
+author: 1
+featured_image: &quot;images/hero.jpg&quot;
+keywords: &quot;seo keywords&quot;
+custom_url: &quot;my-post&quot;
+lang: &quot;en&quot;
+template: &quot;special&quot;
+
+# Custom fields (accessible via metadata.custom_field)
+reading_time: 10
+difficulty: &quot;beginner&quot;
+last_updated: &quot;2025-06-20&quot;
+---
+</code></pre><hr />
+<h2>SEO Best Practices</h2>
+<h3>On-Page SEO</h3>
+<h4>Title Optimization</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# ✅ Good titles (50-60 characters)
+title: &quot;Complete Guide to Static Sites in 2024&quot;
+title: &quot;5 CSS Tricks Every Developer Should Know&quot;
+
+# ❌ Avoid
+title: &quot;My Post&quot;  # Too short, not descriptive
+title: &quot;The Ultimate Complete Comprehensive Guide to Everything You Need to Know About Static Site Generators&quot; # Too long
+---
+</code></pre><h4>Meta Descriptions</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# ✅ Good descriptions (150-160 characters)
+description: &quot;Learn how to build fast, secure static websites. Complete tutorial with code examples, deployment guides, and performance tips.&quot;
+
+# ❌ Avoid
+description: &quot;This is a post about static sites.&quot;  # Too short
+description: &quot;This is a very long description that goes on and on and provides way too much detail that won't fit in search results and will be truncated anyway which defeats the purpose of having a good description.&quot; # Too long
+---
+</code></pre><h3>Internal Linking</h3>
+<p>Connect related content:</p>
+<pre style="white-space: pre-wrap;"><code># Link to related posts
+For more advanced techniques, check out my [Static Site Performance Guide](../performance-optimization/).
+
+# Link to foundational content
+New to static sites? Start with my [Introduction to Static Sites](../intro-static-sites/) guide.
+
+# Link to related categories
+Explore more [web development tutorials](/categories/web-development/) or read about [performance optimization](/tags/performance/).
+</code></pre><h3>URL Structure</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# ✅ SEO-friendly URLs (clean, descriptive)
+custom_url: &quot;guides/static-site-deployment&quot;
+custom_url: &quot;tutorials/css-grid-layout&quot;
+custom_url: &quot;complete-python-guide&quot;
+
+# ❌ Avoid
+custom_url: &quot;post1&quot;
+custom_url: &quot;2025/01/15/some-random-title-here&quot;
+---
+</code></pre><p>Note: Stattic will automatically create the directory structure and <code>index.html</code> files, so <code>custom_url: &quot;my-guide&quot;</code> becomes <code>/my-guide/index.html</code> in the output.</p>
+<hr />
+<h2>Content Workflow</h2>
+<h3>Content Planning</h3>
+<h4>Editorial Calendar Template</h4>
+<pre style="white-space: pre-wrap;"><code># 2024 Content Calendar
+
+## January
+- Week 1: [Post title] - [Category] - [Status]
+- Week 2: [Post title] - [Category] - [Status]
+- Week 3: [Post title] - [Category] - [Status]
+- Week 4: [Post title] - [Category] - [Status]
+
+## Content Themes by Month
+- January: Getting Started guides
+- February: Advanced techniques
+- March: Performance optimization
+- April: Design and UX
+</code></pre><h3>Content Creation Process</h3>
+<ol>
+<li><p><strong>Research and Planning</strong></p>
+<ul>
+<li>Keyword research</li>
+<li>Audience analysis</li>
+<li>Outline creation</li>
+</ul>
+</li>
+<li><p><strong>Writing</strong></p>
+<ul>
+<li>First draft</li>
+<li>Add code examples</li>
+<li>Include images</li>
+</ul>
+</li>
+<li><p><strong>Review and Edit</strong></p>
+<ul>
+<li>Technical accuracy</li>
+<li>Grammar and style</li>
+<li>SEO optimization</li>
+</ul>
+</li>
+<li><p><strong>Publishing</strong></p>
+<ul>
+<li>Front matter check</li>
+<li>Link validation</li>
+<li>Social media preparation</li>
+</ul>
+</li>
+</ol>
+<h3>Content Maintenance</h3>
+<h4>Regular Updates</h4>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Guide to React Hooks&quot;
+date: &quot;2023-01-15&quot;
+updated: &quot;2025-06-20&quot;    # Track when updated (custom field)
+version: &quot;2.0&quot;           # Version for major updates (custom field)
+---
+</code></pre><h4>Deprecation Notices</h4>
+<pre style="white-space: pre-wrap;"><code>&gt; **⚠️ Update Notice**: This article was written for React 17. For React 18+, see my [updated guide](../react-18-hooks/).
+
+&gt; **📅 Last Updated**: June 20, 2025 - Added React 18 compatibility notes.
+</code></pre><hr />
+<h2>Performance Optimization</h2>
+<h3>Content Performance</h3>
+<h4>Optimize for Speed</h4>
+<pre style="white-space: pre-wrap;"><code># ✅ Performance-friendly content
+- Use compressed images
+- Write concise, scannable content
+- Minimize external embeds
+- Use code blocks instead of screenshots when possible
+
+# ❌ Performance killers
+- Huge unoptimized images
+- Excessive external widgets
+- Auto-playing videos
+- Bloated content with unnecessary details
+</code></pre><h4>Content Length Guidelines</h4>
+<pre style="white-space: pre-wrap;"><code># Optimal lengths by content type
+- Blog posts: 1,500-2,500 words
+- Tutorials: 2,000-4,000 words
+- Quick tips: 500-800 words
+- About pages: 300-600 words
+- Product descriptions: 150-300 words
+</code></pre><hr />
+<h2>Troubleshooting</h2>
+<h3>Common Content Issues</h3>
+<h4>1. Front Matter Errors</h4>
+<pre style="white-space: pre-wrap;"><code># ❌ Invalid YAML
+---
+title: My Post Title  # Missing quotes for multi-word titles
+date: 2025-6-20     # Wrong date format (should be YYYY-MM-DD)
+tags: web development # Should be a list with numeric IDs
+categories: tutorial  # Should be a list with numeric IDs
+---
+
+# ✅ Valid YAML
+---
+title: &quot;My Post Title&quot;
+date: &quot;2025-06-20&quot;
+tags: [1, 2]         # Numeric IDs from tags.yml
+categories: [1]       # Numeric IDs from categories.yml
+---
+</code></pre><h4>2. Markdown Formatting Issues</h4>
+<pre style="white-space: pre-wrap;"><code># ❌ Common mistakes
+##Heading without space
+[Link](broken-url
+![Image without alt text](image.jpg)
+
+# ✅ Correct formatting
+## Heading with space
+[Link](https://example.com)
+![Descriptive alt text](image.jpg)
+</code></pre><h4>3. Image Problems</h4>
+<pre style="white-space: pre-wrap;"><code># ❌ Common issues
+- Broken image paths (not relative to assets/images/)
+- Missing alt text
+- Huge file sizes
+- Unsupported image formats
+
+# ✅ Solutions
+- Use paths relative to assets/images/: `images/my-photo.jpg`
+- Always include descriptive alt text
+- Compress images before uploading (under 500KB recommended)
+- Use standard formats: JPEG, PNG, WebP, SVG
+</code></pre><h3>Content Validation</h3>
+<h4>Manual Checks</h4>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Front matter syntax is valid YAML</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Date format is YYYY-MM-DD</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Categories and tags use numeric IDs from YAML files</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>All links work correctly</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Images load properly and use relative paths</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Alt text is descriptive</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Content is well-structured with headings</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>SEO metadata (title, description, keywords) is complete</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Custom URL is SEO-friendly</li>
+</ul>
+<h4>Automated Tools</h4>
+<pre style="white-space: pre-wrap;"><code># Build and check for errors
+stattic
+
+# Validate YAML syntax manually
+python3 -c &quot;import yaml; print('Valid YAML')&quot; 2&gt;/dev/null &amp;&amp; echo &quot;✅ YAML is valid&quot; || echo &quot;❌ YAML syntax error&quot;
+</code></pre><hr />
+<h2>Content Best Practices Summary</h2>
+<h3>Writing Excellence</h3>
+<ol>
+<li><strong>Start with an outline</strong> - Plan your structure before writing</li>
+<li><strong>Write scannable content</strong> - Use headings, lists, and short paragraphs</li>
+<li><strong>Include examples</strong> - Code samples, screenshots, real-world applications</li>
+<li><strong>Edit ruthlessly</strong> - Remove unnecessary words and fluff</li>
+<li><strong>Update regularly</strong> - Keep content current and accurate</li>
+</ol>
+<h3>Technical Excellence</h3>
+<ol>
+<li><strong>Valid front matter</strong> - Always check YAML syntax</li>
+<li><strong>Optimized images</strong> - Compress and use appropriate formats</li>
+<li><strong>SEO optimization</strong> - Descriptive titles, meta descriptions, keywords</li>
+<li><strong>Internal linking</strong> - Connect related content</li>
+<li><strong>Performance focus</strong> - Fast-loading, accessible content</li>
+</ol>
+<h3>Content Strategy</h3>
+<ol>
+<li><strong>Know your audience</strong> - Write for specific reader needs</li>
+<li><strong>Consistent publishing</strong> - Regular schedule builds audience</li>
+<li><strong>Diverse content types</strong> - Tutorials, reviews, personal posts</li>
+<li><strong>Engagement focus</strong> - Actionable, valuable content</li>
+<li><strong>Long-term value</strong> - Evergreen content that stays relevant</li>
+</ol>
+<p>Creating great content takes practice, but following these guidelines will help you build a valuable resource that readers love and search engines reward.</p>
+<hr />
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><a href="faq">SEO Optimization Guide</a></li>
+<li><a href="template-system">Template Customization</a></li>
+<li><a href="faq">Performance Optimization</a></li>
+</ul>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

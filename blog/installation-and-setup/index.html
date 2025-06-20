@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation and setup guide | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Installation and setup guide">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Installation and setup guide">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Installation and setup guide</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 20, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>This comprehensive guide covers everything you need to know about installing and setting up Stattic on different operating systems and environments.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#system-requirements">System Requirements</a></li>
+<li><a href="#installation-methods">Installation Methods</a></li>
+<li><a href="#platform-specific-setup">Platform-Specific Setup</a></li>
+<li><a href="#creating-your-first-project">Creating Your First Project</a></li>
+<li><a href="#verification--testing">Verification &amp; Testing</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#advanced-setup">Advanced Setup</a></li>
+</ul>
+<hr />
+<h2>System Requirements</h2>
+<h3>Minimum Requirements</h3>
+<ul>
+<li><strong>Python</strong>: 3.8 or higher</li>
+<li><strong>Operating System</strong>: Windows 10+, macOS 10.14+, or Linux (any modern distribution)</li>
+<li><strong>Memory</strong>: 512MB RAM available</li>
+<li><strong>Storage</strong>: 100MB free disk space (plus space for your sites)</li>
+<li><strong>Internet</strong>: Required for package installation</li>
+</ul>
+<h3>Recommended Requirements</h3>
+<ul>
+<li><strong>Python</strong>: 3.10 or higher</li>
+<li><strong>Memory</strong>: 1GB RAM or more</li>
+<li><strong>Storage</strong>: 500MB+ free disk space</li>
+<li><strong>Git</strong>: For version control and deployment</li>
+</ul>
+<h3>Dependencies Included</h3>
+<p>Stattic comes with all necessary dependencies:</p>
+<ul>
+<li><strong>Jinja2</strong>: Template engine</li>
+<li><strong>Markdown</strong>: Content processing</li>
+<li><strong>Pillow</strong>: Image processing</li>
+<li><strong>PyYAML</strong>: Configuration files</li>
+<li><strong>Watchdog</strong>: File watching (for future watch mode)</li>
+<li><strong>Requests</strong>: HTTP requests</li>
+<li><strong>Tqdm</strong>: Progress bars</li>
+<li><strong>CSS/JS minifiers</strong>: Asset optimization</li>
+</ul>
+<hr />
+<h2>Installation Methods</h2>
+<h3>Method 1: From PyPI (Recommended)</h3>
+<p>Stattic is available as a PyPI package. Install it using pip:</p>
+<pre style="white-space: pre-wrap;"><code># Install Stattic
+pip install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h3>Method 2: Using Virtual Environment (Recommended for Development)</h3>
+<pre style="white-space: pre-wrap;"><code># Create a virtual environment
+python -m venv stattic-env
+
+# Activate the virtual environment
+# On Windows:
+stattic-env\Scripts\activate
+# On macOS/Linux:
+source stattic-env/bin/activate
+
+# Install Stattic
+pip install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h3>Method 3: From Source (For Development)</h3>
+<p>If you want to contribute to Stattic or use the latest development version:</p>
+<pre style="white-space: pre-wrap;"><code># Clone the repository
+git clone https://github.com/getstattic/stattic.git
+cd stattic
+
+# Create a virtual environment (recommended)
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install in development mode
+pip install -e .
+
+# Verify installation
+stattic --version
+</code></pre><hr />
+<h2>Platform-Specific Setup</h2>
+<h3>Windows Setup</h3>
+<h4>Option 1: Using Windows Subsystem for Linux (WSL)</h4>
+<pre style="white-space: pre-wrap;"><code># Install WSL2 (if not already installed)
+wsl --install
+
+# Install Python in WSL
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+
+# Install Stattic
+pip3 install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h4>Option 2: Native Windows Installation</h4>
+<pre style="white-space: pre-wrap;"><code># Check Python installation
+python --version
+
+# Install Stattic
+pip install stattic
+
+# Verify installation
+stattic --version
+
+# If command not found, ensure Python Scripts are in PATH
+# Usually: C:\Users\YourUsername\AppData\Local\Programs\Python\Python3x\Scripts
+</code></pre><h3>macOS Setup</h3>
+<h4>Using pip (Recommended)</h4>
+<pre style="white-space: pre-wrap;"><code># If you have Python 3.8+ installed
+pip3 install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h4>Using Homebrew Python</h4>
+<pre style="white-space: pre-wrap;"><code># Install Python via Homebrew (if needed)
+brew install python
+
+# Install Stattic
+pip3 install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h3>Linux Setup</h3>
+<h4>Ubuntu/Debian</h4>
+<pre style="white-space: pre-wrap;"><code># Update package list
+sudo apt update
+
+# Install Python and pip (if not already installed)
+sudo apt install python3 python3-pip python3-venv
+
+# Install Stattic
+pip3 install stattic
+
+# Add to PATH if needed
+echo 'export PATH=&quot;$HOME/.local/bin:$PATH&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+stattic --version
+</code></pre><h4>CentOS/RHEL/Fedora</h4>
+<pre style="white-space: pre-wrap;"><code># Install Python and pip
+sudo dnf install python3 python3-pip
+
+# Install Stattic
+pip3 install stattic
+
+# Verify installation
+stattic --version
+</code></pre><h4>Arch Linux</h4>
+<pre style="white-space: pre-wrap;"><code># Install Python (usually pre-installed)
+sudo pacman -S python python-pip
+
+# Install Stattic
+pip install stattic
+
+# Verify installation
+stattic --version
+</code></pre><hr />
+<h2>Creating Your First Project</h2>
+<p>After installing Stattic, create your first static site:</p>
+<h3>Initialize a New Project</h3>
+<pre style="white-space: pre-wrap;"><code># Create a new directory for your project
+mkdir my-stattic-site
+cd my-stattic-site
+
+# Initialize with YAML configuration (recommended)
+stattic --init yml
+
+# Or initialize with JSON configuration
+stattic --init json
+</code></pre><h3>Project Structure Created</h3>
+<p>The <code>--init</code> command creates a complete starter structure:</p>
+<pre style="white-space: pre-wrap;"><code>my-stattic-site/
+├── stattic.yml               # Configuration file
+├── content/                  # Your content files
+│   ├── posts/               # Blog posts
+│   │   └── sample-post.md   # Sample blog post
+│   ├── pages/               # Static pages
+│   │   └── sample-page.md   # Sample page
+│   ├── authors.yml          # Author definitions
+│   ├── categories.yml       # Category definitions
+│   └── tags.yml             # Tag definitions
+├── templates/               # Jinja2 templates
+│   ├── base.html           # Base template
+│   ├── index.html          # Home page template
+│   ├── post.html           # Blog post template
+│   ├── page.html           # Static page template
+│   ├── category.html       # Category listing
+│   ├── tag.html            # Tag listing
+│   └── 404.html            # 404 error page
+└── assets/                 # Static assets
+    ├── css/
+    │   ├── tailwind.min.css # Tailwind CSS framework
+    │   └── stattic.css      # Custom styles
+    ├── js/
+    │   └── alpine.min.js    # Alpine.js framework
+    └── images/              # Image directory
+</code></pre><h3>Build Your Site</h3>
+<pre style="white-space: pre-wrap;"><code># Build the static site
+stattic
+
+# Your generated site will be in the 'output/' directory
+ls output/
+</code></pre><hr />
+<h2>Verification &amp; Testing</h2>
+<h3>Verify Installation</h3>
+<pre style="white-space: pre-wrap;"><code># Check Stattic version
+stattic --version
+
+# Check available options
+stattic --help
+
+# Check Python version (should be 3.8+)
+python --version
+</code></pre><h3>Test Basic Functionality</h3>
+<pre style="white-space: pre-wrap;"><code># Create a test project
+mkdir stattic-test
+cd stattic-test
+
+# Initialize project with sample content
+stattic --init yml
+
+# Build the site
+stattic
+
+# Check that output was generated
+ls output/
+
+# Verify key files were created
+test -f output/index.html &amp;&amp; echo &quot;✅ Homepage created&quot;
+test -f output/sitemap.xml &amp;&amp; echo &quot;✅ Sitemap created&quot;
+test -f output/robots.txt &amp;&amp; echo &quot;✅ Robots.txt created&quot;
+</code></pre><h3>Available CLI Options</h3>
+<p>Based on the actual CLI, here are the available options:</p>
+<pre style="white-space: pre-wrap;"><code># Basic site generation
+stattic
+
+# Custom output directory
+stattic --output ./public
+
+# Custom content directory
+stattic --content ./my-content
+
+# Custom templates directory
+stattic --templates ./my-templates
+
+# Custom assets directory
+stattic --assets ./my-assets
+
+# Site configuration
+stattic --site-title &quot;My Site&quot; --site-tagline &quot;My awesome site&quot;
+
+# Posts configuration
+stattic --posts-per-page 5 --sort-by date
+
+# Custom blog slug
+stattic --blog-slug articles
+
+# Asset optimization
+stattic --minify
+
+# SEO and crawlers
+stattic --robots public --llms public
+
+# Include Google Fonts
+stattic --fonts &quot;Inter,Roboto&quot;
+
+# Initialize new project
+stattic --init yml    # Creates YAML config
+stattic --init json   # Creates JSON config
+
+# Check version
+stattic --version
+</code></pre><hr />
+<h2>Troubleshooting</h2>
+<h3>Common Installation Issues</h3>
+<h4>Issue: &quot;command not found: stattic&quot;</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Check if Stattic was installed correctly
+pip show stattic
+
+# Check if Python Scripts directory is in PATH
+python -m site --user-base
+# Add {user-base}/bin (Linux/macOS) or {user-base}\Scripts (Windows) to PATH
+
+# Reinstall with --user flag
+pip install --user stattic
+
+# Or use Python module directly
+python -m stattic_pkg.cli --version
+</code></pre><h4>Issue: Permission denied during installation</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Install to user directory (recommended)
+pip install --user stattic
+
+# Or use virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/macOS
+# venv\Scripts\activate     # Windows
+pip install stattic
+</code></pre><h4>Issue: Python version compatibility</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Check Python version (must be 3.8+)
+python --version
+
+# If using older Python, upgrade or use pyenv
+pyenv install 3.10.0
+pyenv local 3.10.0
+pip install stattic
+</code></pre><h4>Issue: SSL certificate errors</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Upgrade certificates
+pip install --upgrade certifi
+
+# Use trusted hosts (temporary)
+pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org stattic
+</code></pre><h4>Issue: &quot;No module named 'stattic_pkg'&quot;</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Ensure proper installation
+pip uninstall stattic
+pip install stattic
+
+# Check if in virtual environment
+which python
+which pip
+
+# Try reinstalling dependencies
+pip install --force-reinstall stattic
+</code></pre><h3>Platform-Specific Issues</h3>
+<h4>Windows Issues</h4>
+<ul>
+<li><strong>PATH issues</strong>: Add <code>%APPDATA%\Python\Python3x\Scripts</code> to PATH</li>
+<li><strong>PowerShell execution policy</strong>: Run <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></li>
+<li><strong>Long path names</strong>: Enable long path support in Windows settings</li>
+</ul>
+<h4>macOS Issues</h4>
+<ul>
+<li><strong>Command Line Tools</strong>: Install with <code>xcode-select --install</code></li>
+<li><strong>Permission issues</strong>: Use <code>--user</code> flag or virtual environments</li>
+<li><strong>Python not found</strong>: Ensure Python 3.8+ is installed (use <code>python3</code> command)</li>
+</ul>
+<h4>Linux Issues</h4>
+<ul>
+<li><strong>Missing build tools</strong>: Install <code>build-essential</code> package (Ubuntu/Debian)</li>
+<li><strong>Python development headers</strong>: Install <code>python3-dev</code> package</li>
+<li><strong>Permission issues</strong>: Avoid using <code>sudo</code> with pip (use <code>--user</code> flag instead)</li>
+</ul>
+<h3>Build Issues</h3>
+<h4>Issue: &quot;No such file or directory&quot; during build</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Ensure you're in the correct directory
+ls -la  # Should show stattic.yml
+
+# Check configuration file
+cat stattic.yml
+
+# Verify directory structure
+ls content/ templates/ assets/
+</code></pre><h4>Issue: Templates not found</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Check templates directory exists
+ls templates/
+
+# Verify required templates
+ls templates/base.html templates/index.html
+
+# Re-initialize if templates are missing
+stattic --init yml
+</code></pre><h4>Issue: Assets not copied</h4>
+<p><strong>Solutions:</strong></p>
+<pre style="white-space: pre-wrap;"><code># Check assets directory
+ls assets/
+
+# Verify CSS files exist
+ls assets/css/
+
+# Ensure assets path is correct in config
+grep assets stattic.yml
+</code></pre><hr />
+<h2>Advanced Setup</h2>
+<h3>Virtual Environment Best Practices</h3>
+<pre style="white-space: pre-wrap;"><code># Create project-specific environment
+python -m venv stattic-project-env
+source stattic-project-env/bin/activate  # Linux/macOS
+# stattic-project-env\Scripts\activate     # Windows
+
+# Install Stattic
+pip install stattic
+
+# Create requirements.txt for reproducibility
+pip freeze &gt; requirements.txt
+
+# Deactivate when done
+deactivate
+</code></pre><h3>Development Installation</h3>
+<pre style="white-space: pre-wrap;"><code># For contributing to Stattic
+git clone https://github.com/getstattic/stattic.git
+cd stattic
+
+# Create development environment
+python -m venv dev-env
+source dev-env/bin/activate
+
+# Install in editable mode with dependencies
+pip install -e .
+
+# Install development dependencies (if available)
+pip install pytest black flake8 mypy
+
+# Verify development installation
+stattic --version
+</code></pre><h3>CI/CD Setup</h3>
+<h4>GitHub Actions Example</h4>
+<pre style="white-space: pre-wrap;"><code># .github/workflows/build.yml
+name: Build Stattic Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Stattic
+      run: |
+        python -m pip install --upgrade pip
+        pip install stattic
+
+    - name: Build site
+      run: stattic
+
+    - name: Test build
+      run: |
+        test -f output/index.html
+        test -f output/sitemap.xml
+        echo &quot;✅ Build successful&quot;
+</code></pre><h3>Docker Setup</h3>
+<pre style="white-space: pre-wrap;"><code># Dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install Stattic
+RUN pip install stattic
+
+# Copy project files
+COPY . .
+
+# Build site
+RUN stattic
+
+# Simple HTTP server for testing
+EXPOSE 8000
+CMD [&quot;python&quot;, &quot;-m&quot;, &quot;http.server&quot;, &quot;8000&quot;, &quot;--directory&quot;, &quot;output&quot;]
+</code></pre><p>Build and run:</p>
+<pre style="white-space: pre-wrap;"><code># Build Docker image
+docker build -t my-stattic-site .
+
+# Run container
+docker run -p 8000:8000 my-stattic-site
+
+# Visit http://localhost:8000
+</code></pre><h3>Environment Variables</h3>
+<p>While Stattic doesn't currently support environment variables directly, you can use them in scripts:</p>
+<pre style="white-space: pre-wrap;"><code># Set environment variables
+export STATTIC_SITE_TITLE=&quot;My Blog&quot;
+export STATTIC_OUTPUT_DIR=&quot;./public&quot;
+
+# Use in build script
+stattic --site-title &quot;$STATTIC_SITE_TITLE&quot; --output &quot;$STATTIC_OUTPUT_DIR&quot;
+</code></pre><h3>Multiple Python Versions Testing</h3>
+<pre style="white-space: pre-wrap;"><code># Using pyenv to test multiple versions
+pyenv install 3.8.18
+pyenv install 3.9.18
+pyenv install 3.10.12
+pyenv install 3.11.5
+
+# Test Stattic with each version
+for version in 3.8.18 3.9.18 3.10.12 3.11.5; do
+  echo &quot;Testing with Python $version&quot;
+  pyenv local $version
+  pip install stattic
+  stattic --version
+done
+</code></pre><hr />
+<h2>Next Steps</h2>
+<p>After successful installation and setup:</p>
+<ol>
+<li><strong>� Quick Start</strong>: Read the <a href="quick-start">Quick Start Guide</a> for immediate results</li>
+<li><strong>🏗️ First Site</strong>: Follow <a href="your-first-stattic-site">Your First Stattic Site</a> tutorial</li>
+<li><strong>📝 Content Creation</strong>: Learn about <a href="content-creation">content creation</a> and front matter</li>
+<li><strong>⚙️ Configuration</strong>: Explore <a href="configuration">configuration options</a> for customization</li>
+<li><strong>🎨 Templates</strong>: Understand the <a href="template-system">template system</a> for design</li>
+<li><strong>🚀 Deployment</strong>: Set up <a href="deployment-options">deployment workflows</a></li>
+</ol>
+<h3>Quick Commands Reference</h3>
+<pre style="white-space: pre-wrap;"><code># Create new project
+stattic --init yml
+
+# Build site
+stattic
+
+# Build with custom options
+stattic --site-title &quot;My Site&quot; --minify
+
+# Build to custom directory
+stattic --output ./public
+
+# Check help for all options
+stattic --help
+</code></pre><hr />
+<h2>Getting Help</h2>
+<p>If you encounter issues not covered in this guide:</p>
+<ul>
+<li>📖 <strong>Documentation</strong>: Browse the complete <a href="/">documentation</a></li>
+<li>🐛 <strong>GitHub Issues</strong>: Report bugs at <a href="https://github.com/getstattic/stattic/issues">github.com/getstattic/stattic/issues</a></li>
+<li>💬 <strong>Discussions</strong>: Ask questions in <a href="https://github.com/getstattic/stattic/discussions">GitHub Discussions</a></li>
+<li>📧 <strong>Support</strong>: Contact support for help</li>
+</ul>
+<h3>Community Resources</h3>
+<ul>
+<li><strong>Source Code</strong>: <a href="https://github.com/getstattic/stattic">github.com/getstattic/stattic</a></li>
+<li><strong>PyPI Package</strong>: <a href="https://pypi.org/project/stattic/">pypi.org/project/stattic</a></li>
+<li><strong>Documentation</strong>: <a href="https://docs.stattic.site">docs.stattic.site</a></li>
+</ul>
+<p><strong>Installation successful?</strong> You're ready to build amazing static sites with Stattic! 🎉</p>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

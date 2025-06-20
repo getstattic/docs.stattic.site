@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project structure | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Project structure">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Project structure">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Project structure</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Understanding Stattic's project structure is crucial for organizing your content, customizing your site, and maintaining a clean, scalable website. This guide explains every file and directory in a Stattic project and how they work together.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#root-directory-structure">Root Directory Structure</a></li>
+<li><a href="#content-directory-deep-dive">Content Directory Deep Dive</a></li>
+<li><a href="#templates-system">Templates System</a></li>
+<li><a href="#assets-and-static-files">Assets and Static Files</a></li>
+<li><a href="#configuration-files">Configuration Files</a></li>
+<li><a href="#output-directory">Output Directory</a></li>
+<li><a href="#optional-directories">Optional Directories</a></li>
+<li><a href="#file-naming-conventions">File Naming Conventions</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#advanced-structure-patterns">Advanced Structure Patterns</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>A typical Stattic project follows this structure:</p>
+<pre style="white-space: pre-wrap;"><code>my-website/
+├── 📁 content/              # Your content (Markdown files)
+│   ├── 📁 posts/           # Blog posts
+│   ├── 📁 pages/           # Static pages
+│   ├── 📄 authors.yml      # Author information
+│   ├── 📄 categories.yml   # Category definitions
+│   └── 📄 tags.yml         # Tag definitions
+├── 📁 templates/           # Jinja2 templates (optional - falls back to built-in)
+│   ├── 📄 base.html        # Main layout template
+│   ├── 📄 index.html       # Homepage template
+│   ├── 📄 post.html        # Blog post template
+│   ├── 📄 page.html        # Static page template
+│   ├── 📄 category.html    # Category archive template
+│   ├── 📄 tag.html         # Tag archive template
+│   └── 📄 404.html         # Error page template
+├── 📁 assets/             # CSS, JS, images (copied to output)
+│   ├── 📁 css/
+│   ├── 📁 js/
+│   └── 📁 images/
+├── 📁 output/             # Generated site (after build)
+└── 📄 stattic.yml         # Main configuration
+</code></pre><p>Each directory serves a specific purpose in the site generation process.</p>
+<hr />
+<h2>Root Directory Structure</h2>
+<h3>Essential Files</h3>
+<h4><code>stattic.yml</code> - Main Configuration</h4>
+<p>The heart of your Stattic project. Controls all site settings:</p>
+<pre style="white-space: pre-wrap;"><code># Site information
+site_url: https://example.com
+site_title: My Static Site
+site_tagline: Built with Stattic
+
+# Build settings
+output: output
+content: content
+templates: templates
+assets: assets
+blog_slug: blog
+
+# Content settings
+posts_per_page: 5
+sort_by: date  # date, title, author, order
+
+# Styling
+fonts:
+  - Quicksand
+  - Open Sans
+
+# SEO settings
+robots: public  # public or private
+llms: public    # public or private (add manually - not in generated config)
+
+# Development settings
+minify: false
+watch: false    # not implemented yet
+</code></pre><h4><code>.gitignore</code> - Version Control</h4>
+<p>Recommended for excluding build artifacts (not created automatically):</p>
+<pre style="white-space: pre-wrap;"><code># Build output
+output/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+</code></pre><h3>Optional Root Files</h3>
+<h4><code>README.md</code> - Project Documentation</h4>
+<p>Document your site for collaborators:</p>
+<pre style="white-space: pre-wrap;"><code># My Website
+
+A personal blog built with Stattic.
+
+## Development
+
+```bash
+# Install dependencies
+pip install stattic
+
+# Build site
+stattic
+</code></pre><h2>Deployment</h2>
+<p>This site is deployed to [platform] automatically on push to main.</p>
+<pre style="white-space: pre-wrap;"><code>
+#### `requirements.txt` - Python Dependencies
+If you use additional Python packages:
+
+</code></pre><p>stattic&gt;=1.0.0
+pillow&gt;=8.0.0
+requests&gt;=2.25.0</p>
+<pre style="white-space: pre-wrap;"><code>
+---
+
+## Content Directory Deep Dive
+
+The `content/` directory is where all your site's content lives.
+
+### Posts Directory (`content/posts/`)
+
+Blog posts are stored here as Markdown files:
+
+</code></pre><p>content/posts/
+├── 2024-01-15-my-first-post.md
+├── 2024-01-20-learning-python.md
+├── 2024-02-01-web-development-tips.md
+└── 2024-02-15-stattic-tutorial.md</p>
+<pre style="white-space: pre-wrap;"><code>
+**File Naming Best Practices:**
+- Use date prefixes: `YYYY-MM-DD-title.md`
+- Use hyphens instead of spaces
+- Keep names descriptive but concise
+- Be consistent across all posts
+
+**Example Post Structure:**
+```markdown
+---
+title: &quot;My First Blog Post&quot;
+date: &quot;2024-01-15&quot;
+categories: [1]  # Use numeric IDs from categories.yml
+tags: [1, 2]     # Use numeric IDs from tags.yml
+author: 1        # Use numeric ID from authors.yml
+description: &quot;My introduction to blogging with Stattic&quot;
+---
+
+# My First Blog Post
+
+Welcome to my blog! This is my first post...
+</code></pre><h3>Pages Directory (<code>content/pages/</code>)</h3>
+<p>Static pages that don't change frequently:</p>
+<pre style="white-space: pre-wrap;"><code>content/pages/
+├── about.md
+├── contact.md
+├── projects.md
+├── resume.md
+└── privacy.md
+</code></pre><p><strong>Common Pages:</strong></p>
+<ul>
+<li><code>about.md</code> - About you or your site</li>
+<li><code>contact.md</code> - Contact information</li>
+<li><code>projects.md</code> - Portfolio or project showcase</li>
+<li><code>privacy.md</code> - Privacy policy</li>
+<li><code>terms.md</code> - Terms of service</li>
+</ul>
+<p><strong>Example Page Structure:</strong></p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;About Me&quot;
+description: &quot;Learn more about me and my background&quot;
+custom_url: &quot;about&quot;  # Creates /about/ URL
+---
+
+# About Me
+
+Hi there! I'm a web developer...
+</code></pre><h3>Metadata Files</h3>
+<h4><code>authors.yml</code> - Author Information</h4>
+<p>Define all authors who contribute to your site:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;John Doe&quot;
+  bio: &quot;Web developer and writer&quot;
+  email: &quot;john@example.com&quot;
+  website: &quot;https://johndoe.com&quot;
+  twitter: &quot;@johndoe&quot;
+  github: &quot;johndoe&quot;
+  avatar: &quot;/images/authors/john.jpg&quot;
+
+2:
+  name: &quot;Jane Smith&quot;
+  bio: &quot;Designer and UX specialist&quot;
+  email: &quot;jane@example.com&quot;
+  website: &quot;https://janesmith.com&quot;
+  linkedin: &quot;janesmith&quot;
+  avatar: &quot;/images/authors/jane.jpg&quot;
+</code></pre><h4><code>categories.yml</code> - Category Definitions</h4>
+<p>Organize your content with categories:</p>
+<pre style="white-space: pre-wrap;"><code>1:
+  name: &quot;Personal&quot;
+  description: &quot;Personal thoughts and experiences&quot;
+  slug: &quot;personal&quot;
+
+2:
+  name: &quot;Tutorials&quot;
+  description: &quot;Step-by-step guides and tutorials&quot;
+  slug: &quot;tutorials&quot;
+
+3:
+  name: &quot;Projects&quot;
+  description: &quot;Project showcases and case studies&quot;
+  slug: &quot;projects&quot;
+
+4:
+  name: &quot;Reviews&quot;
+  description: &quot;Book, tool, and service reviews&quot;
+  slug: &quot;reviews&quot;
+</code></pre><hr />
+<h2>Templates System</h2>
+<p>The <code>templates/</code> directory contains Jinja2 templates for customizing your site's appearance.</p>
+<h3>Default Template Structure</h3>
+<pre style="white-space: pre-wrap;"><code>templates/
+├── base.html           # Main layout template
+├── index.html          # Homepage template
+├── post.html           # Individual post template
+├── page.html           # Static page template
+├── category.html       # Category archive template
+├── tag.html            # Tag archive template
+└── 404.html           # Error page template
+</code></pre><h3>Template Hierarchy</h3>
+<p>Templates inherit from each other:</p>
+<pre style="white-space: pre-wrap;"><code>base.html (foundation)
+├── index.html (homepage)
+├── post.html (blog posts)
+├── page.html (static pages)
+├── category.html (category archives)
+├── tag.html (tag archives)
+└── 404.html (error page)
+</code></pre><h3>Custom Templates</h3>
+<p>You can override any default template by creating a file with the same name:</p>
+<pre style="white-space: pre-wrap;"><code>templates/
+├── base.html           # Your custom base template
+├── post.html           # Your custom post template
+└── partials/           # Template fragments
+    ├── header.html
+    ├── footer.html
+    ├── sidebar.html
+    └── comments.html
+</code></pre><p><strong>Example Custom Base Template:</strong></p>
+<pre style="white-space: pre-wrap;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;{% block title %}{{ site_title }}{% endblock %}&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/assets/css/style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% include 'partials/header.html' %}
+
+    &lt;main&gt;
+        {% block content %}{% endblock %}
+    &lt;/main&gt;
+
+    {% include 'partials/footer.html' %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><hr />
+<h2>Assets and Static Files</h2>
+<h3>Assets Directory (<code>assets/</code>)</h3>
+<p>Files that are copied to the output directory:</p>
+<pre style="white-space: pre-wrap;"><code>assets/
+├── css/
+│   ├── stattic.css     # Main stylesheet (included by default)
+│   ├── tailwind.min.css # Tailwind CSS (included by default)
+│   └── custom.css      # Your custom styles
+├── js/
+│   ├── alpine.min.js   # Alpine.js (included by default)
+│   └── main.js         # Your custom JavaScript
+└── images/
+    ├── logo.png
+    ├── hero-bg.jpg
+    └── icons/
+        ├── github.svg
+        └── twitter.svg
+</code></pre><p><strong>Note</strong>: Stattic automatically copies the entire <code>assets/</code> directory to the output. It includes Tailwind CSS, Alpine.js, and a basic stylesheet by default when you run <code>stattic --init</code>.</p>
+<h3>Image Organization</h3>
+<p>Organize images within your assets directory:</p>
+<pre style="white-space: pre-wrap;"><code>assets/images/
+├── posts/              # Post-specific images
+│   ├── 2024-01-15-my-first-post/
+│   │   ├── hero.jpg
+│   │   ├── diagram.png
+│   │   └── screenshot.jpg
+│   └── 2024-01-20-learning-python/
+│       ├── python-logo.png
+│       └── code-example.jpg
+├── pages/              # Page-specific images
+│   ├── about/
+│   │   └── profile.jpg
+│   └── projects/
+│       ├── project1-thumb.jpg
+│       └── project2-thumb.jpg
+├── general/            # Reusable images
+│   ├── backgrounds/
+│   ├── icons/
+│   └── logos/
+└── authors/            # Author avatars
+    ├── john-doe.jpg
+    └── jane-smith.jpg
+</code></pre><hr />
+<h2>Configuration Files</h2>
+<h3>Main Configuration (<code>stattic.yml</code>)</h3>
+<p>Real Stattic configuration options:</p>
+<pre style="white-space: pre-wrap;"><code># === SITE INFORMATION ===
+site_title: &quot;My Website&quot;
+site_tagline: &quot;Thoughts, tutorials, and projects&quot;
+site_url: &quot;https://example.com&quot;
+
+# === BUILD SETTINGS ===
+output: &quot;output&quot;              # Output directory
+content: &quot;content&quot;            # Content directory
+templates: &quot;templates&quot;        # Templates directory (optional)
+assets: &quot;assets&quot;              # Assets directory (optional)
+blog_slug: &quot;blog&quot;             # URL slug for posts
+
+# === CONTENT SETTINGS ===
+posts_per_page: 10            # Posts per page for pagination
+sort_by: &quot;date&quot;               # date, title, author, order
+
+# === STYLING ===
+fonts:                        # Google Fonts to include
+  - &quot;Inter&quot;
+  - &quot;Source Code Pro&quot;
+
+# === SEO ===
+robots: &quot;public&quot;              # public or private
+llms: &quot;public&quot;                # public or private (for AI crawlers)
+
+# === DEVELOPMENT ===
+minify: true                  # Minify CSS and JS assets
+watch: false                  # Watch mode (not implemented)
+</code></pre><p><strong>Supported Settings:</strong></p>
+<ul>
+<li><code>site_title</code>, <code>site_tagline</code>, <code>site_url</code> - Site metadata</li>
+<li><code>output</code>, <code>content</code>, <code>templates</code>, <code>assets</code> - Directory paths</li>
+<li><code>blog_slug</code> - Custom URL slug for posts</li>
+<li><code>posts_per_page</code> - Pagination setting</li>
+<li><code>sort_by</code> - Post sorting (date, title, author, order)</li>
+<li><code>fonts</code> - Google Fonts list</li>
+<li><code>robots</code>, <code>llms</code> - SEO and AI crawler settings</li>
+<li><code>minify</code> - Asset minification</li>
+<li><code>watch</code> - File watching (not yet implemented)</li>
+</ul>
+<h3>Environment-Specific Configs</h3>
+<p>Since Stattic only looks for <code>stattic.yml</code>, <code>stattic.yaml</code>, or <code>stattic.json</code> in the current directory, you can manage different environments by:</p>
+<ol>
+<li><strong>Copying different config files before building:</strong></li>
+</ol>
+<p><strong><code>stattic.dev.yml</code> (Development):</strong></p>
+<pre style="white-space: pre-wrap;"><code>site_url: &quot;http://localhost:8000&quot;
+minify: false
+robots: &quot;private&quot;
+</code></pre><p><strong><code>stattic.prod.yml</code> (Production):</strong></p>
+<pre style="white-space: pre-wrap;"><code>site_url: &quot;https://example.com&quot;
+minify: true
+robots: &quot;public&quot;
+</code></pre><p>Usage:</p>
+<pre style="white-space: pre-wrap;"><code># Development build
+cp stattic.dev.yml stattic.yml
+stattic
+
+# Production build  
+cp stattic.prod.yml stattic.yml
+stattic
+</code></pre><ol start="2">
+<li><strong>Using command line overrides:</strong></li>
+</ol>
+<pre style="white-space: pre-wrap;"><code># Override settings without changing config file
+stattic --site-url https://example.com --minify --robots public
+</code></pre><hr />
+<h2>Output Directory</h2>
+<p>The <code>output/</code> directory contains your generated static site:</p>
+<pre style="white-space: pre-wrap;"><code>output/
+├── index.html              # Homepage
+├── about/
+│   └── index.html         # /about/ page
+├── blog/                  # Blog posts (or custom blog_slug)
+│   ├── my-first-post/
+│   │   └── index.html     # /blog/my-first-post/
+│   └── learning-python/
+│       └── index.html     # /blog/learning-python/
+├── categories/
+│   ├── 1/                 # Category by ID
+│   │   └── index.html     # /categories/1/
+│   └── 2/
+│       └── index.html     # /categories/2/
+├── tags/
+│   ├── 1/                 # Tag by ID
+│   │   └── index.html     # /tags/1/
+│   └── 2/
+│       └── index.html     # /tags/2/
+├── assets/
+│   ├── css/
+│   │   ├── stattic.css    # Copied CSS
+│   │   └── tailwind.min.css
+│   ├── js/
+│   │   └── alpine.min.js  # Copied JS
+│   └── images/            # Copied images
+├── rss.xml                # RSS feed
+├── sitemap.xml           # XML sitemap
+├── robots.txt            # Search engine rules
+├── llms.txt              # AI crawler information
+└── 404.html              # Error page
+</code></pre><h3>URL Structure</h3>
+<p>Stattic generates clean URLs:</p>
+<table>
+<thead>
+<tr>
+  <th>Content</th>
+  <th>File</th>
+  <th>Generated URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Homepage</td>
+  <td>(auto-generated)</td>
+  <td><code>/</code></td>
+</tr>
+<tr>
+  <td>About page</td>
+  <td><code>content/pages/about.md</code></td>
+  <td><code>/about/</code></td>
+</tr>
+<tr>
+  <td>Blog post</td>
+  <td><code>content/posts/my-first-post.md</code></td>
+  <td><code>/blog/my-first-post/</code></td>
+</tr>
+<tr>
+  <td>Tag archive</td>
+  <td>(auto-generated)</td>
+  <td><code>/tags/1/</code> (by tag ID)</td>
+</tr>
+<tr>
+  <td>Category</td>
+  <td>(auto-generated)</td>
+  <td><code>/categories/1/</code> (by category ID)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Optional Directories</h2>
+<h3>Development Tools</h3>
+<pre style="white-space: pre-wrap;"><code>tools/
+├── deploy.sh           # Deployment script
+├── backup.py          # Content backup script
+├── migrate.py         # Migration utilities
+└── optimize.py        # Image optimization script
+</code></pre><h3>Documentation</h3>
+<pre style="white-space: pre-wrap;"><code>docs/
+├── content-guide.md    # Writing guidelines
+├── style-guide.md     # Design standards
+├── deployment.md      # How to deploy
+└── maintenance.md     # Site maintenance
+</code></pre><h3>Testing</h3>
+<pre style="white-space: pre-wrap;"><code>tests/
+├── test_build.py      # Build process tests
+├── test_content.py    # Content validation
+└── test_links.py      # Link checking
+</code></pre><hr />
+<h2>File Naming Conventions</h2>
+<h3>Posts</h3>
+<pre style="white-space: pre-wrap;"><code># ✅ Good
+2024-01-15-my-first-post.md
+2024-02-01-learning-stattic.md
+2024-03-10-web-development-tips.md
+
+# ❌ Avoid
+my first post.md
+Post1.md
+random-post.md
+</code></pre><h3>Pages</h3>
+<pre style="white-space: pre-wrap;"><code># ✅ Good
+about.md
+contact.md
+privacy-policy.md
+terms-of-service.md
+
+# ❌ Avoid
+About Me.md
+CONTACT.md
+Privacy_Policy.md
+</code></pre><h3>Images</h3>
+<pre style="white-space: pre-wrap;"><code># ✅ Good
+hero-image.jpg
+profile-photo.png
+project-screenshot.jpg
+logo-dark.svg
+
+# ❌ Avoid
+IMG_1234.jpg
+photo.png
+image (1).jpg
+Logo.SVG
+</code></pre><h3>Templates</h3>
+<pre style="white-space: pre-wrap;"><code># ✅ Good
+base.html
+post.html
+archive.html
+tag.html
+
+# ❌ Avoid
+Base.html
+POST.html
+archive_page.html
+</code></pre><hr />
+<h2>Best Practices</h2>
+<h3>Organization</h3>
+<ol>
+<li><p><strong>Group Related Content</strong></p>
+<pre style="white-space: pre-wrap;"><code>content/posts/
+├── tutorials/
+│   ├── python-basics.md
+│   └── web-development.md
+├── reviews/
+│   ├── book-reviews.md
+│   └── tool-reviews.md
+└── personal/
+    ├── about-me.md
+    └── my-journey.md
+</code></pre></li>
+<li><p><strong>Use Consistent Naming</strong></p>
+<ul>
+<li>Always use lowercase</li>
+<li>Use hyphens instead of spaces</li>
+<li>Be descriptive but concise</li>
+</ul>
+</li>
+<li><p><strong>Organize Assets by Purpose</strong></p>
+<pre style="white-space: pre-wrap;"><code>assets/images/
+├── content/        # Content-specific images
+├── ui/            # UI elements, icons
+├── backgrounds/   # Background images
+└── social/        # Social media images
+</code></pre></li>
+</ol>
+<h3>Maintenance</h3>
+<ol>
+<li><p><strong>Keep Clean Structure</strong></p>
+<ul>
+<li>Remove unused files regularly</li>
+<li>Organize content logically</li>
+<li>Use meaningful directory names</li>
+</ul>
+</li>
+<li><p><strong>Version Control</strong></p>
+<pre style="white-space: pre-wrap;"><code># Always ignore
+output/
+*.log
+.DS_Store
+
+# Consider ignoring
+node_modules/
+.venv/
+__pycache__/
+</code></pre></li>
+<li><p><strong>Backup Strategy</strong></p>
+<ul>
+<li>Version control your source files</li>
+<li>Regular backups of content</li>
+<li>Document your structure</li>
+</ul>
+</li>
+</ol>
+<h3>Performance</h3>
+<ol>
+<li><p><strong>Optimize Images</strong></p>
+<ul>
+<li>Use appropriate formats (WebP, AVIF)</li>
+<li>Compress images before adding</li>
+<li>Use descriptive alt text</li>
+</ul>
+</li>
+<li><p><strong>Minimize Assets</strong></p>
+<ul>
+<li>Enable minification in production</li>
+<li>Remove unused CSS/JS</li>
+<li>Optimize font loading</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>Advanced Structure Patterns</h2>
+<h3>Multi-Language Sites</h3>
+<pre style="white-space: pre-wrap;"><code>content/
+├── en/                 # English content
+│   ├── posts/
+│   └── pages/
+├── es/                 # Spanish content
+│   ├── posts/
+│   └── pages/
+└── fr/                 # French content
+    ├── posts/
+    └── pages/
+</code></pre><h3>Large Sites with Sections</h3>
+<pre style="white-space: pre-wrap;"><code>content/
+├── blog/               # Main blog
+│   ├── posts/
+│   └── categories.yml
+├── docs/               # Documentation
+│   ├── guides/
+│   ├── api/
+│   └── tutorials/
+├── portfolio/          # Portfolio section
+│   ├── projects/
+│   └── case-studies/
+└── about/              # About section
+    ├── team/
+    ├── history/
+    └── contact/
+</code></pre><h3>Enterprise Structure</h3>
+<pre style="white-space: pre-wrap;"><code>my-company-site/
+├── content/
+│   ├── blog/           # Company blog
+│   ├── products/       # Product pages
+│   ├── solutions/      # Solution pages
+│   ├── resources/      # Resources section
+│   ├── company/        # About company
+│   └── support/        # Support docs
+├── templates/
+│   ├── base/           # Base templates
+│   ├── blog/           # Blog templates
+│   ├── product/        # Product templates
+│   └── marketing/      # Landing pages
+├── assets/
+│   ├── brand/          # Brand assets
+│   ├── products/       # Product images
+│   └── marketing/      # Marketing materials
+└── data/
+    ├── team.yml        # Team information
+    ├── products.yml    # Product data
+    └── testimonials.yml # Customer testimonials
+</code></pre><hr />
+<h2>Troubleshooting Structure Issues</h2>
+<h3>Common Problems</h3>
+<ol>
+<li><p><strong>Build Fails</strong></p>
+<ul>
+<li>Check file naming conventions</li>
+<li>Verify YAML front matter syntax</li>
+<li>Ensure required directories exist</li>
+</ul>
+</li>
+<li><p><strong>Missing Pages</strong></p>
+<ul>
+<li>Check file extensions (<code>.md</code> required)</li>
+<li>Verify front matter is present</li>
+<li>Check for typos in filenames</li>
+</ul>
+</li>
+<li><p><strong>Broken Links</strong></p>
+<ul>
+<li>Use relative paths consistently</li>
+<li>Check case sensitivity</li>
+<li>Verify target files exist</li>
+</ul>
+</li>
+<li><p><strong>Assets Not Loading</strong></p>
+<ul>
+<li>Check asset paths in templates</li>
+<li>Verify files are in correct directories</li>
+<li>Check for naming conflicts</li>
+</ul>
+</li>
+</ol>
+<h3>Debugging Tools</h3>
+<pre style="white-space: pre-wrap;"><code># Check build process
+stattic
+
+# Get help and see all options
+stattic --help
+
+# Check version
+stattic --version
+
+# Analyze structure
+find . -name &quot;*.md&quot; | head -20
+ls -la content/
+find output/ -type f | head -20
+</code></pre><hr />
+<h2>Summary</h2>
+<p>A well-organized Stattic project structure:</p>
+<ul>
+<li><strong>Makes content easy to find and manage</strong></li>
+<li><strong>Scales as your site grows</strong></li>
+<li><strong>Follows predictable conventions</strong></li>
+<li><strong>Separates content from presentation</strong></li>
+<li><strong>Enables efficient builds and deployment</strong></li>
+</ul>
+<h3>Key Takeaways</h3>
+<ol>
+<li><strong>Content</strong> goes in <code>content/</code> with clear organization</li>
+<li><strong>Templates</strong> customize appearance and layout (optional - falls back to built-in)</li>
+<li><strong>Assets</strong> are copied to output (CSS, JS, images)</li>
+<li><strong>Configuration</strong> controls build behavior</li>
+<li><strong>Consistent naming</strong> prevents problems</li>
+<li><strong>Good organization</strong> saves time long-term</li>
+</ol>
+<p>Start with the basic structure and expand as your site grows. Focus on consistency and clarity, and your Stattic site will be easy to maintain and scale.</p>
+<hr />
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><a href="template-system">Template Customization Guide</a></li>
+<li><a href="content-creation">Content Creation Best Practices</a></li>
+<li><a href="configuration">Advanced Configuration Options</a></li>
+</ul>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

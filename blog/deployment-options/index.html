@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment options | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Deployment options">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deployment options">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Deployment options</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Complete guide to deploying your Stattic-generated static sites across popular hosting platforms. Since Stattic generates standard HTML/CSS/JS files, you have complete freedom to choose any static hosting provider.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#pre-deployment-checklist">Pre-Deployment Checklist</a></li>
+<li><a href="#github-pages">GitHub Pages</a></li>
+<li><a href="#cloudflare-pages">Cloudflare Pages</a></li>
+<li><a href="#netlify">Netlify</a></li>
+<li><a href="#vercel">Vercel</a></li>
+<li><a href="#firebase-hosting">Firebase Hosting</a></li>
+<li><a href="#aws-s3--cloudfront">AWS S3 + CloudFront</a></li>
+<li><a href="#traditional-web-hosting">Traditional Web Hosting</a></li>
+<li><a href="#self-hosted-options">Self-Hosted Options</a></li>
+<li><a href="#cicd-automation">CI/CD Automation</a></li>
+<li><a href="#domain-configuration">Domain Configuration</a></li>
+<li><a href="#performance-optimization">Performance Optimization</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>Stattic generates completely static websites that can be deployed anywhere that serves HTML files. This decentralized approach gives you complete control over your hosting choice based on your needs:</p>
+<ul>
+<li><strong>Free options</strong>: GitHub Pages, Netlify, Cloudflare Pages</li>
+<li><strong>Performance-focused</strong>: Cloudflare Pages, AWS CloudFront</li>
+<li><strong>Developer-friendly</strong>: Vercel, Netlify, Firebase</li>
+<li><strong>Enterprise</strong>: AWS, Azure, Google Cloud</li>
+<li><strong>Self-hosted</strong>: Your own server, VPS, or dedicated hosting</li>
+</ul>
+<h3>Generated Output Structure</h3>
+<pre style="white-space: pre-wrap;"><code>output/
+├── index.html
+├── 404.html
+├── sitemap.xml
+├── robots.txt
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── blog/
+│   ├── index.html
+│   └── post-slug/
+│       └── index.html
+└── page-slug/
+    └── index.html
+</code></pre><hr />
+<h2>Pre-Deployment Checklist</h2>
+<p>Before deploying, ensure your site is production-ready:</p>
+<pre style="white-space: pre-wrap;"><code># Generate your site
+stattic
+
+# Test locally (use any static server)
+python -m http.server 8000 -d output
+
+# Check output directory
+ls -la output/
+</code></pre><h3>Essential Checks</h3>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>All pages render correctly</strong> in local preview</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Images and assets load</strong> properly</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Internal links work</strong> without broken references</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>SEO meta tags</strong> are present in HTML</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>404 page exists</strong> (<code>output/404.html</code>)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Sitemap generated</strong> (<code>output/sitemap.xml</code>)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Robots.txt configured</strong> (<code>output/robots.txt</code>)</li>
+</ul>
+<hr />
+<h2>GitHub Pages</h2>
+<p>Free hosting directly from your GitHub repository.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Create GitHub Repository</strong></p>
+<pre style="white-space: pre-wrap;"><code>git init
+git add .
+git commit -m &quot;Initial commit&quot;
+git remote add origin https://github.com/username/your-site.git
+git push -u origin main
+</code></pre></li>
+<li><p><strong>Configure GitHub Pages</strong></p>
+<ul>
+<li>Go to repository Settings → Pages</li>
+<li>Source: &quot;Deploy from a branch&quot;</li>
+<li>Branch: <code>main</code> (or <code>gh-pages</code>)</li>
+<li>Folder: <code>/</code> (root) or <code>/docs</code></li>
+</ul>
+</li>
+<li><p><strong>Deploy Options</strong></p>
+<p><strong>Option A: Manual Upload</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build your site
+stattic
+
+# Copy output to repository root (or docs/ folder)
+cp -r output/* ./
+git add .
+git commit -m &quot;Deploy site&quot;
+git push
+</code></pre><p><strong>Option B: GitHub Actions (Recommended)</strong></p>
+<pre style="white-space: pre-wrap;"><code># .github/workflows/deploy.yml
+name: Deploy Stattic Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Stattic
+        run: pip install stattic
+
+      - name: Build site
+        run: stattic
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output
+</code></pre></li>
+</ol>
+<h3>GitHub Pages Specifics</h3>
+<ul>
+<li><strong>Custom domain</strong>: Configure in repository settings</li>
+<li><strong>HTTPS</strong>: Automatically enabled</li>
+<li><strong>Build time</strong>: ~1-2 minutes</li>
+<li><strong>Limitations</strong>: 1GB bandwidth/month, 100GB storage</li>
+</ul>
+<hr />
+<h2>Cloudflare Pages</h2>
+<p>Fast, global CDN with excellent performance and generous free tier.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Connect Repository</strong></p>
+<ul>
+<li>Visit <a href="https://pages.cloudflare.com/">Cloudflare Pages</a></li>
+<li>Connect your GitHub/GitLab repository</li>
+<li>Or use direct upload for manual deployment</li>
+</ul>
+</li>
+<li><p><strong>Build Configuration</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build settings in Cloudflare dashboard
+Build command: pip install stattic &amp;&amp; stattic
+Build output directory: output
+Root directory: /
+Environment variables:
+  PYTHON_VERSION: 3.9
+</code></pre></li>
+<li><p><strong>Manual Deployment</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build your site
+stattic
+
+# Install Wrangler CLI
+npm install -g wrangler
+
+# Deploy
+wrangler pages publish output --project-name=your-site
+</code></pre></li>
+</ol>
+<h3>Cloudflare Pages Features</h3>
+<ul>
+<li><strong>Global CDN</strong>: 200+ edge locations</li>
+<li><strong>Custom domains</strong>: Free SSL certificates</li>
+<li><strong>Analytics</strong>: Built-in web analytics</li>
+<li><strong>Edge functions</strong>: Serverless functions at the edge</li>
+<li><strong>Preview deployments</strong>: Every git push gets a preview URL</li>
+</ul>
+<hr />
+<h2>Netlify</h2>
+<p>Developer-focused platform with powerful features and intuitive interface.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Connect Repository</strong></p>
+<ul>
+<li>Visit <a href="https://www.netlify.com/">Netlify</a></li>
+<li>&quot;New site from Git&quot; → Connect repository</li>
+</ul>
+</li>
+<li><p><strong>Build Settings</strong></p>
+<pre style="white-space: pre-wrap;"><code># netlify.toml (optional)
+[build]
+  command = &quot;pip install stattic &amp;&amp; stattic&quot;
+  publish = &quot;output&quot;
+
+[build.environment]
+  PYTHON_VERSION = &quot;3.9&quot;
+
+[[redirects]]
+  from = &quot;/*&quot;
+  to = &quot;/404.html&quot;
+  status = 404
+</code></pre></li>
+<li><p><strong>Manual Deployment</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build your site
+stattic
+
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Deploy
+netlify deploy --prod --dir=output
+</code></pre></li>
+</ol>
+<h3>Netlify Features</h3>
+<ul>
+<li><strong>Form handling</strong>: Process form submissions</li>
+<li><strong>Edge functions</strong>: Serverless functions</li>
+<li><strong>Split testing</strong>: A/B testing built-in</li>
+<li><strong>Asset optimization</strong>: Automatic image optimization</li>
+<li><strong>Deploy previews</strong>: Every PR gets a preview URL</li>
+</ul>
+<hr />
+<h2>Vercel</h2>
+<p>Optimized for modern web frameworks with excellent developer experience.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Connect Repository</strong></p>
+<ul>
+<li>Visit <a href="https://vercel.com/">Vercel</a></li>
+<li>Import your repository</li>
+</ul>
+</li>
+<li><p><strong>Build Configuration</strong></p>
+<pre style="white-space: pre-wrap;"><code>// vercel.json
+{
+  &quot;buildCommand&quot;: &quot;pip install stattic &amp;&amp; stattic&quot;,
+  &quot;outputDirectory&quot;: &quot;output&quot;,
+  &quot;framework&quot;: null
+}
+</code></pre></li>
+<li><p><strong>CLI Deployment</strong></p>
+<pre style="white-space: pre-wrap;"><code># Install Vercel CLI
+npm install -g vercel
+
+# Build and deploy
+stattic
+vercel --prod
+</code></pre></li>
+</ol>
+<h3>Vercel Features</h3>
+<ul>
+<li><strong>Edge Network</strong>: Global CDN</li>
+<li><strong>Serverless Functions</strong>: API endpoints</li>
+<li><strong>Analytics</strong>: Performance insights</li>
+<li><strong>Preview deployments</strong>: Automatic preview URLs</li>
+</ul>
+<hr />
+<h2>Firebase Hosting</h2>
+<p>Google's hosting platform with excellent integration to Firebase services.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Install Firebase CLI</strong></p>
+<pre style="white-space: pre-wrap;"><code>npm install -g firebase-tools
+firebase login
+</code></pre></li>
+<li><p><strong>Initialize Project</strong></p>
+<pre style="white-space: pre-wrap;"><code>firebase init hosting
+
+# Configuration:
+# Public directory: output
+# Single-page app: No
+# Automatic builds: Optional
+</code></pre></li>
+<li><p><strong>Deploy</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build your site
+stattic
+
+# Deploy to Firebase
+firebase deploy
+</code></pre></li>
+</ol>
+<h3>Firebase Configuration</h3>
+<pre style="white-space: pre-wrap;"><code>// firebase.json
+{
+  &quot;hosting&quot;: {
+    &quot;public&quot;: &quot;output&quot;,
+    &quot;ignore&quot;: [
+      &quot;firebase.json&quot;,
+      &quot;**/.*&quot;,
+      &quot;**/node_modules/**&quot;
+    ],
+    &quot;rewrites&quot;: [
+      {
+        &quot;source&quot;: &quot;**&quot;,
+        &quot;destination&quot;: &quot;/404.html&quot;
+      }
+    ]
+  }
+}
+</code></pre><hr />
+<h2>AWS S3 + CloudFront</h2>
+<p>Enterprise-grade hosting with AWS's global infrastructure.</p>
+<h3>Setup Steps</h3>
+<ol>
+<li><p><strong>Create S3 Bucket</strong></p>
+<pre style="white-space: pre-wrap;"><code># Install AWS CLI
+pip install awscli
+aws configure
+
+# Create bucket
+aws s3 mb s3://your-site-bucket
+</code></pre></li>
+<li><p><strong>Configure Static Website Hosting</strong></p>
+<pre style="white-space: pre-wrap;"><code># Enable static website hosting
+aws s3 website s3://your-site-bucket \
+  --index-document index.html \
+  --error-document 404.html
+</code></pre></li>
+<li><p><strong>Deploy Site</strong></p>
+<pre style="white-space: pre-wrap;"><code># Build your site
+stattic
+
+# Upload to S3
+aws s3 sync output/ s3://your-site-bucket --delete
+</code></pre></li>
+<li><p><strong>Set up CloudFront (Optional)</strong></p>
+<ul>
+<li>Create CloudFront distribution</li>
+<li>Point to S3 bucket</li>
+<li>Configure custom domain and SSL</li>
+</ul>
+</li>
+</ol>
+<h3>AWS Benefits</h3>
+<ul>
+<li><strong>Scalability</strong>: Handle any traffic level</li>
+<li><strong>Global CDN</strong>: CloudFront edge locations</li>
+<li><strong>Custom domains</strong>: Route 53 integration</li>
+<li><strong>Advanced features</strong>: Lambda@Edge, security headers</li>
+</ul>
+<hr />
+<h2>Traditional Web Hosting</h2>
+<p>Deploy to any web hosting provider that supports static files.</p>
+<h3>cPanel/FTP Upload</h3>
+<ol>
+<li><p><strong>Build Your Site</strong></p>
+<pre style="white-space: pre-wrap;"><code>stattic
+</code></pre></li>
+<li><p><strong>Upload Files</strong></p>
+<ul>
+<li>Use FTP client (FileZilla, WinSCP)</li>
+<li>Upload contents of <code>output/</code> directory</li>
+<li>Place in <code>public_html/</code> or <code>www/</code> folder</li>
+</ul>
+</li>
+</ol>
+<h3>Shared Hosting Providers</h3>
+<p>Popular options:</p>
+<ul>
+<li><strong>Bluehost</strong>: cPanel interface, one-click SSL</li>
+<li><strong>SiteGround</strong>: Performance optimization</li>
+<li><strong>DreamHost</strong>: Developer-friendly features</li>
+<li><strong>HostGator</strong>: Beginner-friendly interface</li>
+</ul>
+<hr />
+<h2>Self-Hosted Options</h2>
+<p>Host on your own infrastructure for complete control.</p>
+<h3>Nginx Configuration</h3>
+<pre style="white-space: pre-wrap;"><code># /etc/nginx/sites-available/your-site
+server {
+    listen 80;
+    server_name your-domain.com;
+    root /var/www/your-site;
+    index index.html;
+
+    # Handle clean URLs
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Custom 404 page
+    error_page 404 /404.html;
+
+    # Security headers
+    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY;
+    add_header X-XSS-Protection &quot;1; mode=block&quot;;
+}
+</code></pre><h3>Apache Configuration</h3>
+<pre style="white-space: pre-wrap;"><code># .htaccess in output directory
+RewriteEngine On
+
+# Custom 404 page
+ErrorDocument 404 /404.html
+
+# Security headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection &quot;1; mode=block&quot;
+
+# Cache static assets
+&lt;IfModule mod_expires.c&gt;
+    ExpiresActive On
+    ExpiresByType text/css &quot;access plus 1 year&quot;
+    ExpiresByType image/png &quot;access plus 1 year&quot;
+    ExpiresByType image/jpg &quot;access plus 1 year&quot;
+    ExpiresByType image/jpeg &quot;access plus 1 year&quot;
+    ExpiresByType image/gif &quot;access plus 1 year&quot;
+    ExpiresByType application/javascript &quot;access plus 1 year&quot;
+&lt;/IfModule&gt;
+</code></pre><h3>Docker Deployment</h3>
+<pre style="white-space: pre-wrap;"><code># Dockerfile
+FROM nginx:alpine
+
+# Copy static files
+COPY output/ /usr/share/nginx/html/
+
+# Custom nginx config (optional)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+</code></pre><pre style="white-space: pre-wrap;"><code># Build and run
+docker build -t my-stattic-site .
+docker run -p 80:80 my-stattic-site
+</code></pre><hr />
+<h2>CI/CD Automation</h2>
+<p>Automate your deployment process with continuous integration.</p>
+<h3>GitHub Actions Example</h3>
+<pre style="white-space: pre-wrap;"><code># .github/workflows/deploy.yml
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install stattic
+
+    - name: Build site
+      run: stattic
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: site-build
+        path: output/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: site-build
+        path: output/
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v1.2
+      with:
+        publish-dir: './output'
+        production-branch: main
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+</code></pre><h3>GitLab CI Example</h3>
+<pre style="white-space: pre-wrap;"><code># .gitlab-ci.yml
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: python:3.9
+  script:
+    - pip install stattic
+    - stattic
+  artifacts:
+    paths:
+      - output/
+    expire_in: 1 hour
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - apk add --no-cache curl
+    - curl -X POST -d {} $DEPLOY_WEBHOOK
+  only:
+    - main
+</code></pre><hr />
+<h2>Domain Configuration</h2>
+<h3>Custom Domain Setup</h3>
+<ol>
+<li><p><strong>DNS Configuration</strong></p>
+<pre style="white-space: pre-wrap;"><code># A Record (for root domain)
+Type: A
+Name: @
+Value: [hosting provider IP]
+
+# CNAME (for www subdomain)
+Type: CNAME
+Name: www
+Value: your-site.netlify.app
+</code></pre></li>
+<li><p><strong>SSL Certificate</strong></p>
+<ul>
+<li>Most platforms provide free SSL automatically</li>
+<li>Custom certificates can be uploaded if needed</li>
+</ul>
+</li>
+</ol>
+<h3>Subdomain Setup</h3>
+<pre style="white-space: pre-wrap;"><code># For blog.yourdomain.com
+Type: CNAME
+Name: blog
+Value: your-site.netlify.app
+</code></pre><hr />
+<h2>Performance Optimization</h2>
+<h3>Build Optimization</h3>
+<pre style="white-space: pre-wrap;"><code># Enable compression during build
+stattic --minify
+
+# Check available options
+stattic --help
+</code></pre><h3>CDN Configuration</h3>
+<p>Most platforms include CDN automatically, but you can optimize:</p>
+<ol>
+<li><p><strong>Cache Headers</strong></p>
+<pre style="white-space: pre-wrap;"><code>Static assets: Cache for 1 year
+HTML files: Cache for 1 hour
+API responses: Cache for 5 minutes
+</code></pre></li>
+<li><p><strong>Compression</strong></p>
+<ul>
+<li>Enable Gzip/Brotli compression</li>
+<li>Most platforms enable this automatically</li>
+</ul>
+</li>
+</ol>
+<h3>Monitoring</h3>
+<p>Set up monitoring for:</p>
+<ul>
+<li><strong>Uptime</strong>: UptimeRobot, Pingdom</li>
+<li><strong>Performance</strong>: Google PageSpeed Insights</li>
+<li><strong>Analytics</strong>: Google Analytics, Plausible</li>
+<li><strong>Error tracking</strong>: Sentry (for JavaScript errors)</li>
+</ul>
+<hr />
+<h2>Troubleshooting</h2>
+<h3>Common Issues</h3>
+<table>
+<thead>
+<tr>
+  <th>Issue</th>
+  <th>Cause</th>
+  <th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>404 on navigation</td>
+  <td>Missing clean URL support</td>
+  <td>Configure redirects/rewrites</td>
+</tr>
+<tr>
+  <td>Assets not loading</td>
+  <td>Incorrect base URL</td>
+  <td>Check asset paths in templates</td>
+</tr>
+<tr>
+  <td>Build failures</td>
+  <td>Missing dependencies</td>
+  <td>Verify build commands</td>
+</tr>
+<tr>
+  <td>SSL errors</td>
+  <td>Certificate issues</td>
+  <td>Check domain configuration</td>
+</tr>
+<tr>
+  <td>Slow loading</td>
+  <td>No CDN/optimization</td>
+  <td>Enable compression and CDN</td>
+</tr>
+</tbody>
+</table>
+<h3>Build Debugging</h3>
+<pre style="white-space: pre-wrap;"><code># Check output structure
+find output -name &quot;*.html&quot; | head -10
+
+# Validate HTML
+# Use online validators or tools like htmlhint
+
+# Check available options
+stattic --help
+</code></pre><h3>Deployment Verification</h3>
+<pre style="white-space: pre-wrap;"><code># Test all pages load
+curl -I https://your-site.com
+curl -I https://your-site.com/blog/
+curl -I https://your-site.com/404.html
+
+# Check redirect behavior
+curl -I https://your-site.com/nonexistent-page
+</code></pre><hr />
+<h2>Platform Comparison</h2>
+<table>
+<thead>
+<tr>
+  <th>Platform</th>
+  <th>Free Tier</th>
+  <th>Build Time</th>
+  <th>CDN</th>
+  <th>Custom Domain</th>
+  <th>SSL</th>
+  <th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>GitHub Pages</strong></td>
+  <td>Yes</td>
+  <td>Medium</td>
+  <td>Basic</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Open source projects</td>
+</tr>
+<tr>
+  <td><strong>Cloudflare Pages</strong></td>
+  <td>Yes</td>
+  <td>Fast</td>
+  <td>Excellent</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Performance-focused</td>
+</tr>
+<tr>
+  <td><strong>Netlify</strong></td>
+  <td>Yes</td>
+  <td>Fast</td>
+  <td>Good</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Developers</td>
+</tr>
+<tr>
+  <td><strong>Vercel</strong></td>
+  <td>Yes</td>
+  <td>Fast</td>
+  <td>Excellent</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Modern frameworks</td>
+</tr>
+<tr>
+  <td><strong>Firebase</strong></td>
+  <td>Yes</td>
+  <td>Medium</td>
+  <td>Good</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Google ecosystem</td>
+</tr>
+<tr>
+  <td><strong>AWS S3</strong></td>
+  <td>Pay-as-you-go</td>
+  <td>N/A</td>
+  <td>With CloudFront</td>
+  <td>Yes</td>
+  <td>Yes</td>
+  <td>Enterprise</td>
+</tr>
+</tbody>
+</table>
+<h3>Recommendation Guide</h3>
+<ul>
+<li><strong>Beginner</strong>: GitHub Pages or Netlify</li>
+<li><strong>Performance</strong>: Cloudflare Pages or AWS CloudFront</li>
+<li><strong>Developer features</strong>: Netlify or Vercel</li>
+<li><strong>Enterprise</strong>: AWS, Azure, or Google Cloud</li>
+<li><strong>Budget-conscious</strong>: GitHub Pages or Cloudflare Pages</li>
+<li><strong>Self-hosted</strong>: VPS with Nginx or Apache</li>
+</ul>
+<hr />
+<h2>Conclusion</h2>
+<p>Stattic's static output gives you complete freedom to choose the hosting platform that best fits your needs. Whether you prefer the simplicity of GitHub Pages, the performance of Cloudflare, or the control of self-hosting, your Stattic site will run beautifully anywhere.</p>
+<p>The key is to:</p>
+<ol>
+<li><strong>Build locally first</strong> and test thoroughly</li>
+<li><strong>Choose the right platform</strong> for your requirements</li>
+<li><strong>Set up automation</strong> for seamless deployments</li>
+<li><strong>Monitor performance</strong> and optimize as needed</li>
+</ol>
+<p>Happy deploying! 🚀</p>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

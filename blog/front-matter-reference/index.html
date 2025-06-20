@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front matter reference | Stattic Docs</title>
+    <meta name="description" content="Stattic is a fast, lightweight static site generator that optimizes images, supports custom fonts, and easily integrates with GitHub Pages for quick, SEO-friendly site deployment without the bloat of traditional CMS platforms like WordPress.">
+    <meta name="keywords" content="SSG, Static Site Generator">
+    <meta name="author" content="Robert">
+    <link href="../../assets/css/tailwind.min.css" rel="stylesheet preload" as="style">
+    
+    <link href="../../assets/css/stattic.css" rel="stylesheet preload" as="style">
+    <link href="../../assets/css/fonts.css" rel="stylesheet preload" as="style">
+    
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Front matter reference">
+    <meta property="og:description" content="Stattic is a fast, lightweight static site generator.">
+    <meta property="og:url" content="https://docs.stattic.site/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Front matter reference">
+    <meta name="twitter:description" content="Stattic is a fast, lightweight static site generator.">
+    
+    <!-- Alpine.js for interactive components -->
+    <script src="../../assets/js/alpine.min.js" defer></script>
+</head>
+<body class="bg-background bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 to-slate-950 text-primary quicksand-300">
+
+<!-- Skip Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#footer" class="skip-link">Skip to footer</a>
+
+<header id="navigation">
+    <div class="container max-w-screen-xl m-auto py-6 px-4 flex justify-between items-center">
+        <h2 class="text-3xl font-bold quicksand-700"><a href="../../" class="text-links">Stattic Docs</a></h2>
+        <nav>
+            <ul class="flex space-x-6">
+                
+                    
+                        <li>
+                            <a href="../../about/" class="text-primary hover:underline quicksand-700">About Stattic</a>
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<main class="container max-w-2xl m-auto py-10 px-4" id="main-content">
+    <article class="prose dark:prose-dark max-w-none stattic-content">
+        
+        <h1 class="text-6xl font-bold mb-4 text-links quicksand-700 post-title">Front matter reference</h1>
+        <p class="text-2md post-meta mb-4 pb-2 text-accent italic border-b border-primary"><span class="date">June 19, 2025</span> &middot; <span class="author">Robert</span></p>
+        <p>Complete reference guide for YAML front matter in Stattic. Front matter is the metadata that appears at the top of your Markdown files, controlling how your content is processed, displayed, and organized.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#basic-syntax">Basic Syntax</a></li>
+<li><a href="#required-fields">Required Fields</a></li>
+<li><a href="#optional-fields">Optional Fields</a></li>
+<li><a href="#content-organization">Content Organization</a></li>
+<li><a href="#seo-and-metadata">SEO and Metadata</a></li>
+<li><a href="#display-options">Display Options</a></li>
+<li><a href="#custom-fields">Custom Fields</a></li>
+<li><a href="#field-reference">Field Reference</a></li>
+<li><a href="#examples-by-content-type">Examples by Content Type</a></li>
+<li><a href="#advanced-usage">Advanced Usage</a></li>
+<li><a href="#validation-and-troubleshooting">Validation and Troubleshooting</a></li>
+</ul>
+<hr />
+<h2>Overview</h2>
+<p>Front matter is YAML metadata placed at the beginning of Markdown files, enclosed by triple dashes (<code>---</code>). It provides structured data about your content that Stattic uses for:</p>
+<ul>
+<li><strong>Page generation</strong> and URL structure</li>
+<li><strong>Content organization</strong> with categories and tags</li>
+<li><strong>SEO optimization</strong> with meta tags</li>
+<li><strong>Template selection</strong> and display options</li>
+<li><strong>Custom functionality</strong> through additional fields</li>
+</ul>
+<h3>Basic Structure</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# Required fields
+title: &quot;Your Content Title&quot;
+date: &quot;2024-01-15&quot;
+
+# Optional fields
+description: &quot;Brief description of the content&quot;
+tags: [&quot;web&quot;, &quot;tutorial&quot;]
+author: 1
+
+# Custom fields
+reading_time: 10
+---
+
+# Your content starts here
+
+Your Markdown content follows the front matter...
+</code></pre><hr />
+<h2>Basic Syntax</h2>
+<h3>YAML Formatting Rules</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# Strings (can be quoted or unquoted)
+title: &quot;My Blog Post&quot;
+title: My Blog Post              # Also valid
+
+# Dates (ISO format recommended)
+date: &quot;2024-01-15&quot;
+date: 2024-01-15                 # Also valid
+
+# Numbers
+reading_time: 10
+order: 1
+
+# Booleans
+featured: true
+draft: false
+
+# Lists/Arrays
+tags: [&quot;web&quot;, &quot;tutorial&quot;, &quot;beginner&quot;]
+tags:                            # Alternative list syntax
+  - web
+  - tutorial
+  - beginner
+
+# Objects/Dictionaries
+author:
+  name: &quot;John Doe&quot;
+  email: &quot;john@example.com&quot;
+
+# Comments (ignored by parser)
+# This is a comment
+---
+</code></pre><h3>Common Syntax Errors</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# ❌ Common mistakes
+title: My Post's Title           # Unescaped apostrophe
+date: 01/15/2024                # Wrong date format
+tags: web, tutorial             # Should be a list
+author: John Doe's Blog         # Unescaped apostrophe
+
+# ✅ Correct versions
+title: &quot;My Post's Title&quot;
+date: &quot;2024-01-15&quot;
+tags: [&quot;web&quot;, &quot;tutorial&quot;]
+author: &quot;John Doe's Blog&quot;
+---
+</code></pre><hr />
+<h2>Required Fields</h2>
+<h3>Title (Required)</h3>
+<p>The title of your content, used in HTML <code>&lt;title&gt;</code> tags, headings, and navigation.</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Complete Guide to Static Sites&quot;
+---
+</code></pre><p><strong>Usage:</strong></p>
+<ul>
+<li>Appears as the main heading</li>
+<li>Used in browser tab titles</li>
+<li>Displayed in post listings</li>
+<li>Included in RSS feeds</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Keep titles under 60 characters for SEO</li>
+<li>Make them descriptive and compelling</li>
+<li>Use proper capitalization</li>
+<li>Avoid special characters that break URLs</li>
+</ul>
+<h3>Date (Required for Posts)</h3>
+<p>Publication date in ISO format (YYYY-MM-DD).</p>
+<pre style="white-space: pre-wrap;"><code>---
+date: &quot;2024-01-15&quot;
+date: &quot;2024-01-15T10:30:00&quot;     # With time
+date: &quot;2024-01-15T10:30:00Z&quot;    # With timezone
+---
+</code></pre><p><strong>Usage:</strong></p>
+<ul>
+<li>Controls post sorting and pagination</li>
+<li>Displayed in post metadata</li>
+<li>Used for archive organization</li>
+<li>Included in RSS feed timestamps</li>
+</ul>
+<p><strong>Formats Supported:</strong></p>
+<ul>
+<li><code>&quot;2024-01-15&quot;</code> - Date only</li>
+<li><code>&quot;2024-01-15T10:30:00&quot;</code> - Date and time</li>
+<li><code>&quot;2024-01-15T10:30:00Z&quot;</code> - With UTC timezone</li>
+<li><code>&quot;2024-01-15T10:30:00-05:00&quot;</code> - With timezone offset</li>
+</ul>
+<hr />
+<h2>Optional Fields</h2>
+<h3>Description</h3>
+<p>Meta description for SEO and social sharing.</p>
+<pre style="white-space: pre-wrap;"><code>---
+description: &quot;Learn how to build fast, secure static websites with this comprehensive guide covering tools, best practices, and deployment strategies.&quot;
+---
+</code></pre><p><strong>Usage:</strong></p>
+<ul>
+<li>Meta description tag</li>
+<li>Social media previews</li>
+<li>RSS feed descriptions</li>
+<li>Post excerpts (if no explicit excerpt)</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>120-160 characters for optimal SEO</li>
+<li>Include target keywords naturally</li>
+<li>Write compelling copy that encourages clicks</li>
+<li>Avoid duplicating the title</li>
+</ul>
+<h3>Author</h3>
+<p>Reference to author information from <code>authors.yml</code>.</p>
+<pre style="white-space: pre-wrap;"><code>---
+author: 1                       # Author ID
+author: &quot;John Doe&quot;             # Author name (if no authors.yml)
+---
+</code></pre><p><strong>Author ID Reference:</strong></p>
+<pre style="white-space: pre-wrap;"><code># In content/authors.yml
+1:
+  name: &quot;John Doe&quot;
+  bio: &quot;Full-stack developer&quot;
+  email: &quot;john@example.com&quot;
+  avatar: &quot;/images/authors/john.jpg&quot;
+  website: &quot;https://johndoe.dev&quot;
+</code></pre><h3>Custom URL</h3>
+<p>Override the default URL structure.</p>
+<pre style="white-space: pre-wrap;"><code>---
+custom_url: &quot;/guides/static-sites/&quot;
+custom_url: &quot;/special-page/&quot;
+custom_url: &quot;/blog/my-custom-slug/&quot;
+---
+</code></pre><p><strong>Default URL vs Custom:</strong></p>
+<ul>
+<li><strong>Default</strong>: <code>/posts/my-blog-post/</code> (based on filename)</li>
+<li><strong>Custom</strong>: <code>/guides/static-sites/</code> (from <code>custom_url</code>)</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Start and end with forward slashes</li>
+<li>Use hyphens instead of spaces</li>
+<li>Keep URLs short and descriptive</li>
+<li>Avoid changing URLs after publication</li>
+</ul>
+<hr />
+<h2>Content Organization</h2>
+<h3>Categories</h3>
+<p>Organize content with categories (uses numeric IDs from categories.yml).</p>
+<pre style="white-space: pre-wrap;"><code>---
+categories: [1, 2]             # Array of category IDs
+categories:                    # Alternative array syntax
+  - 1
+  - 2
+---
+</code></pre><p><strong>Category Definition:</strong></p>
+<pre style="white-space: pre-wrap;"><code># In content/categories.yml
+1:
+  name: &quot;Tutorials&quot;
+  description: &quot;Step-by-step guides and how-tos&quot;
+  slug: &quot;tutorials&quot;
+
+2:
+  name: &quot;Reviews&quot;
+  description: &quot;Product and service reviews&quot;
+  slug: &quot;reviews&quot;
+</code></pre><h3>Tags</h3>
+<p>Multiple tags for detailed content classification (uses numeric IDs from tags.yml).</p>
+<pre style="white-space: pre-wrap;"><code>---
+tags: [1, 2, 3]               # Array of tag IDs
+tags:                         # Alternative array syntax
+  - 1
+  - 2
+  - 3
+---
+</code></pre><p><strong>Tag Definition:</strong></p>
+<pre style="white-space: pre-wrap;"><code># In content/tags.yml
+1:
+  name: &quot;Getting Started&quot;
+  description: &quot;Posts about getting started with new topics&quot;
+  slug: &quot;getting-started&quot;
+
+2:
+  name: &quot;Web Development&quot;
+  description: &quot;Posts about web development&quot;
+  slug: &quot;web-development&quot;
+</code></pre><p><strong>Tag Best Practices:</strong></p>
+<ul>
+<li>Use 3-7 tags per post</li>
+<li>Keep tags consistent across posts</li>
+<li>Define all tags in tags.yml with numeric IDs</li>
+<li>Use descriptive names and slugs</li>
+</ul>
+<h3>Featured Image</h3>
+<p>Specify a featured image for posts and pages.</p>
+<pre style="white-space: pre-wrap;"><code>---
+featured_image: &quot;images/posts/my-post-hero.jpg&quot;
+featured_image: &quot;assets/images/hero.jpg&quot;
+---
+</code></pre><p><strong>Usage:</strong></p>
+<ul>
+<li>Displayed at the top of posts/pages</li>
+<li>Used in social media previews (Open Graph)</li>
+<li>Referenced in templates as <code>page.featured_image</code></li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Use relative paths from the output directory</li>
+<li>Optimize images for web (WebP when possible)</li>
+<li>Include alt text context in surrounding content</li>
+</ul>
+<hr />
+<h2>SEO and Metadata</h2>
+<h3>SEO Metadata</h3>
+<p>Core SEO fields that Stattic actually uses.</p>
+<pre style="white-space: pre-wrap;"><code>---
+# SEO Title (optional - defaults to title)
+seo_title: &quot;Custom SEO Title for Search Engines&quot;
+
+# Meta description
+description: &quot;SEO-optimized description for search engines and social media&quot;
+
+# Keywords for meta tags
+keywords: &quot;static sites, web development, JAMstack, performance&quot;
+
+# Language code
+lang: &quot;en&quot;
+---
+</code></pre><hr />
+<h2>Display Options</h2>
+<h3>Custom Excerpt</h3>
+<p>Override the auto-generated excerpt.</p>
+<pre style="white-space: pre-wrap;"><code>---
+excerpt: &quot;Custom excerpt that overrides auto-generated one from content&quot;
+---
+</code></pre><h3>Template Selection</h3>
+<p>Choose custom templates for specific content.</p>
+<pre style="white-space: pre-wrap;"><code>---
+template: &quot;featured&quot;           # Uses post-featured.html or page-featured.html
+template: &quot;landing&quot;            # Uses page-landing.html
+template: &quot;tutorial&quot;           # Uses post-tutorial.html
+---
+</code></pre><h3>Page Ordering</h3>
+<p>Control the order of pages in navigation (if implemented in templates).</p>
+<pre style="white-space: pre-wrap;"><code>---
+order: 1                       # Numeric ordering for pages
+---
+</code></pre><hr />
+<h2>Custom Fields</h2>
+<p>Stattic passes all front matter fields to templates through the <code>metadata</code> and <code>page</code> variables, so you can add any custom fields you need and access them in your templates.</p>
+<h3>Accessing Custom Fields in Templates</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;My Post&quot;
+reading_time: 15
+difficulty: &quot;advanced&quot;
+my_custom_field: &quot;custom value&quot;
+---
+</code></pre><p>In your templates:</p>
+<pre style="white-space: pre-wrap;"><code>&lt;!-- Access via metadata --&gt;
+{{ metadata.reading_time }}
+{{ metadata.difficulty }}
+{{ metadata.my_custom_field }}
+
+&lt;!-- Or via page --&gt;
+{{ page.reading_time }}
+{{ page.difficulty }}
+{{ page.my_custom_field }}
+</code></pre><h3>Common Custom Field Patterns</h3>
+<pre style="white-space: pre-wrap;"><code>---
+# Content metadata
+reading_time: 15               # Minutes to read
+difficulty: &quot;advanced&quot;         # beginner, intermediate, advanced
+last_updated: &quot;2024-01-20&quot;    # When content was last revised
+
+# Display options
+show_toc: true                 # Show table of contents
+sidebar: false                 # Hide sidebar
+full_width: true              # Use full width layout
+
+# Custom categorization
+topic: &quot;web-development&quot;       # Additional categorization
+format: &quot;tutorial&quot;            # Content format type
+---
+</code></pre><hr />
+<h2>Field Reference</h2>
+<h3>Complete Field List</h3>
+<p><strong>Core Fields (Built into Stattic):</strong></p>
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>title</code></td>
+  <td>String</td>
+  <td>Content title (required)</td>
+  <td><code>&quot;My Blog Post&quot;</code></td>
+</tr>
+<tr>
+  <td><code>date</code></td>
+  <td>String</td>
+  <td>Publication date (ISO format)</td>
+  <td><code>&quot;2024-01-15&quot;</code></td>
+</tr>
+<tr>
+  <td><code>description</code></td>
+  <td>String</td>
+  <td>Meta description</td>
+  <td><code>&quot;Learn about...&quot;</code></td>
+</tr>
+<tr>
+  <td><code>author</code></td>
+  <td>Number</td>
+  <td>Author ID from authors.yml</td>
+  <td><code>1</code></td>
+</tr>
+<tr>
+  <td><code>categories</code></td>
+  <td>Array</td>
+  <td>Category IDs from categories.yml</td>
+  <td><code>[1, 2]</code></td>
+</tr>
+<tr>
+  <td><code>tags</code></td>
+  <td>Array</td>
+  <td>Tag IDs from tags.yml</td>
+  <td><code>[1, 2, 3]</code></td>
+</tr>
+<tr>
+  <td><code>keywords</code></td>
+  <td>String</td>
+  <td>SEO keywords</td>
+  <td><code>&quot;seo, web development&quot;</code></td>
+</tr>
+<tr>
+  <td><code>featured_image</code></td>
+  <td>String</td>
+  <td>Featured image path</td>
+  <td><code>&quot;images/hero.jpg&quot;</code></td>
+</tr>
+<tr>
+  <td><code>custom_url</code></td>
+  <td>String</td>
+  <td>Custom permalink</td>
+  <td><code>&quot;/guides/css/&quot;</code></td>
+</tr>
+<tr>
+  <td><code>template</code></td>
+  <td>String</td>
+  <td>Custom template name</td>
+  <td><code>&quot;featured&quot;</code></td>
+</tr>
+<tr>
+  <td><code>seo_title</code></td>
+  <td>String</td>
+  <td>Custom SEO title</td>
+  <td><code>&quot;SEO Title&quot;</code></td>
+</tr>
+<tr>
+  <td><code>lang</code></td>
+  <td>String</td>
+  <td>Language code</td>
+  <td><code>&quot;en&quot;</code></td>
+</tr>
+<tr>
+  <td><code>excerpt</code></td>
+  <td>String</td>
+  <td>Custom excerpt</td>
+  <td><code>&quot;Brief summary...&quot;</code></td>
+</tr>
+<tr>
+  <td><code>order</code></td>
+  <td>Number</td>
+  <td>Page ordering</td>
+  <td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Custom Fields:</strong>
+Any additional fields you add will be available in templates via <code>metadata.field_name</code> or <code>page.field_name</code>.</p>
+<h3>Data Types</h3>
+<h4>String Fields</h4>
+<pre style="white-space: pre-wrap;"><code>title: &quot;My Post Title&quot;
+description: &quot;This is a description&quot;
+custom_url: &quot;/my-custom-path/&quot;
+</code></pre><h4>Number Fields</h4>
+<pre style="white-space: pre-wrap;"><code>author: 1
+reading_time: 15
+order: 5
+</code></pre><h4>Boolean Fields</h4>
+<pre style="white-space: pre-wrap;"><code>featured: true
+draft: false
+comments: true
+</code></pre><h4>Array Fields</h4>
+<pre style="white-space: pre-wrap;"><code>categories: [1, 2]             # Category IDs
+tags: [1, 2, 3]               # Tag IDs
+</code></pre><h4>Date Fields</h4>
+<pre style="white-space: pre-wrap;"><code>date: &quot;2024-01-15&quot;
+last_updated: &quot;2024-01-20&quot;
+event_date: &quot;2024-03-15T14:00:00Z&quot;
+</code></pre><hr />
+<h2>Examples by Content Type</h2>
+<h3>Blog Post Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Mastering CSS Grid Layout&quot;
+date: &quot;2024-01-15&quot;
+description: &quot;Complete guide to CSS Grid with practical examples and best practices&quot;
+author: 1
+categories: [1]
+tags: [1, 2, 3]
+keywords: &quot;css grid, web layout, responsive design&quot;
+featured_image: &quot;images/posts/css-grid-hero.jpg&quot;
+template: &quot;tutorial&quot;
+excerpt: &quot;Learn CSS Grid with hands-on examples&quot;
+---
+</code></pre><h3>Static Page Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;About Me&quot;
+description: &quot;Learn about my background in web development and design&quot;
+custom_url: &quot;about&quot;
+template: &quot;page&quot;
+order: 1
+---
+</code></pre><h3>Landing Page Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Transform Your Business with Static Sites&quot;
+description: &quot;Discover how static sites can improve your website's performance, security, and user experience&quot;
+template: &quot;landing&quot;
+custom_url: &quot;solutions/static-sites&quot;
+featured_image: &quot;images/landing/static-sites-benefits.jpg&quot;
+seo_title: &quot;Static Sites for Business - Performance &amp; Security&quot;
+---
+</code></pre><h3>Tutorial Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Build Your First React Component&quot;
+date: &quot;2024-01-15&quot;
+description: &quot;Step-by-step tutorial for creating reusable React components&quot;
+author: 2
+categories: [1]
+tags: [1, 2, 3]
+template: &quot;tutorial&quot;
+excerpt: &quot;Learn to build React components from scratch&quot;
+# Custom fields for templates
+reading_time: 20
+difficulty: &quot;beginner&quot;
+---
+</code></pre><h3>Review Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Static Site Generator Comparison: Gatsby vs Next.js&quot;
+date: &quot;2024-01-15&quot;
+description: &quot;Detailed comparison of popular static site generators to help you choose the right tool&quot;
+author: 1
+category: &quot;review&quot;
+tags: [&quot;tools&quot;, &quot;comparison&quot;, &quot;gatsby&quot;, &quot;nextjs&quot;]
+template: &quot;review&quot;
+reading_time: 15
+products: [&quot;Gatsby&quot;, &quot;Next.js&quot;]
+rating_criteria: [&quot;Performance&quot;, &quot;Ease of Use&quot;, &quot;Documentation&quot;, &quot;Community&quot;]
+overall_rating: 4.5
+affiliate_disclosure: true
+last_updated: &quot;2024-01-20&quot;
+---
+</code></pre><h3>Event/News Example</h3>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Web Development Conference 2024&quot;
+date: &quot;2024-01-15&quot;
+description: &quot;Join us for the biggest web development conference of the year&quot;
+category: &quot;events&quot;
+tags: [&quot;conference&quot;, &quot;networking&quot;, &quot;web-development&quot;]
+event_date: &quot;2024-03-20&quot;
+event_time: &quot;09:00&quot;
+event_location: &quot;San Francisco, CA&quot;
+event_url: &quot;https://webdevconf2024.com&quot;
+ticket_price: &quot;$299&quot;
+early_bird: true
+registration_deadline: &quot;2024-03-01&quot;
+---
+</code></pre><hr />
+<h2>Advanced Usage</h2>
+<h3>Accessing Fields in Templates</h3>
+<p>All front matter fields are available in Jinja2 templates:</p>
+<pre style="white-space: pre-wrap;"><code>&lt;!-- Basic fields --&gt;
+&lt;h1&gt;{{ title }}&lt;/h1&gt;
+&lt;p&gt;By {{ get_author_name(author) }}&lt;/p&gt;
+&lt;time&gt;{{ date }}&lt;/time&gt;
+
+&lt;!-- Custom fields --&gt;
+{% if metadata.reading_time %}
+&lt;p&gt;Reading time: {{ metadata.reading_time }} minutes&lt;/p&gt;
+{% endif %}
+
+{% if page.difficulty %}
+&lt;span class=&quot;difficulty&quot;&gt;{{ page.difficulty }}&lt;/span&gt;
+{% endif %}
+
+&lt;!-- Featured image --&gt;
+{% if featured_image %}
+&lt;img src=&quot;{{ featured_image }}&quot; alt=&quot;Featured image for {{ title }}&quot;&gt;
+{% endif %}
+</code></pre><h3>Template-Specific Fields</h3>
+<p>You can create fields that are only meaningful for certain templates:</p>
+<pre style="white-space: pre-wrap;"><code>---
+title: &quot;Product Review&quot;
+template: &quot;review&quot;
+
+# These fields only matter for review template
+product_name: &quot;Static Site Generator X&quot;
+rating: 4.5
+affiliate_link: &quot;https://example.com/product&quot;
+pros: [&quot;Fast&quot;, &quot;Easy to use&quot;, &quot;Great documentation&quot;]
+cons: [&quot;Limited themes&quot;, &quot;Learning curve&quot;]
+---
+</code></pre><hr />
+<h2>Validation and Troubleshooting</h2>
+<h3>Common Errors</h3>
+<h4>YAML Syntax Errors</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# ❌ Syntax errors
+title: My Post's Title           # Unescaped apostrophe
+date: 01/15/2024                # Wrong date format
+tags: web, tutorial             # Missing brackets
+author: 1,                      # Trailing comma
+
+# ✅ Correct syntax
+title: &quot;My Post's Title&quot;
+date: &quot;2024-01-15&quot;
+tags: [&quot;web&quot;, &quot;tutorial&quot;]
+author: 1
+---
+</code></pre><h4>Data Type Errors</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# ❌ Wrong data types
+reading_time: &quot;10 minutes&quot;      # Should be number
+featured: &quot;true&quot;                # Should be boolean
+tags: &quot;web, tutorial&quot;           # Should be list
+date: 20240115                  # Should be string
+
+# ✅ Correct data types
+reading_time: 10
+featured: true
+tags: [&quot;web&quot;, &quot;tutorial&quot;]
+date: &quot;2024-01-15&quot;
+---
+</code></pre><h3>Validation Checklist</h3>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>YAML syntax is valid</strong> (no unescaped quotes, proper indentation)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Required fields are present</strong> (title, date for posts)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Date format is correct</strong> (YYYY-MM-DD)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Author ID exists</strong> in authors.yml (if using author field)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Category IDs exist</strong> in categories.yml (if using categories)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Tag IDs exist</strong> in tags.yml (if using tags)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Custom URL is unique</strong> (no duplicate custom_url values)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Image paths are correct</strong> (files exist in static directory)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/><strong>Template exists</strong> (if using custom template)</li>
+</ul>
+<h3>Debugging Tools</h3>
+<h4>YAML Validation</h4>
+<pre style="white-space: pre-wrap;"><code># Validate YAML syntax
+python -c &quot;import yaml; yaml.safe_load(open('content/posts/my-post.md').read().split('---')[1])&quot;
+
+# Online YAML validators
+# https://yamlchecker.com/
+# https://codebeautify.org/yaml-validator
+</code></pre><h4>Front Matter Extraction</h4>
+<pre style="white-space: pre-wrap;"><code># Extract and validate front matter
+import yaml
+
+def validate_front_matter(file_path):
+    with open(file_path, 'r') as f:
+        content = f.read()
+
+    if content.startswith('---'):
+        try:
+            front_matter = content.split('---')[1]
+            data = yaml.safe_load(front_matter)
+            print(&quot;✅ Valid YAML&quot;)
+            print(f&quot;Fields: {list(data.keys())}&quot;)
+            return data
+        except yaml.YAMLError as e:
+            print(f&quot;❌ YAML Error: {e}&quot;)
+    else:
+        print(&quot;❌ No front matter found&quot;)
+
+# Usage
+validate_front_matter('content/posts/my-post.md')
+</code></pre><h3>Error Messages and Solutions</h3>
+<table>
+<thead>
+<tr>
+  <th>Error</th>
+  <th>Cause</th>
+  <th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>&quot;Invalid YAML syntax&quot;</td>
+  <td>Malformed YAML</td>
+  <td>Check quotes, indentation, colons</td>
+</tr>
+<tr>
+  <td>&quot;Missing required field: title&quot;</td>
+  <td>No title field</td>
+  <td>Add <code>title: &quot;Your Title&quot;</code></td>
+</tr>
+<tr>
+  <td>&quot;Invalid date format&quot;</td>
+  <td>Wrong date format</td>
+  <td>Use <code>&quot;YYYY-MM-DD&quot;</code> format</td>
+</tr>
+<tr>
+  <td>&quot;Author ID not found&quot;</td>
+  <td>Invalid author reference</td>
+  <td>Check authors.yml or remove author field</td>
+</tr>
+<tr>
+  <td>&quot;Category ID not found&quot;</td>
+  <td>Invalid category ID</td>
+  <td>Check categories.yml or remove categories</td>
+</tr>
+<tr>
+  <td>&quot;Tag ID not found&quot;</td>
+  <td>Invalid tag ID</td>
+  <td>Check tags.yml or remove tags</td>
+</tr>
+<tr>
+  <td>&quot;Template not found&quot;</td>
+  <td>Missing custom template</td>
+  <td>Create template file or remove template field</td>
+</tr>
+<tr>
+  <td>&quot;Duplicate custom_url&quot;</td>
+  <td>URL conflict</td>
+  <td>Use unique custom_url values</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Best Practices</h2>
+<h3>Front Matter Organization</h3>
+<h4>1. Consistent Field Order</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# Content identification
+title: &quot;My Post Title&quot;
+date: &quot;2024-01-15&quot;
+description: &quot;Brief description&quot;
+
+# Organization
+category: &quot;tutorial&quot;
+tags: [&quot;web&quot;, &quot;tutorial&quot;]
+author: 1
+
+# Display options
+featured: true
+template: &quot;tutorial&quot;
+
+# SEO and social
+keywords: [&quot;web development&quot;, &quot;tutorial&quot;]
+image: &quot;/images/post-hero.jpg&quot;
+
+# Custom fields
+reading_time: 10
+difficulty: &quot;beginner&quot;
+---
+</code></pre><h4>2. Field Naming Conventions</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# ✅ Use clear, consistent naming
+reading_time: 10              # Not read_time or readTime
+last_updated: &quot;2024-01-20&quot;   # Not lastUpdated or last_update
+custom_url: &quot;/guides/css/&quot;   # Not customUrl or custom-url
+
+# ✅ Use boolean values properly
+featured: true               # Not &quot;yes&quot; or 1
+draft: false                # Not &quot;no&quot; or 0
+---
+</code></pre><h4>3. Required vs Optional Fields</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# Always include these for posts
+title: &quot;Required Title&quot;
+date: &quot;2024-01-15&quot;
+
+# Include these for better SEO
+description: &quot;Meta description for search engines&quot;
+keywords: &quot;relevant, keywords&quot;
+
+# Optional but helpful
+author: 1
+categories: [1]
+tags: [1, 2]
+featured_image: &quot;images/hero.jpg&quot;
+---
+</code></pre><h3>Content Strategy</h3>
+<h4>1. SEO Optimization</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# Required fields for posts
+title: &quot;Complete Guide to CSS Grid Layout&quot;          # Clear, descriptive title
+date: &quot;2024-01-15&quot;                                  # ISO format
+
+# SEO optimization
+description: &quot;Master CSS Grid with practical examples, best practices, and real-world layouts. Step-by-step tutorial for beginners and advanced developers.&quot;  # 120-160 chars
+keywords: &quot;css grid, web layout, responsive design, css tutorial&quot;
+featured_image: &quot;images/css-grid-social.jpg&quot;      # For social sharing
+
+# Organization
+categories: [1]                                     # Numeric category ID
+tags: [1, 2, 3]                                   # Numeric tag IDs
+---
+</code></pre><h4>2. Content Organization</h4>
+<pre style="white-space: pre-wrap;"><code>---
+# Use consistent field names and types
+categories: [1, 2]             # Array of numeric IDs
+tags: [1, 2, 3]               # Array of numeric IDs
+author: 1                     # Numeric ID from authors.yml
+
+# Use semantic field names for custom fields
+reading_time: 10              # Not read_time or readTime
+last_updated: &quot;2024-01-20&quot;   # Not lastUpdated or last_update
+custom_url: &quot;guides/css&quot;     # Not customUrl or custom-url
+---
+</code></pre><h4>3. User Experience</h4>
+<pre style="white-space: pre-wrap;"><code>---
+reading_time: 12               # Help users plan their time (custom field)
+difficulty: &quot;intermediate&quot;     # Set expectations (custom field)  
+template: &quot;tutorial&quot;           # Use appropriate layout
+order: 1                      # Control page ordering
+---
+</code></pre><hr />
+<h2>Summary</h2>
+<p>Front matter is the foundation of content management in Stattic, providing:</p>
+<h3>Essential Functions</h3>
+<ul>
+<li><strong>Content identification</strong> with titles and dates</li>
+<li><strong>Organization</strong> through categories, tags, and series</li>
+<li><strong>SEO optimization</strong> with metadata and descriptions</li>
+<li><strong>Display control</strong> with templates and featured flags</li>
+<li><strong>Custom functionality</strong> through extensible fields</li>
+</ul>
+<h3>Key Principles</h3>
+<ol>
+<li><strong>YAML syntax must be valid</strong> - use proper quotes and formatting</li>
+<li><strong>Required fields are mandatory</strong> - title and date for posts</li>
+<li><strong>Consistency is important</strong> - use same field names across content</li>
+<li><strong>SEO matters</strong> - include descriptions and keywords</li>
+<li><strong>Custom fields extend functionality</strong> - add fields as needed</li>
+</ol>
+<h3>Common Patterns</h3>
+<ul>
+<li><strong>Blog posts</strong>: title, date, description, categories, tags, author</li>
+<li><strong>Static pages</strong>: title, description, custom_url, template, order</li>
+<li><strong>Tutorials</strong>: title, date, template, + custom fields like difficulty, reading_time</li>
+<li><strong>Landing pages</strong>: title, description, template, seo_title, featured_image</li>
+</ul>
+<h3>Best Practices</h3>
+<ul>
+<li>Use numeric IDs for authors, categories, and tags</li>
+<li>Define all referenced entities in their respective YAML files</li>
+<li>Include essential SEO fields (title, description, keywords)</li>
+<li>Use consistent custom field naming</li>
+<li>Test template integration for custom fields</li>
+</ul>
+<p>Mastering front matter enables you to create well-organized, SEO-friendly, and highly functional static sites with Stattic.</p>
+<hr />
+<p><strong>Next Steps:</strong></p>
+<ul>
+<li><a href="content-creation">Content Creation Guide</a> - Writing great content</li>
+<li><a href="template-system">Template System Guide</a> - Using front matter in templates</li>
+<li><a href="faq">SEO Guide</a> - Optimizing metadata for search engines</li>
+</ul>
+
+    </article>
+</main>
+
+
+<footer class="bg-background border-t border-primary mt-10 py-6" id="footer">
+    <div class="container max-w-screen-xl m-auto px-4 text-center">
+        <p>Get <a href="https://stattic.site/" target="_blank" class="text-links font-bold" aria-label="Stattic - opens in a new tab">Stattic</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
