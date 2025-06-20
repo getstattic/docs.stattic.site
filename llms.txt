@@ -3,19 +3,19 @@
 This site contains structured content formatted for LLM-friendly consumption.
 
 ## Posts
-- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 4789827526
-- [Template system](https://docs.stattic.site/blog/template-system/): ID 8992107548
-- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 707143316
-- [Configuration](https://docs.stattic.site/blog/configuration/): ID 4686533271
-- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 7293952426
-- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 8815138377
-- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 6444182032
-- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 6618277099
-- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 9883265450
-- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 9001489084
+- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 8206704257
+- [Template system](https://docs.stattic.site/blog/template-system/): ID 4600064794
+- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 2016567116
+- [Configuration](https://docs.stattic.site/blog/configuration/): ID 1006396810
+- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 274665025
+- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 8144725943
+- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 8630759352
+- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 9803331186
+- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 2863103811
+- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 9416870995
 
 ## Pages
-- [About Stattic](https://docs.stattic.site/about/): ID 409660485
+- [About Stattic](https://docs.stattic.site/about/): ID 9084664050
 
 ## Sitemap
 https://docs.stattic.site/sitemap.xml
