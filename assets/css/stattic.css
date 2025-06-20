@@ -9,12 +9,6 @@
     --text-accent: #F59E0B;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .skip-link {
     position: absolute;
     top: -60px;
@@ -71,7 +65,6 @@ body {
 .border-primary {
     border-color: var(--border-color);
 }
-
 
 /* Ensure mobile menu works properly */
 [x-cloak] { display: none !important; }
