@@ -3,20 +3,19 @@
 This site contains structured content formatted for LLM-friendly consumption.
 
 ## Posts
-- [Untitled](https://docs.stattic.site/blog/11-faq/): ID 1288979127
-- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 4557506283
-- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 1510623505
-- [Template system](https://docs.stattic.site/blog/template-system/): ID 4343977184
-- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 1525925034
-- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 2823355311
-- [Configuration](https://docs.stattic.site/blog/configuration/): ID 1495397035
-- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 4645470884
-- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 6730987199
-- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 865846540
-- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 5729634146
+- [Installation and setup guide](https://docs.stattic.site/blog/installation-and-setup/): ID 289278041
+- [Template system](https://docs.stattic.site/blog/template-system/): ID 799409133
+- [Quick start guide](https://docs.stattic.site/blog/quick-start/): ID 6096084979
+- [Configuration](https://docs.stattic.site/blog/configuration/): ID 2999747250
+- [Project structure](https://docs.stattic.site/blog/project-structure/): ID 5024243349
+- [Your first static site with Stattic](https://docs.stattic.site/blog/your-first-static-site/): ID 4007207948
+- [Content creation](https://docs.stattic.site/blog/content-creation/): ID 4170177617
+- [Deployment options](https://docs.stattic.site/blog/deployment-options/): ID 1300661076
+- [Front matter reference](https://docs.stattic.site/blog/front-matter-reference/): ID 34330986
+- [Stattic CLI Reference](https://docs.stattic.site/blog/cli-reference/): ID 9102926138
 
 ## Pages
-- [About Stattic](https://docs.stattic.site/about/): ID 6100684709
+- [About Stattic](https://docs.stattic.site/about/): ID 1103991717
 
 ## Sitemap
 https://docs.stattic.site/sitemap.xml
